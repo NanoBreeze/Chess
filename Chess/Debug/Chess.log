@@ -1,0 +1,2 @@
+﻿  Source.obj : /DEBUG:FASTLINK is not supported when managed code is present; restarting link with /DEBUG:FULL
+sfml-graphics-d.lib(sfml-graphics-d-2.dll) : fatal error LNK1112: module machine type 'x64' conflicts with target machine type 'X86'
