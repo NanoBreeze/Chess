@@ -1,5 +1,4 @@
-﻿  Source.cpp
-  .NETFramework,Version=v4.5.2.AssemblyAttributes.cpp
-  Source.obj : /DEBUG:FASTLINK is not supported when managed code is present; restarting link with /DEBUG:FULL
+﻿  Square.cpp
+  Chessboard.obj : /DEBUG:FASTLINK is not supported when managed code is present; restarting link with /DEBUG:FULL
   Chess.vcxproj -> c:\users\lenny\documents\visual studio 2015\Projects\Chess\x64\Debug\Chess.exe
   Chess.vcxproj -> c:\users\lenny\documents\visual studio 2015\Projects\Chess\x64\Debug\Chess.pdb (Partial PDB)

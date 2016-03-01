@@ -5,3 +5,71 @@ Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934
 	hash=None, flags=None
 Assembly System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
 	hash=None, flags=None
+Struct Coordinate: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    Coordinate A1 = 0 : Public, Static, Literal, HasDefault
+    Coordinate A2 = 1 : Public, Static, Literal, HasDefault
+    Coordinate A3 = 2 : Public, Static, Literal, HasDefault
+    Coordinate A4 = 3 : Public, Static, Literal, HasDefault
+    Coordinate A5 = 4 : Public, Static, Literal, HasDefault
+    Coordinate A6 = 5 : Public, Static, Literal, HasDefault
+    Coordinate A7 = 6 : Public, Static, Literal, HasDefault
+    Coordinate A8 = 7 : Public, Static, Literal, HasDefault
+    Coordinate B1 = 8 : Public, Static, Literal, HasDefault
+    Coordinate B2 = 9 : Public, Static, Literal, HasDefault
+    Coordinate B3 = 10 : Public, Static, Literal, HasDefault
+    Coordinate B4 = 11 : Public, Static, Literal, HasDefault
+    Coordinate B5 = 12 : Public, Static, Literal, HasDefault
+    Coordinate B6 = 13 : Public, Static, Literal, HasDefault
+    Coordinate B7 = 14 : Public, Static, Literal, HasDefault
+    Coordinate B8 = 15 : Public, Static, Literal, HasDefault
+    Coordinate C1 = 16 : Public, Static, Literal, HasDefault
+    Coordinate C2 = 17 : Public, Static, Literal, HasDefault
+    Coordinate C3 = 18 : Public, Static, Literal, HasDefault
+    Coordinate C4 = 19 : Public, Static, Literal, HasDefault
+    Coordinate C5 = 20 : Public, Static, Literal, HasDefault
+    Coordinate C6 = 21 : Public, Static, Literal, HasDefault
+    Coordinate C7 = 22 : Public, Static, Literal, HasDefault
+    Coordinate C8 = 23 : Public, Static, Literal, HasDefault
+    Coordinate D1 = 24 : Public, Static, Literal, HasDefault
+    Coordinate D2 = 25 : Public, Static, Literal, HasDefault
+    Coordinate D3 = 26 : Public, Static, Literal, HasDefault
+    Coordinate D4 = 27 : Public, Static, Literal, HasDefault
+    Coordinate D5 = 28 : Public, Static, Literal, HasDefault
+    Coordinate D6 = 29 : Public, Static, Literal, HasDefault
+    Coordinate D7 = 30 : Public, Static, Literal, HasDefault
+    Coordinate D8 = 31 : Public, Static, Literal, HasDefault
+    Coordinate E1 = 32 : Public, Static, Literal, HasDefault
+    Coordinate E2 = 33 : Public, Static, Literal, HasDefault
+    Coordinate E3 = 34 : Public, Static, Literal, HasDefault
+    Coordinate E4 = 35 : Public, Static, Literal, HasDefault
+    Coordinate E5 = 36 : Public, Static, Literal, HasDefault
+    Coordinate E6 = 37 : Public, Static, Literal, HasDefault
+    Coordinate E7 = 38 : Public, Static, Literal, HasDefault
+    Coordinate E8 = 39 : Public, Static, Literal, HasDefault
+    Coordinate F1 = 40 : Public, Static, Literal, HasDefault
+    Coordinate F2 = 41 : Public, Static, Literal, HasDefault
+    Coordinate F3 = 42 : Public, Static, Literal, HasDefault
+    Coordinate F4 = 43 : Public, Static, Literal, HasDefault
+    Coordinate F5 = 44 : Public, Static, Literal, HasDefault
+    Coordinate F6 = 45 : Public, Static, Literal, HasDefault
+    Coordinate F7 = 46 : Public, Static, Literal, HasDefault
+    Coordinate F8 = 47 : Public, Static, Literal, HasDefault
+    Coordinate G1 = 48 : Public, Static, Literal, HasDefault
+    Coordinate G2 = 49 : Public, Static, Literal, HasDefault
+    Coordinate G3 = 50 : Public, Static, Literal, HasDefault
+    Coordinate G4 = 51 : Public, Static, Literal, HasDefault
+    Coordinate G5 = 52 : Public, Static, Literal, HasDefault
+    Coordinate G6 = 53 : Public, Static, Literal, HasDefault
+    Coordinate G7 = 54 : Public, Static, Literal, HasDefault
+    Coordinate G8 = 55 : Public, Static, Literal, HasDefault
+    Coordinate H1 = 56 : Public, Static, Literal, HasDefault
+    Coordinate H2 = 57 : Public, Static, Literal, HasDefault
+    Coordinate H3 = 58 : Public, Static, Literal, HasDefault
+    Coordinate H4 = 59 : Public, Static, Literal, HasDefault
+    Coordinate H5 = 60 : Public, Static, Literal, HasDefault
+    Coordinate H6 = 61 : Public, Static, Literal, HasDefault
+    Coordinate H7 = 62 : Public, Static, Literal, HasDefault
+    Coordinate H8 = 63 : Public, Static, Literal, HasDefault
