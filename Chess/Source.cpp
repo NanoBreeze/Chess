@@ -9,7 +9,7 @@ int main()
 {
 	
 	
-	sf::RenderWindow window(sf::VideoMode(800, 800), "SFML works!");
+	sf::RenderWindow window(sf::VideoMode(400, 400), "SFML works!");
 
 	Chessboard chessboard;
 
@@ -23,11 +23,7 @@ int main()
 			
 			if (event.type==sf::Event::MouseButtonPressed)
 			{
-				std::cout << "Mouse pressed. The x coordinate is:" << event.mouseButton.x << " and the y coordinate is:" << event.mouseButton.y << "\n";
-				if (event.mouseButton.x < 300)
-				{
-					chessboard.squares[0][1].handleClick();
-				}
+				chessboard.delegateClick(event.mouseButton.x, event.mouseButton.y);
 			}
 		}
 

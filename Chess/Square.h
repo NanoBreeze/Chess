@@ -32,6 +32,9 @@ public:
 	//temporary method, to check if it's possible to handle a click event
 	void handleClick() { std::cout << "This piece has been clicked. Its coordinates are:" << ((int)coordinate) << "\n"; }
 
+	//highlights the square. Used to indicate that it has been selected, another code must first check if such a selection is legal.
+	void highlightSquare();
+
 private: 
 
 	//contains the piece that is currently residing on this square, eg, knight, bishop, 
@@ -39,6 +42,9 @@ private:
 
 	//the board colour of the square, black or white
 	sf::Color defaultColour;
+
+	//the curent colour of the square. Usually, black or white but can be highlighted
+	sf::Color displayColour;
 
 	//the square's coordinate, eg, A1, E5
 	Coordinate coordinate;

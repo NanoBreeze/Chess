@@ -134,3 +134,8 @@ void Square::removePiece()
 {
 	//piece = nullptr;
 }
+
+void Square::highlightSquare()
+{
+	displayColour = sf::Color::Yellow;
+}

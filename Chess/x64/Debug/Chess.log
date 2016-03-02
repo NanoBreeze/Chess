@@ -1,4 +1,8 @@
-﻿  Square.cpp
+﻿  Chessboard.cpp
+Chessboard.cpp(16): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Source.cpp
+  Square.cpp
+  Generating Code...
   Chessboard.obj : /DEBUG:FASTLINK is not supported when managed code is present; restarting link with /DEBUG:FULL
-  Chess.vcxproj -> c:\users\lenny\documents\visual studio 2015\Projects\Chess\x64\Debug\Chess.exe
-  Chess.vcxproj -> c:\users\lenny\documents\visual studio 2015\Projects\Chess\x64\Debug\Chess.pdb (Partial PDB)
+  Chess.vcxproj -> C:\Users\Lenny\Documents\Visual Studio 2015\Projects\Chess\x64\Debug\Chess.exe
+  Chess.vcxproj -> C:\Users\Lenny\Documents\Visual Studio 2015\Projects\Chess\x64\Debug\Chess.pdb (Partial PDB)
