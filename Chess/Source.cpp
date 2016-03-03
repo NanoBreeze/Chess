@@ -37,6 +37,11 @@ int main()
 				window.draw(chessboard.squares[row][column]);
 			}
 		}
+
+		//draw the bishop
+		chessboard.squares[3][4].getBishop()->setFillColor(sf::Color::Green);
+		auto j = chessboard.squares[3][4].getBishop();
+		window.draw(*j);
 		window.display();
 	}
 

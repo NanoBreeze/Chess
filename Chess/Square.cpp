@@ -69,7 +69,8 @@ void Square::setDefaultColour(const Coordinate coordinate)
 	case Coordinate::H8:
 
 		defaultColour = sf::Color::Black;
-		setFillColor(defaultColour);
+		displayColour = defaultColour;
+		setFillColor(displayColour);
 		break;
 
 	case Coordinate::A2:
@@ -113,21 +114,22 @@ void Square::setDefaultColour(const Coordinate coordinate)
 	case Coordinate::H7:
 
 		defaultColour = sf::Color::White;
-		setFillColor(defaultColour);
+		displayColour = defaultColour;
+		setFillColor(displayColour);
 		break;
 	default:
 		throw std::exception("In Square.cpp, setDefaultColour, default case, this should not have occurred.");
 	}
 }
 
-Piece Square::getPiece() const
+Bishop* Square::getBishop() const
 {
-	return piece;
+	return bishop;
 }
 
-void Square::setPiece(Piece& piece)
+void Square::setBishop(Bishop* bishop)
 {
-	this->piece = piece;
+	this->bishop = bishop;
 }
 
 void Square::removePiece()
@@ -135,7 +137,22 @@ void Square::removePiece()
 	//piece = nullptr;
 }
 
-void Square::highlightSquare()
+void Square::highlightSelected()
 {
 	displayColour = sf::Color::Yellow;
+	setFillColor(displayColour);
 }
+
+void Square::highlightIsLegalMove()
+{
+	displayColour = sf::Color::Cyan;
+	setFillColor(displayColour);
+}
+
+void Square::unHighlight()
+{
+	displayColour = defaultColour;
+	setFillColor(displayColour);
+}
+
+
