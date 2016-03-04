@@ -3,11 +3,12 @@
 
 #include "Square.h"
 #include "Chessboard.h"
+#include "Queen.h"
 
 
 int main()
 {
-	
+	Queen q;
 	
 	sf::RenderWindow window(sf::VideoMode(400, 400), "SFML works!");
 
@@ -39,7 +40,7 @@ int main()
 		}
 
 		//draw the bishop
-		chessboard.squares[3][4].getBishop()->setFillColor(sf::Color::Green);
+		chessboard.squares[3][4].getBishop()->setFillColor(sf::Color::Red);
 		auto j = chessboard.squares[3][4].getBishop();
 		window.draw(*j);
 		window.display();

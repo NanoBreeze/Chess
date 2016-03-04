@@ -34,7 +34,8 @@ public:
 	//temporary method, to check if it's possible to handle a click event
 	void handleClick() { std::cout << "This piece has been clicked. Its coordinates are:" << ((int)coordinate) << "\n"; }
 
-	//highlights the square. Used to indicate that it has been selected, another code must first check if such a selection is legal.
+	//highlights the square. Used to indicate that it has been selected, another code must first check if such a selection is legal. The highlight has two 
+	// different colours, one to show it is an empty square, the other to show that there is a piece in the square
 	void highlightSelected();
 
 	//highlights the square to show it is a legal move for another piece

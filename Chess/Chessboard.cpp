@@ -58,6 +58,12 @@ void Chessboard::delegateClick(int x, int y)
 	
 	//highlight the selected square
 	squares[7-column][7-row].highlightSelected();
+
+	//if the selected square contains a bishop, highlight its movable squares
+	if (squares[7 - column][7 - row].getBishop() != nullptr)
+	{
+		highlightBishopMovableSquares();
+	}
 }
 
 void Chessboard::highlightBishopMovableSquares()

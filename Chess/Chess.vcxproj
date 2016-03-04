@@ -133,10 +133,10 @@
   <ItemGroup>
     <ClCompile Include="Bishop.cpp" />
     <ClCompile Include="Chessboard.cpp" />
-    <ClCompile Include="Coordinate.cpp" />
     <ClCompile Include="Helper.cpp" />
-    <ClCompile Include="Hey.cpp" />
     <ClCompile Include="Piece.cpp" />
+    <ClCompile Include="Queen.cpp" />
+    <ClCompile Include="Rook.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Square.cpp" />
   </ItemGroup>
@@ -145,8 +145,9 @@
     <ClInclude Include="Chessboard.h" />
     <ClInclude Include="Coordinate.h" />
     <ClInclude Include="Helper.h" />
-    <ClInclude Include="Hey.h" />
     <ClInclude Include="Piece.h" />
+    <ClInclude Include="Queen.h" />
+    <ClInclude Include="Rook.h" />
     <ClInclude Include="Square.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -6,31 +6,6 @@ Bishop::Bishop()
 {
 	coordinate = Coordinate::B2;
 	setSize(sf::Vector2f(20, 20));
-
-}
-
-Coordinate Bishop::getCoordinate() const
-{
-	return coordinate;
-}
-
-//when the coordinates are set, the position is also set with respect to it
-void Bishop::setCoordinate(Coordinate coordinate)
-{
-	this->coordinate = coordinate;
-
-	//gets row and column
-	int row = getRow();
-	int column = getColumn();
-	
-	//sets the position, use helper method instead and take out magic numbers
-	setPosition(sf::Vector2f(column * 50, 350 - row * 50));
-	computeMovableSquares();
-}
-
-std::vector<Coordinate> Bishop::getMovableSquares() const
-{
-	return movableSquares;
 }
 
 //problem, in the moveableSquares, there are duplications of the current square the bishop is in
@@ -43,9 +18,7 @@ void Bishop::computeMovableSquares()
 	//compute top right squares, stop if row is over 7 or column is over 7
 	while (row1 <= 7 && column1 <= 7)
 	{
-		Coordinate m = computeCoordinate(row1, column1);
 		movableSquares.push_back(computeCoordinate(row1, column1));
-
 
 		//go to next row
 		row1++;
@@ -92,20 +65,4 @@ void Bishop::computeMovableSquares()
 		column4++;
 	}
 
-}
-
-int Bishop::getRow() const
-{
-	return (int)coordinate / 8;
-
-}
-
-int Bishop::getColumn() const
-{
-	return (int)coordinate % 8;
-}
-
-Coordinate Bishop::computeCoordinate(int row, int column)
-{
-	return static_cast<Coordinate> (row * 8 + column);
 }

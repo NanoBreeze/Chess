@@ -1,5 +1,7 @@
-﻿  Source.cpp
+﻿  Queen.cpp
+  Source.cpp
 c:\users\lenny\documents\visual studio 2015\projects\chess\chess\Helper.h(12): warning C4091: 'static ': ignored on left of 'Helper' when no variable is declared
+  Generating Code...
   Bishop.obj : /DEBUG:FASTLINK is not supported when managed code is present; restarting link with /DEBUG:FULL
   Chess.vcxproj -> C:\Users\Lenny\Documents\Visual Studio 2015\Projects\Chess\x64\Debug\Chess.exe
   Chess.vcxproj -> C:\Users\Lenny\Documents\Visual Studio 2015\Projects\Chess\x64\Debug\Chess.pdb (Partial PDB)

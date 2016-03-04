@@ -139,8 +139,8 @@ void Square::removePiece()
 
 void Square::highlightSelected()
 {
-	displayColour = sf::Color::Yellow;
-	setFillColor(displayColour);
+		displayColour = sf::Color::Yellow;
+		setFillColor(displayColour);
 }
 
 void Square::highlightIsLegalMove()
