@@ -6,6 +6,11 @@ Piece::Piece()
 {
 }
 
+Position Piece::getPosition() const
+{
+	return position;
+}
+
 Coordinate Piece::getCoordinate() const
 {
 	return coordinate;

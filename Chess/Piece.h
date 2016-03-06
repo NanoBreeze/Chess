@@ -1,13 +1,15 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include "Coordinate.h"
 #include <vector>
+#include "Position.h"
 
 class Piece : public sf::RectangleShape
 {
 public:
 	Piece();
+
+	Position getPosition() const;
 
 	//returns the coordinates associated with the piece
 	 Coordinate getCoordinate() const;
@@ -19,6 +21,9 @@ public:
 	std::vector<Coordinate> getMovableSquares() const;
 
 protected: 
+
+	//contains this piece's Coordinate, row and column
+	Position position;
 
 	//the coordinates of this piece, its "properties" are getCoordinate() and setCoordinate()
 	Coordinate coordinate;
