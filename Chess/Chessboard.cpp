@@ -62,19 +62,19 @@ void Chessboard::delegateClick(int x, int y)
 	//if the selected square contains a bishop, highlight its movable squares
 	if (squares[7 - column][7 - row].getBishop() != nullptr)
 	{
-		highlightBishopMovableSquares();
+		highlightMovableSquares();
 	}
 }
 
-void Chessboard::highlightBishopMovableSquares()
+void Chessboard::highlightMovableSquares()
 {
-	std::vector<Coordinate> movableSquares = bishop->getMovableSquares();
+	std::vector<Position> movablePositions = bishop->getMovablePositions();
 
-	for (Coordinate coordinate: movableSquares)
+	for (Position position: movablePositions)
 	{
 		//get row and column entry
-		int row = Helper::getRowFromCoordinate(coordinate);
-		int column = Helper::getColumnFromCoordinate(coordinate);
+		int row = position.getRow();
+		int column = position.getColumn();
 
 		squares[7-column][7 - row].highlightIsLegalMove();
 	}

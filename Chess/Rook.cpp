@@ -6,7 +6,7 @@ Rook::Rook()
 {
 }
 
-void Rook::computeMovableSquares()
+void Rook::computeMovablePositions()
 {
 	//find row and column of coordinates
 	int row1 = position.getRow();
@@ -17,7 +17,7 @@ void Rook::computeMovableSquares()
 
 	while (column1 >= 0)
 	{
-		movableSquares.push_back(computeCoordinate(row1, column1));
+		movablePositions.push_back(computePosition(row1, column1));
 		column1--;
 	}
 
@@ -27,7 +27,7 @@ void Rook::computeMovableSquares()
 
 	while (column2 <= 7)
 	{
-		movableSquares.push_back(computeCoordinate(row2, column2));
+		movablePositions.push_back(computePosition(row2, column2));
 		column2++;
 	}
 		
@@ -37,7 +37,7 @@ void Rook::computeMovableSquares()
 
 	while (row3 <= 7)
 	{
-		movableSquares.push_back(computeCoordinate(row3, column3));
+		movablePositions.push_back(computePosition(row3, column3));
 		row3++;
 	}
 
@@ -47,7 +47,7 @@ void Rook::computeMovableSquares()
 
 	while (row4 >= 0)
 	{
-		movableSquares.push_back(computeCoordinate(row4, column4));
+		movablePositions.push_back(computePosition(row4, column4));
 		row4--;
 	}
 }

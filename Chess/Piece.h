@@ -11,12 +11,11 @@ public:
 
 	Position getPosition() const;
 
-
 	//sets the piece to the specified coordinate, along with its row-column position, along with the squares it can move to
 	 void setCoordinate(const Coordinate coordinate);
 
 	//returns the vector of Coordinates this piece is eligeble to move to
-	std::vector<Coordinate> getMovableSquares() const;
+	std::vector<Position> getMovablePositions() const;
 
 protected: 
 
@@ -24,11 +23,14 @@ protected:
 	Position position;
 
 	//contains the coordinates this piece is eligible to move to. This field frequently changes
-	std::vector<Coordinate> movableSquares;
+	//std::vector<Coordinate> movableSquares;
+
+	//contains the Positions (Coordinate, row, column) this piece is eligible to move to. This field frequently changes
+	std::vector<Position> movablePositions;
 
 	//calculates the eligible Squares this piece can move to, its getter is getMovableSquares()
-	virtual void computeMovableSquares() = 0;
+	virtual void computeMovablePositions() = 0;
 
-	Coordinate computeCoordinate(int row, int column);
+	Position computePosition(int row, int column);
 };
 

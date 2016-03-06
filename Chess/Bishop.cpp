@@ -9,7 +9,7 @@ Bishop::Bishop()
 }
 
 //problem, in the moveableSquares, there are duplications of the current square the bishop is in
-void Bishop::computeMovableSquares()
+void Bishop::computeMovablePositions()
 {
 	//find row and column of coordinates
 	int row1 = position.getRow();
@@ -18,7 +18,7 @@ void Bishop::computeMovableSquares()
 	//compute top right squares, stop if row is over 7 or column is over 7
 	while (row1 <= 7 && column1 <= 7)
 	{
-		movableSquares.push_back(computeCoordinate(row1, column1));
+		movablePositions.push_back(computePosition(row1, column1));
 
 		//go to next row
 		row1++;
@@ -31,7 +31,7 @@ void Bishop::computeMovableSquares()
 
 	while (row2 >= 0 && column2 >= 0)
 	{
-		movableSquares.push_back(computeCoordinate(row2, column2));
+		movablePositions.push_back(computePosition(row2, column2));
 
 		//go to next row
 		row2--;
@@ -44,7 +44,7 @@ void Bishop::computeMovableSquares()
 
 	while (row3 <= 7 && column3 >= 0)
 	{
-		movableSquares.push_back(computeCoordinate(row3, column3));
+		movablePositions.push_back(computePosition(row3, column3));
 
 		//go to next row
 		row3++;
@@ -57,8 +57,7 @@ void Bishop::computeMovableSquares()
 
 	while (row4 >= 0 && column4 <= 7)
 	{
-		movableSquares.push_back(computeCoordinate(row4, column4));
-		
+		movablePositions.push_back(computePosition(row4, column4));
 
 		//go to next row
 		row4--;

@@ -6,6 +6,6 @@ Queen::Queen()
 {
 }
 
-void Queen::computeMovableSquares()
+void Queen::computeMovablePositions()
 {
 }

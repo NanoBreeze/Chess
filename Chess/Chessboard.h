@@ -25,7 +25,7 @@ public:
 	//This is currently very coupled
 	void delegateClick(int x, int y);
 
-	void highlightBishopMovableSquares();
+	void highlightMovableSquares();
 
 private:
 };

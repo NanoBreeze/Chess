@@ -20,16 +20,20 @@ void Piece::setCoordinate(const Coordinate coordinate)
 
 	//sets the position, use helper method instead and take out magic numbers
 	setPosition(sf::Vector2f(column * 50, 350 - row * 50));
-	computeMovableSquares();
+	computeMovablePositions();
 }
 
-std::vector<Coordinate> Piece::getMovableSquares() const
+std::vector<Position> Piece::getMovablePositions() const
 {
-	return movableSquares;
+	return movablePositions;
 }
 
-Coordinate Piece::computeCoordinate(int row, int column)
+
+Position Piece::computePosition(int row, int column)
 {
-	return static_cast<Coordinate> (row * 8 + column);
+	Position p;
+	p.setPosition(row, column);
+
+	return p;
 }
 
