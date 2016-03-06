@@ -4,7 +4,7 @@
 //set coordinate and size
 Bishop::Bishop()
 {
-	coordinate = Coordinate::B2;
+	position.setPosition(Coordinate::B2);
 	setSize(sf::Vector2f(20, 20));
 }
 
@@ -12,8 +12,8 @@ Bishop::Bishop()
 void Bishop::computeMovableSquares()
 {
 	//find row and column of coordinates
-	int row1 = getRow();
-	int column1 = getColumn();
+	int row1 = position.getRow();
+	int column1 = position.getColumn();
 
 	//compute top right squares, stop if row is over 7 or column is over 7
 	while (row1 <= 7 && column1 <= 7)
@@ -26,8 +26,8 @@ void Bishop::computeMovableSquares()
 	}
 	
 	//compute bottom left squares, stop if row is under 0 or column is under 0
-	int row2 = getRow();
-	int column2 = getColumn();
+	int row2 = position.getRow();
+	int column2 = position.getColumn();
 
 	while (row2 >= 0 && column2 >= 0)
 	{
@@ -39,8 +39,8 @@ void Bishop::computeMovableSquares()
 	}
 
 	//compute top left squares, stop if row is over 7 or column is under 0
-	int row3 = getRow();
-	int column3 = getColumn();
+	int row3 = position.getRow();
+	int column3 = position.getColumn();
 
 	while (row3 <= 7 && column3 >= 0)
 	{
@@ -52,8 +52,8 @@ void Bishop::computeMovableSquares()
 	}
 
 	//compute bottom right squares, stop if row is under 0 or column is over 7
-	int row4 = getRow();
-	int column4 = getColumn();
+	int row4 = position.getRow();
+	int column4 = position.getColumn();
 
 	while (row4 >= 0 && column4 <= 7)
 	{

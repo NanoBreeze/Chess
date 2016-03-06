@@ -9,8 +9,8 @@ Rook::Rook()
 void Rook::computeMovableSquares()
 {
 	//find row and column of coordinates
-	int row1 = getRow();
-	int column1 = getColumn();
+	int row1 = position.getRow();
+	int column1 = position.getColumn();
 
 	//can consider left and right into horizontal
 	//compute left Squares
@@ -22,8 +22,8 @@ void Rook::computeMovableSquares()
 	}
 
 	//compute right Squares
-	int row2 = getRow();
-	int column2 = getColumn();
+	int row2 = position.getRow();
+	int column2 = position.getColumn();
 
 	while (column2 <= 7)
 	{
@@ -32,8 +32,8 @@ void Rook::computeMovableSquares()
 	}
 		
 	//compute top Squares
-	int row3 = getRow();
-	int column3 = getColumn();
+	int row3 = position.getRow();
+	int column3 = position.getColumn();
 
 	while (row3 <= 7)
 	{
@@ -42,8 +42,8 @@ void Rook::computeMovableSquares()
 	}
 
 	//compute top Squares
-	int row4 = getRow();
-	int column4 = getColumn();
+	int row4 = position.getRow();
+	int column4 = position.getColumn();
 
 	while (row4 >= 0)
 	{
