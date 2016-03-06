@@ -6,7 +6,7 @@
 class Bishop : public Piece
 {
 public:
-	Bishop();
+	Bishop(Coordinate coordinate);
 
 protected : 
 

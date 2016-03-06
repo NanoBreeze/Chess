@@ -133,7 +133,6 @@
   <ItemGroup>
     <ClCompile Include="Bishop.cpp" />
     <ClCompile Include="Chessboard.cpp" />
-    <ClCompile Include="Helper.cpp" />
     <ClCompile Include="Piece.cpp" />
     <ClCompile Include="Position.cpp" />
     <ClCompile Include="Queen.cpp" />
@@ -145,7 +144,6 @@
     <ClInclude Include="Bishop.h" />
     <ClInclude Include="Chessboard.h" />
     <ClInclude Include="Coordinate.h" />
-    <ClInclude Include="Helper.h" />
     <ClInclude Include="Piece.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="Queen.h" />

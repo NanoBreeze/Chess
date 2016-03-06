@@ -15,24 +15,24 @@ public:
 
 	//A square's colour can change when it is clicked on to denote it has been selected 
 	//returns the square's coordinate, eg, A1, E5
-	Coordinate getCoordinate() const;
-	void setCoordinate(const Coordinate);
+	Position getPosition() const;
+	void setPositionwithCoordinate(const Coordinate); //funky name because setPosition is already a method name in sf::RectangaleShape
 
 	//A square is by default either black or white
 	sf::Color getDefaultColour() const;
 	void setDefaultColour(const Coordinate);
 
 	//returns the piece residing on this Square
-	Bishop* getBishop() const;
+	Piece* getPiece() const;
 
-	//sets a piece to reside on this Square
-	void setBishop(Bishop*);
+	//sets a piece to reside on this Square. Also configures that Piece's position to indicate to this Square's Coordinate, row, and column
+	void setPiece(Piece*);
 
 	//removes the current piece residing on this square
 	void removePiece();
 
 	//temporary method, to check if it's possible to handle a click event
-	void handleClick() { std::cout << "This piece has been clicked. Its coordinates are:" << ((int)coordinate) << "\n"; }
+	void handleClick() { std::cout << "This piece has been clicked. \n"; }
 
 	//highlights the square. Used to indicate that it has been selected, another code must first check if such a selection is legal. The highlight has two 
 	// different colours, one to show it is an empty square, the other to show that there is a piece in the square
@@ -47,7 +47,7 @@ public:
 private: 
 
 	//contains the piece that is currently residing on this square, eg, knight, bishop, 
-	Bishop* bishop = nullptr;
+	Piece* piece = nullptr;
 
 	//the board colour of the square, black or white
 	sf::Color defaultColour;
@@ -55,8 +55,8 @@ private:
 	//the curent colour of the square. Usually, black or white but can be highlighted
 	sf::Color displayColour;
 
-	//the square's coordinate, eg, A1, E5
-	Coordinate coordinate;
+	//the square's Position (contains Coordiante, row, and column)
+	Position position;
 
 };
 

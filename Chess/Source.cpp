@@ -40,8 +40,8 @@ int main()
 		}
 
 		//draw the bishop
-		chessboard.squares[3][4].getBishop()->setFillColor(sf::Color::Red);
-		auto j = chessboard.squares[3][4].getBishop();
+		chessboard.squares[3][4].getPiece()->setFillColor(sf::Color::Red);
+		auto j = chessboard.squares[3][4].getPiece();
 		window.draw(*j);
 		window.display();
 	}

@@ -12,7 +12,10 @@ public:
 	Position getPosition() const;
 
 	//sets the piece to the specified coordinate, along with its row-column position, along with the squares it can move to
-	 void setCoordinate(const Coordinate coordinate);
+	 void setPosition(const Coordinate coordinate);
+
+	 //same as above but accepts a Position object instead. Used when a Square sets the Position of a Piece associated to it.
+	 void setPosition(const Position position);
 
 	//returns the vector of Coordinates this piece is eligeble to move to
 	std::vector<Position> getMovablePositions() const;

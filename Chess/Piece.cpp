@@ -11,7 +11,7 @@ Position Piece::getPosition() const
 	return position;
 }
 
-void Piece::setCoordinate(const Coordinate coordinate)
+void Piece::setPosition(const Coordinate coordinate)
 {
 	position.setPosition(coordinate);
 
@@ -19,7 +19,19 @@ void Piece::setCoordinate(const Coordinate coordinate)
 	int row = position.getRow();
 
 	//sets the position, use helper method instead and take out magic numbers
-	setPosition(sf::Vector2f(column * 50, 350 - row * 50));
+	sf::RectangleShape::setPosition(sf::Vector2f(column * 50, 350 - row * 50));
+	computeMovablePositions();
+}
+
+void Piece::setPosition(const Position position)
+{
+	this->position = position;
+
+	int column = position.getColumn();
+	int row = position.getRow();
+
+	//sets the position, use helper method instead and take out magic numbers
+	sf::RectangleShape::setPosition(sf::Vector2f(column * 50, 350 - row * 50));
 	computeMovablePositions();
 }
 

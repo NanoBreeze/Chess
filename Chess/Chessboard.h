@@ -3,7 +3,6 @@
 #include "Square.h"
 #include <iostream>
 #include <assert.h>
-#include "Helper.h"
 #include <vector>
 
 //contains 64 Squares to represent a chessboard
@@ -16,7 +15,7 @@ public:
 	//removes all pointers
 	~Chessboard();
 	
-	Bishop* bishop;
+	Piece* bishop = nullptr;
 
 	//SHOULD BE PRIVATE array of the squares on a chessboard
 	Square squares[8][8];

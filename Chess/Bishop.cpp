@@ -2,9 +2,10 @@
 
 
 //set coordinate and size
-Bishop::Bishop()
+Bishop::Bishop(Coordinate coordinate)
 {
-	position.setPosition(Coordinate::B2);
+	position.setPosition(coordinate);
+	setPosition(coordinate);
 	setSize(sf::Vector2f(20, 20));
 }
 

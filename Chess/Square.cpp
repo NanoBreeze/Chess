@@ -8,15 +8,16 @@ Square::Square()
 	setSize(sf::Vector2f(50, 50));
 }
 
-Coordinate Square::getCoordinate() const
+Position Square::getPosition() const
 {
-	return coordinate;
+	return position;
 }
 
 
-void Square::setCoordinate(const Coordinate coordinate)
+void Square::setPositionwithCoordinate(const Coordinate coordinate)
 {
-	this->coordinate = coordinate;
+	position.setPosition(coordinate);
+	
 }
 
 sf::Color Square::getDefaultColour() const
@@ -122,19 +123,20 @@ void Square::setDefaultColour(const Coordinate coordinate)
 	}
 }
 
-Bishop* Square::getBishop() const
+Piece* Square::getPiece() const
 {
-	return bishop;
+	return piece;
 }
 
-void Square::setBishop(Bishop* bishop)
+void Square::setPiece(Piece* piece)
 {
-	this->bishop = bishop;
+	 this->piece = piece;
+	 //this->piece->setPosition(position);
 }
 
 void Square::removePiece()
 {
-	//piece = nullptr;
+	piece = nullptr;
 }
 
 void Square::highlightSelected()

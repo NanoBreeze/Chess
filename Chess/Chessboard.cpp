@@ -3,7 +3,7 @@
 
 
 //sets up the board by adding 64 Squares, giving them coordinates and default colours
-Chessboard::Chessboard() : bishop(new Bishop())
+Chessboard::Chessboard() : bishop(new Bishop(Coordinate::D5))
 {
 	//use for loop instead of iterator because the loop count corresponds to a coordinate	
 	for (int row = 0; row < 8; row++)
@@ -12,16 +12,16 @@ Chessboard::Chessboard() : bishop(new Bishop())
 		{
 			//consider making a map for Coordinate and default colour, requires refactoring, difficult to read, magic numbers, etc.
 
-			squares[row][column].setCoordinate(static_cast<Coordinate>(8*(row)+column));
+			squares[row][column].setPositionwithCoordinate(static_cast<Coordinate>(8*(row)+column));
 			squares[row][column].setDefaultColour(static_cast<Coordinate>(8 * row  + column ));
 			squares[row][column].setPosition(sf::Vector2f(350 - row*50, column * 50));
 		}
 	}
 
 	//sets the bishop
-	bishop->setCoordinate(Coordinate::D5);
-	squares[3][4].setBishop(bishop);
-	highlightBishopMovableSquares();
+	//bishop->setPosition(Coordinate::D5);
+	squares[3][4].setPiece(bishop);
+	highlightMovableSquares();
 	
 }
 
@@ -60,7 +60,7 @@ void Chessboard::delegateClick(int x, int y)
 	squares[7-column][7-row].highlightSelected();
 
 	//if the selected square contains a bishop, highlight its movable squares
-	if (squares[7 - column][7 - row].getBishop() != nullptr)
+	if (squares[7 - column][7 - row].getPiece() != nullptr)
 	{
 		highlightMovableSquares();
 	}
@@ -72,6 +72,8 @@ void Chessboard::highlightMovableSquares()
 
 	for (Position position: movablePositions)
 	{
+		assert(position.getColumn() >= 0); //this this is false, bad bad
+
 		//get row and column entry
 		int row = position.getRow();
 		int column = position.getColumn();

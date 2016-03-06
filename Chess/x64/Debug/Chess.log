@@ -1,7 +1,9 @@
 ﻿  Chessboard.cpp
-c:\users\lenny\documents\visual studio 2015\projects\chess\chess\Helper.h(12): warning C4091: 'static ': ignored on left of 'Helper' when no variable is declared
 Chessboard.cpp(17): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-Chessboard.cpp(24): error C3861: 'highlightBishopMovableSquares': identifier not found
   Source.cpp
-c:\users\lenny\documents\visual studio 2015\projects\chess\chess\Helper.h(12): warning C4091: 'static ': ignored on left of 'Helper' when no variable is declared
   Generating Code...
+  Bishop.obj : /DEBUG:FASTLINK is not supported when managed code is present; restarting link with /DEBUG:FULL
+.NETFramework,Version=v4.5.2.AssemblyAttributes.obj : warning LNK4099: PDB 'vc140.pdb' was not found with '.NETFramework,Version=v4.5.2.AssemblyAttributes.obj' or at 'C:\Users\Lenny\Documents\Visual Studio 2015\Projects\Chess\x64\Debug\vc140.pdb'; linking object as if no debug info
+Position.obj : warning LNK4099: PDB 'vc140.pdb' was not found with 'Position.obj' or at 'C:\Users\Lenny\Documents\Visual Studio 2015\Projects\Chess\x64\Debug\vc140.pdb'; linking object as if no debug info
+  Chess.vcxproj -> C:\Users\Lenny\Documents\Visual Studio 2015\Projects\Chess\x64\Debug\Chess.exe
+  Chess.vcxproj -> C:\Users\Lenny\Documents\Visual Studio 2015\Projects\Chess\x64\Debug\Chess.pdb (Partial PDB)
