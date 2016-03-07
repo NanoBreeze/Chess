@@ -3,7 +3,7 @@
 
 
 //sets up the board by adding 64 Squares, giving them coordinates and default colours
-Chessboard::Chessboard() : bishop(new Bishop(Coordinate::D5))
+Chessboard::Chessboard() : bishop(new Bishop(Coordinate::D5)), rook(new Rook(Coordinate::G2))
 {
 	//use for loop instead of iterator because the loop count corresponds to a coordinate	
 	for (int row = 0; row < 8; row++)
@@ -12,17 +12,22 @@ Chessboard::Chessboard() : bishop(new Bishop(Coordinate::D5))
 		{
 			//consider making a map for Coordinate and default colour, requires refactoring, difficult to read, magic numbers, etc.
 
-			squares[row][column].setPositionwithCoordinate(static_cast<Coordinate>(8*(row)+column));
-			squares[row][column].setDefaultColour(static_cast<Coordinate>(8 * row  + column ));
-			squares[row][column].setPosition(sf::Vector2f(350 - row*50, column * 50));
+			squares[row][column].setPositionwithCoordinate(static_cast<Coordinate>(8 * (row)+column));
+			squares[row][column].setDefaultColour(static_cast<Coordinate>(8 * row + column));
+			squares[row][column].setPosition(sf::Vector2f(350 - row * 50, column * 50));
 		}
 	}
+
+
 
 	//sets the bishop
 	//bishop->setPosition(Coordinate::D5);
 	squares[3][4].setPiece(bishop);
-	highlightMovableSquares();
-	
+	squares[6][1].setPiece(rook);
+
+	//highlightMovableSquares();
+
+
 }
 
 Chessboard::~Chessboard()
@@ -36,14 +41,14 @@ void Chessboard::delegateClick(int x, int y)
 	int column = x / 50;
 
 	//ensure the column is from 0 to 7
-	assert( (column >= 0) && (column < 8));
+	assert((column >= 0) && (column < 8));
 
 
 	//find the row
-	int row = 7 - y / 50; 
+	int row = 7 - y / 50;
 
 	//ensure the row is from 0 to 7
-	assert( (row >= 0) && (row < 8));
+	assert((row >= 0) && (row < 8));
 
 	std::cout << "The column is " << std::to_string(column) << " and the row is " << std::to_string(row);
 
@@ -55,22 +60,66 @@ void Chessboard::delegateClick(int x, int y)
 			squares[i][j].unHighlight();
 		}
 	}
-	
-	//highlight the selected square
-	squares[7-column][7-row].highlightSelected();
 
-	//if the selected square contains a bishop, highlight its movable squares
-	if (squares[7 - column][7 - row].getPiece() != nullptr)
+	//highlight the selected square
+	squares[7 - column][7 - row].highlightSelected();
+
+	//REWRITE THIS PART TO CONTAIN CORRECT LOGIC
+
+	/*if a piece had already been selected, move the selected piece to the newly clicked square
+	If it hasn't already been selected, check if the piece in the newly selected piece exists. If so, display its
+	movable squares and set it to be "selected", otherwise...Hmmmmm */
+
+	//the first part of the if statement accounts for first click in game, in which the selectedSquare is nullptr
+	if (stateManager.getSelectedSquare() != nullptr  && stateManager.getSelectedSquare()->getPiece() != nullptr)
 	{
-		highlightMovableSquares();
+		//move the piece to the selected square, set piece in new square, remove piece from currently selected square,  set StateManager's "selectedSquare" to nullptr, graphics
+
+		auto clickedSquare = squares[7 - column][7 - row];
+
+		auto m = stateManager.getSelectedSquare();
+		//Square and piece both need to change positions
+		stateManager.getSelectedSquare()->getPiece()->setPosition(Coordinate::A1);
+
+		clickedSquare.setPiece(stateManager.getSelectedSquare()->getPiece());
+	
+
+		//stateManager.getSelectedSquare()->removePiece();
+
+		//auto n = stateManager.getSelectedSquare()->getPiece();
+
+		//stateManager.removeSelectedSquare();
+
+				
+	}
+	else
+	{
+		//if the selected square contains a piece, highlight its movable squares, and set it as "selectedPiece" in StateManager
+		if (squares[7 - column][7 - row].getPiece() != nullptr)
+		{
+			Square clickedSquare_temporary = squares[7 - column][7 - row];
+			
+			auto a = clickedSquare_temporary.getPiece();
+		
+			highlightMovableSquares(clickedSquare_temporary.getPiece());
+
+
+			
+			//not working, not sure why stateManager.setSelectedSquare(&clickedSquare_temporary);
+		
+			stateManager.selectedSquare = &squares[7 - column][7 - row];
+			auto b = stateManager.selectedSquare->getPiece();
+		}
+
 	}
 }
 
-void Chessboard::highlightMovableSquares()
-{
-	std::vector<Position> movablePositions = bishop->getMovablePositions();
 
-	for (Position position: movablePositions)
+void Chessboard::highlightMovableSquares(Piece* piece)
+{
+	std::vector<Position> movablePositions = piece->getMovablePositions();
+
+	for (Position position : movablePositions)
 	{
 		assert(position.getColumn() >= 0); //this this is false, bad bad
 
@@ -78,7 +127,7 @@ void Chessboard::highlightMovableSquares()
 		int row = position.getRow();
 		int column = position.getColumn();
 
-		squares[7-column][7 - row].highlightIsLegalMove();
+		squares[7 - column][7 - row].highlightIsLegalMove();
 	}
 }
 

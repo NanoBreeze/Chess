@@ -2,8 +2,12 @@
 
 
 
-Rook::Rook()
+Rook::Rook(Coordinate coordinate) 
 {
+	position.setPosition(coordinate);
+	setPosition(coordinate);
+	setSize(sf::Vector2f(20, 20));
+
 }
 
 void Rook::computeMovablePositions()

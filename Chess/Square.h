@@ -5,6 +5,7 @@
 #include "Coordinate.h"
 #include "Piece.h"
 #include "Bishop.h"
+#include "Rook.h"
 
 
 //Also known as a grid, eg, A1, E5, 
@@ -15,7 +16,7 @@ public:
 
 	//A square's colour can change when it is clicked on to denote it has been selected 
 	//returns the square's coordinate, eg, A1, E5
-	Position getPosition() const;
+	Position getPositionwithPosition() const;
 	void setPositionwithCoordinate(const Coordinate); //funky name because setPosition is already a method name in sf::RectangaleShape
 
 	//A square is by default either black or white

@@ -2,11 +2,11 @@
 
 
 //set coordinate and size
-Bishop::Bishop(Coordinate coordinate)
+Bishop::Bishop(Coordinate coordinate) 
 {
-	position.setPosition(coordinate);
 	setPosition(coordinate);
 	setSize(sf::Vector2f(20, 20));
+
 }
 
 //problem, in the moveableSquares, there are duplications of the current square the bishop is in

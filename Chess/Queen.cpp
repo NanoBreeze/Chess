@@ -2,7 +2,7 @@
 
 
 
-Queen::Queen()
+Queen::Queen(Coordinate coordinate) 
 {
 }
 

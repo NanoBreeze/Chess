@@ -8,8 +8,6 @@
 
 int main()
 {
-	Queen q;
-	
 	sf::RenderWindow window(sf::VideoMode(400, 400), "SFML works!");
 
 	Chessboard chessboard;
@@ -22,7 +20,7 @@ int main()
 			if (event.type == sf::Event::Closed)
 				window.close();
 			
-			if (event.type==sf::Event::MouseButtonPressed)
+			if (event.type == sf::Event::MouseButtonPressed)
 			{
 				chessboard.delegateClick(event.mouseButton.x, event.mouseButton.y);
 			}
@@ -39,10 +37,21 @@ int main()
 			}
 		}
 
-		//draw the bishop
-		chessboard.squares[3][4].getPiece()->setFillColor(sf::Color::Red);
-		auto j = chessboard.squares[3][4].getPiece();
-		window.draw(*j);
+		//draw all pieces
+		for (int row = 0; row < 8; row++)
+		{
+			for (int column = 0; column < 8; column++)
+			{
+				//draw the piece only if it exists
+				if (chessboard.squares[row][column].getPiece() != nullptr)
+				{
+					chessboard.squares[row][column].getPiece()->setFillColor(sf::Color::Red);;
+					auto j = chessboard.squares[row][column].getPiece();
+					window.draw(*j);
+				}
+			}
+		}
+
 		window.display();
 	}
 

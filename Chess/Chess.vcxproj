@@ -139,6 +139,7 @@
     <ClCompile Include="Rook.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Square.cpp" />
+    <ClCompile Include="StateManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bishop.h" />
@@ -149,6 +150,7 @@
     <ClInclude Include="Queen.h" />
     <ClInclude Include="Rook.h" />
     <ClInclude Include="Square.h" />
+    <ClInclude Include="StateManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -8,7 +8,7 @@ Square::Square()
 	setSize(sf::Vector2f(50, 50));
 }
 
-Position Square::getPosition() const
+Position Square::getPositionwithPosition() const
 {
 	return position;
 }

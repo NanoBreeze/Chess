@@ -7,7 +7,11 @@
 class Piece : public sf::RectangleShape
 {
 public:
+
 	Piece();
+
+	//sets the piece's Position given its Coordinate
+	Piece(Coordinate);
 
 	Position getPosition() const;
 
