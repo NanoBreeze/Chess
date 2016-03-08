@@ -1,7 +1,5 @@
 #include "Square.h"
 
-
-
 Square::Square()
 {
 	//each square is 50px by 50px
@@ -17,7 +15,6 @@ Position Square::getPositionwithPosition() const
 void Square::setPositionwithCoordinate(const Coordinate coordinate)
 {
 	position.setPosition(coordinate);
-	
 }
 
 sf::Color Square::getDefaultColour() const

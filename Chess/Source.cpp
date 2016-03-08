@@ -12,6 +12,10 @@ int main()
 
 	Chessboard chessboard;
 
+
+	chessboard.squares[6][4].setFillColor(sf::Color::Blue);
+	chessboard.squares[0][1].setFillColor(sf::Color::Red);
+
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -33,7 +37,7 @@ int main()
 		{
 			for (int column = 0; column < 8; column++)
 			{
-				window.draw(chessboard.squares[row][column]);
+				window.draw(chessboard.squares[column][row]);
 			}
 		}
 
@@ -43,14 +47,15 @@ int main()
 			for (int column = 0; column < 8; column++)
 			{
 				//draw the piece only if it exists
-				if (chessboard.squares[row][column].getPiece() != nullptr)
+				if (chessboard.squares[column][row].getPiece() != nullptr)
 				{
-					chessboard.squares[row][column].getPiece()->setFillColor(sf::Color::Red);;
-					auto j = chessboard.squares[row][column].getPiece();
+					chessboard.squares[column][row].getPiece()->setFillColor(sf::Color::Red);;
+					auto j = chessboard.squares[column][row].getPiece();
 					window.draw(*j);
 				}
 			}
 		}
+
 
 		window.display();
 	}

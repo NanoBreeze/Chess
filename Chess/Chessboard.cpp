@@ -12,9 +12,9 @@ Chessboard::Chessboard() : bishop(new Bishop(Coordinate::D5)), rook(new Rook(Coo
 		{
 			//consider making a map for Coordinate and default colour, requires refactoring, difficult to read, magic numbers, etc.
 
-			squares[row][column].setPositionwithCoordinate(static_cast<Coordinate>(8 * (row)+column));
-			squares[row][column].setDefaultColour(static_cast<Coordinate>(8 * row + column));
-			squares[row][column].setPosition(sf::Vector2f(350 - row * 50, column * 50));
+			squares[column][row].setPositionwithCoordinate(static_cast<Coordinate>(8 * row + column));
+			squares[column][row].setDefaultColour(static_cast<Coordinate>(8 * row + column));
+			squares[column][row].setPosition(sf::Vector2f(column * 50, 350 - row * 50));
 		}
 	}
 
@@ -45,7 +45,7 @@ void Chessboard::delegateClick(int x, int y)
 
 
 	//find the row
-	int row = 7 - y / 50;
+	int row =  7 - y / 50;
 
 	//ensure the row is from 0 to 7
 	assert((row >= 0) && (row < 8));
@@ -53,16 +53,16 @@ void Chessboard::delegateClick(int x, int y)
 	std::cout << "The column is " << std::to_string(column) << " and the row is " << std::to_string(row);
 
 	//unhighlight all other squares (this implementation si really inefficient because we're looping and there's only one square that can possibly be highlighed at a time)
-	for (int i = 0; i < 8; i++)
+	for (int column = 0; column < 8; column++)
 	{
-		for (int j = 0; j < 8; j++)
+		for (int row = 0; row < 8; row++)
 		{
-			squares[i][j].unHighlight();
+			squares[column][row].unHighlight();
 		}
 	}
 
 	//highlight the selected square
-	squares[7 - column][7 - row].highlightSelected();
+	squares[column][row].highlightSelected();
 
 	//REWRITE THIS PART TO CONTAIN CORRECT LOGIC
 
@@ -75,7 +75,7 @@ void Chessboard::delegateClick(int x, int y)
 	{
 		//move the piece to the selected square, set piece in new square, remove piece from currently selected square,  set StateManager's "selectedSquare" to nullptr, graphics
 
-		auto clickedSquare = squares[7 - column][7 - row];
+		auto clickedSquare = squares[column][row];
 
 		auto m = stateManager.getSelectedSquare();
 		//Square and piece both need to change positions
@@ -95,9 +95,9 @@ void Chessboard::delegateClick(int x, int y)
 	else
 	{
 		//if the selected square contains a piece, highlight its movable squares, and set it as "selectedPiece" in StateManager
-		if (squares[7 - column][7 - row].getPiece() != nullptr)
+		if (squares[column][row].getPiece() != nullptr)
 		{
-			Square clickedSquare_temporary = squares[7 - column][7 - row];
+			Square clickedSquare_temporary = squares[column][row];
 			
 			auto a = clickedSquare_temporary.getPiece();
 		
@@ -107,7 +107,7 @@ void Chessboard::delegateClick(int x, int y)
 			
 			//not working, not sure why stateManager.setSelectedSquare(&clickedSquare_temporary);
 		
-			stateManager.selectedSquare = &squares[7 - column][7 - row];
+			stateManager.selectedSquare = &squares[column][row];
 			auto b = stateManager.selectedSquare->getPiece();
 		}
 
@@ -127,7 +127,7 @@ void Chessboard::highlightMovableSquares(Piece* piece)
 		int row = position.getRow();
 		int column = position.getColumn();
 
-		squares[7 - column][7 - row].highlightIsLegalMove();
+		squares[column][row].highlightIsLegalMove();
 	}
 }
 
