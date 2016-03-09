@@ -3,7 +3,7 @@
 
 
 //sets up the board by adding 64 Squares, giving them coordinates and default colours
-Chessboard::Chessboard() : bishop(new Bishop(Coordinate::D5)), rook(new Rook(Coordinate::G2))
+Chessboard::Chessboard() : bishop(new Bishop(Coordinate::D5)), rook(new Rook(Coordinate::G2)), queen(new Queen(Coordinate::B7))
 {
 	//use for loop instead of iterator because the loop count corresponds to a coordinate	
 	for (int row = 0; row < 8; row++)
@@ -24,6 +24,7 @@ Chessboard::Chessboard() : bishop(new Bishop(Coordinate::D5)), rook(new Rook(Coo
 	//bishop->setPosition(Coordinate::D5);
 	squares[3][4].setPiece(bishop);
 	squares[6][1].setPiece(rook);
+	squares[1][6].setPiece(queen);
 
 	//highlightMovableSquares();
 

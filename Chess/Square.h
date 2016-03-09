@@ -6,6 +6,7 @@
 #include "Piece.h"
 #include "Bishop.h"
 #include "Rook.h"
+#include "Queen.h"
 
 
 //Also known as a grid, eg, A1, E5, 

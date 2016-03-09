@@ -4,6 +4,7 @@
 #include "StateManager.h"
 #include <iostream>
 #include <assert.h>
+
 #include <vector>
 
 //will remove
@@ -21,6 +22,7 @@ public:
 	
 	Piece* bishop = nullptr;
 	Piece* rook = nullptr;
+	Piece* queen = nullptr;
 
 	//SHOULD BE PRIVATE array of the squares on a chessboard
 	Square squares[8][8];
