@@ -21,7 +21,7 @@ void Position::setPosition(const int row, const int column)
 	this-> column = column;
 
 	//sets the piece's Coordinate from its row and column
-
+	setCoordinate(row, column);
 	
 }
 

@@ -12,7 +12,7 @@ Piece::Piece(Coordinate coordinate)
 	
 }
 
-Position Piece::getPosition() const
+Position Piece::getPositionWithPosition() const
 {
 	return position;
 }
@@ -44,6 +44,11 @@ void Piece::setPosition(const Position position)
 std::vector<Position> Piece::getMovablePositions() const
 {
 	return movablePositions;
+}
+
+void Piece::clearMovablePositions()
+{
+	movablePositions.clear();
 }
 
 

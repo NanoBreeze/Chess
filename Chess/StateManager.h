@@ -15,7 +15,6 @@ public:
 	Square* getSelectedSquare() const;
 
 	void removeSelectedSquare();
-	Square* selectedSquare = nullptr;
 
 	StateManager();
 
@@ -24,5 +23,6 @@ private:
 	//the that has been selected by the user. If the Square contains a piece, we set the piece here. 
 	//Then the next click is where the Piece moves to. If the square doesn't contain a piece, then the next click is,
 	//well the next click. Piece doesn't move and repeate
+	Square* selectedSquare = nullptr;
 };
 

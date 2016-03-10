@@ -46,7 +46,7 @@ void Chessboard::delegateClick(int x, int y)
 
 
 	//find the row
-	int row =  7 - y / 50;
+	int row = 7 - y / 50;
 
 	//ensure the row is from 0 to 7
 	assert((row >= 0) && (row < 8));
@@ -67,68 +67,109 @@ void Chessboard::delegateClick(int x, int y)
 
 	//REWRITE THIS PART TO CONTAIN CORRECT LOGIC
 
-	/*if a piece had already been selected, move the selected piece to the newly clicked square
-	If it hasn't already been selected, check if the piece in the newly selected piece exists. If so, display its
-	movable squares and set it to be "selected", otherwise...Hmmmmm */
+	highlightMovableSquares(squares[column][row].getPiece());
 
-	//the first part of the if statement accounts for first click in game, in which the selectedSquare is nullptr
-	if (stateManager.getSelectedSquare() != nullptr  && stateManager.getSelectedSquare()->getPiece() != nullptr)
+	/*
+	When the user clicks a Square,
+	a) if there are no Square already selected (typically for start of game or c1), the clicked Square becomes the selected Square
+	b) if there already is a selected Square
+		b1) and that Square has no piece, then the clicked Square becomes the selected Square
+		b2) and that Square already has a piece then:
+			b2.1) if the clicked Square is a movable Square of that piece, move that piece and remove the selected Square
+			b2.2) if the clicked Square is not a movable Square of that piece, set the clicked Square to be the selected Square
+	*/
+
+	//case a)
+	if (stateManager.getSelectedSquare() == nullptr)
 	{
-		//move the piece to the selected square, set piece in new square, remove piece from currently selected square,  set StateManager's "selectedSquare" to nullptr, graphics
-
-		auto clickedSquare = squares[column][row];
-
-		auto m = stateManager.getSelectedSquare();
-		//Square and piece both need to change positions
-		stateManager.getSelectedSquare()->getPiece()->setPosition(Coordinate::A1);
-
-		clickedSquare.setPiece(stateManager.getSelectedSquare()->getPiece());
-	
-
-		//stateManager.getSelectedSquare()->removePiece();
-
-		//auto n = stateManager.getSelectedSquare()->getPiece();
-
-		//stateManager.removeSelectedSquare();
-
-				
+		auto clickedSquare = &squares[column][row];
+		stateManager.setSelectedSquare(clickedSquare);
 	}
+	//case b)
 	else
 	{
-		//if the selected square contains a piece, highlight its movable squares, and set it as "selectedPiece" in StateManager
-		if (squares[column][row].getPiece() != nullptr)
+		auto clickedSquare = &squares[column][row];
+
+		//case b1)
+		if (stateManager.getSelectedSquare()->getPiece() == nullptr)
 		{
-			Square clickedSquare_temporary = squares[column][row];
-			
-			auto a = clickedSquare_temporary.getPiece();
-		
-			highlightMovableSquares(clickedSquare_temporary.getPiece());
-
-
-			
-			//not working, not sure why stateManager.setSelectedSquare(&clickedSquare_temporary);
-		
-			stateManager.selectedSquare = &squares[column][row];
-			auto b = stateManager.selectedSquare->getPiece();
+			stateManager.setSelectedSquare(clickedSquare);
 		}
+		//case b2)
+		else
+		{
+			//movable positions of the already clicked Square
+			auto movablePositions = stateManager.getSelectedSquare()->getPiece()->getMovablePositions();
+			
+			
+			
+			auto j = stateManager.getSelectedSquare()->getPiece()->getMovablePositions()[0].getCoordinate();
 
+
+
+			bool clickedSquareIsMovableSquare = false;
+
+			for (auto position : movablePositions)
+			{
+				auto positionCoordinate = position.getCoordinate();
+				auto clickedSquareCoordinate = clickedSquare->getPositionwithPosition().getCoordinate();
+				
+				//case b2.1)
+				if (position.getCoordinate() == clickedSquare->getPositionwithPosition().getCoordinate())
+				{
+					clickedSquareIsMovableSquare = true;
+				}
+			}
+
+			//case b2.1)
+			if (clickedSquareIsMovableSquare)
+			{
+				//move the Piece
+
+				//remove Piece's movablePositions. movablePositiosn is set every time setPosition is called. 
+				//Thus, it's important to clear the movablePositions before setting the Piece's new position
+				stateManager.getSelectedSquare()->getPiece()->clearMovablePositions();
+
+				//set Piece's new location
+				stateManager.getSelectedSquare()->getPiece()->setPosition(clickedSquare->getPositionwithPosition()); 
+
+
+					// set new square with this piece and remove piece from previous square 
+					clickedSquare->setPiece(stateManager.getSelectedSquare()->getPiece());
+				stateManager.getSelectedSquare()->setPiece(nullptr);
+
+
+				//remove selected Square
+				stateManager.removeSelectedSquare();
+			}
+			//case b2.2
+			else
+			{
+				stateManager.setSelectedSquare(clickedSquare);
+			}
+		}
 	}
 }
 
-
-void Chessboard::highlightMovableSquares(Piece* piece)
-{
-	std::vector<Position> movablePositions = piece->getMovablePositions();
-
-	for (Position position : movablePositions)
+	void Chessboard::highlightMovableSquares(Piece* piece)
 	{
-		assert(position.getColumn() >= 0); //this this is false, bad bad
+		//we check for nullptr because this function is called on any clicked Square, even if it doesn't contain a Piece (piece != nullptr) 
+		if (piece != nullptr)
+		{
+			std::vector<Position> movablePositions = piece->getMovablePositions();
 
-		//get row and column entry
-		int row = position.getRow();
-		int column = position.getColumn();
+			for (Position position : movablePositions)
+			{
+				assert(position.getColumn() >= 0); //this this is false, bad bad
 
-		squares[column][row].highlightIsLegalMove();
+												   //get row and column entry
+				int row = position.getRow();
+				int column = position.getColumn();
+
+				squares[column][row].highlightIsLegalMove();
+			}
+		}
+		
 	}
-}
+
 

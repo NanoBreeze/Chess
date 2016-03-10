@@ -13,7 +13,7 @@ public:
 	//sets the piece's Position given its Coordinate
 	Piece(Coordinate);
 
-	Position getPosition() const;
+	Position getPositionWithPosition() const;
 
 	//sets the piece to the specified coordinate, along with its row-column position, along with the squares it can move to
 	 void setPosition(const Coordinate coordinate);
@@ -23,6 +23,10 @@ public:
 
 	//returns the vector of Coordinates this piece is eligeble to move to
 	std::vector<Position> getMovablePositions() const;
+
+	//empties all elements in movablePositions. Used when we change a Piece's position
+	void clearMovablePositions();
+
 
 protected: 
 
