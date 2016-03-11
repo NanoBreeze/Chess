@@ -2,9 +2,8 @@
 
 
 
-Rook::Rook(Coordinate coordinate) 
+Rook::Rook(Coordinate coordinate) : Piece(coordinate)
 {
-	position.setPosition(coordinate);
 	setPosition(coordinate);
 	setSize(sf::Vector2f(20, 20));
 

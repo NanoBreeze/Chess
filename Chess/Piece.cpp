@@ -9,7 +9,7 @@ Piece::Piece()
 
 Piece::Piece(Coordinate coordinate)
 {
-	
+
 }
 
 Position Piece::getPositionWithPosition() const

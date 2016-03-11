@@ -4,6 +4,8 @@
 #include "StateManager.h"
 #include <iostream>
 #include <assert.h>
+#include "WhitePlayer.h"
+#include "BlackPlayer.h"
 
 #include <vector>
 
@@ -20,9 +22,14 @@ public:
 	//removes all pointers
 	~Chessboard();
 	
-	Piece* bishop = nullptr;
+	//contains pieces and info related to the white player
+	WhitePlayer whitePlayer;
+
+	//contains pieces and info related to the black player
+	BlackPlayer blackPlayer;
+	/*Piece* bishop = nullptr;
 	Piece* rook = nullptr;
-	Piece* queen = nullptr;
+	Piece* queen = nullptr;*/
 
 	//SHOULD BE PRIVATE array of the squares on a chessboard
 	Square squares[8][8];

@@ -3,7 +3,7 @@
 
 
 //sets up the board by adding 64 Squares, giving them coordinates and default colours
-Chessboard::Chessboard() : bishop(new Bishop(Coordinate::D5)), rook(new Rook(Coordinate::G2)), queen(new Queen(Coordinate::B7))
+Chessboard::Chessboard() /*: bishop(new Bishop(Coordinate::D5)), rook(new Rook(Coordinate::G2)), queen(new Queen(Coordinate::B7))*/
 {
 	//use for loop instead of iterator because the loop count corresponds to a coordinate	
 	for (int row = 0; row < 8; row++)
@@ -20,20 +20,34 @@ Chessboard::Chessboard() : bishop(new Bishop(Coordinate::D5)), rook(new Rook(Coo
 
 
 
-	//sets the bishop
-	//bishop->setPosition(Coordinate::D5);
-	squares[3][4].setPiece(bishop);
-	squares[6][1].setPiece(rook);
-	squares[1][6].setPiece(queen);
+	//sets the White player's pieces, eventually this setting process will become easier.
 
-	//highlightMovableSquares();
+	squares[0][0].setPiece(whitePlayer.getRook1());
+	squares[1][0].setPiece(whitePlayer.getKnight1());
+	squares[2][0].setPiece(whitePlayer.getBishopBlack());
+	squares[3][0].setPiece(whitePlayer.getQueen());
+	squares[4][0].setPiece(whitePlayer.getKing());
+	squares[5][0].setPiece(whitePlayer.getBishopWhite());
+	squares[6][0].setPiece(whitePlayer.getKnight2());
+	squares[7][0].setPiece(whitePlayer.getRook2());
+
+	squares[0][1].setPiece(whitePlayer.getPawn1());
+	squares[1][1].setPiece(whitePlayer.getPawn2());
+	squares[2][1].setPiece(whitePlayer.getPawn3());
+	squares[3][1].setPiece(whitePlayer.getPawn4());
+	squares[4][1].setPiece(whitePlayer.getPawn5());
+	squares[5][1].setPiece(whitePlayer.getPawn6());
+	squares[6][1].setPiece(whitePlayer.getPawn7());
+	squares[7][1].setPiece(whitePlayer.getPawn8());;
+
+
 
 
 }
 
 Chessboard::~Chessboard()
 {
-	delete bishop;
+
 }
 
 void Chessboard::delegateClick(int x, int y)
@@ -100,9 +114,9 @@ void Chessboard::delegateClick(int x, int y)
 		{
 			//movable positions of the already clicked Square
 			auto movablePositions = stateManager.getSelectedSquare()->getPiece()->getMovablePositions();
-			
-			
-			
+
+
+
 			auto j = stateManager.getSelectedSquare()->getPiece()->getMovablePositions()[0].getCoordinate();
 
 
@@ -113,7 +127,7 @@ void Chessboard::delegateClick(int x, int y)
 			{
 				auto positionCoordinate = position.getCoordinate();
 				auto clickedSquareCoordinate = clickedSquare->getPositionwithPosition().getCoordinate();
-				
+
 				//case b2.1)
 				if (position.getCoordinate() == clickedSquare->getPositionwithPosition().getCoordinate())
 				{
@@ -131,11 +145,11 @@ void Chessboard::delegateClick(int x, int y)
 				stateManager.getSelectedSquare()->getPiece()->clearMovablePositions();
 
 				//set Piece's new location
-				stateManager.getSelectedSquare()->getPiece()->setPosition(clickedSquare->getPositionwithPosition()); 
+				stateManager.getSelectedSquare()->getPiece()->setPosition(clickedSquare->getPositionwithPosition());
 
 
-					// set new square with this piece and remove piece from previous square 
-					clickedSquare->setPiece(stateManager.getSelectedSquare()->getPiece());
+				// set new square with this piece and remove piece from previous square 
+				clickedSquare->setPiece(stateManager.getSelectedSquare()->getPiece());
 				stateManager.getSelectedSquare()->setPiece(nullptr);
 
 
@@ -151,25 +165,25 @@ void Chessboard::delegateClick(int x, int y)
 	}
 }
 
-	void Chessboard::highlightMovableSquares(Piece* piece)
+void Chessboard::highlightMovableSquares(Piece* piece)
+{
+	//we check for nullptr because this function is called on any clicked Square, even if it doesn't contain a Piece (piece != nullptr) 
+	if (piece != nullptr)
 	{
-		//we check for nullptr because this function is called on any clicked Square, even if it doesn't contain a Piece (piece != nullptr) 
-		if (piece != nullptr)
+		std::vector<Position> movablePositions = piece->getMovablePositions();
+
+		for (Position position : movablePositions)
 		{
-			std::vector<Position> movablePositions = piece->getMovablePositions();
+			assert(position.getColumn() >= 0); //this this is false, bad bad
 
-			for (Position position : movablePositions)
-			{
-				assert(position.getColumn() >= 0); //this this is false, bad bad
+											   //get row and column entry
+			int row = position.getRow();
+			int column = position.getColumn();
 
-												   //get row and column entry
-				int row = position.getRow();
-				int column = position.getColumn();
-
-				squares[column][row].highlightIsLegalMove();
-			}
+			squares[column][row].highlightIsLegalMove();
 		}
-		
 	}
+
+}
 
 

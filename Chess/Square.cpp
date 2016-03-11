@@ -128,7 +128,6 @@ Piece* Square::getPiece() const
 void Square::setPiece(Piece* piece)
 {
 	 this->piece = piece;
-	 //this->piece->setPosition(position);
 }
 
 void Square::removePiece()

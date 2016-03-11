@@ -1,5 +1,7 @@
 ﻿  Chessboard.cpp
 Chessboard.cpp(17): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  WhitePlayer.cpp
+  Generating Code...
   Bishop.obj : /DEBUG:FASTLINK is not supported when managed code is present; restarting link with /DEBUG:FULL
 .NETFramework,Version=v4.5.2.AssemblyAttributes.obj : warning LNK4099: PDB 'vc140.pdb' was not found with '.NETFramework,Version=v4.5.2.AssemblyAttributes.obj' or at 'C:\Users\Lenny\Documents\Visual Studio 2015\Projects\Chess\x64\Debug\vc140.pdb'; linking object as if no debug info
   Chess.vcxproj -> C:\Users\Lenny\Documents\Visual Studio 2015\Projects\Chess\x64\Debug\Chess.exe

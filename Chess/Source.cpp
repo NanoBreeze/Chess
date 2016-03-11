@@ -13,9 +13,6 @@ int main()
 	Chessboard chessboard;
 
 
-	chessboard.squares[6][4].setFillColor(sf::Color::Blue);
-	chessboard.squares[0][1].setFillColor(sf::Color::Red);
-
 	while (window.isOpen())
 	{
 		sf::Event event;
