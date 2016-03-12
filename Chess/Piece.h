@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include "Position.h"
-#include "Helper.h"
+//#include "Board.h"
 
 
 class Piece : public sf::RectangleShape
@@ -29,6 +29,8 @@ public:
 	//clears all elements in movablePositions. Used when we change a Piece's position
 	void clearMovablePositions();
 
+	//calculates the eligible Squares this piece can move to, its getter is getMovableSquares()
+	virtual void computeMovablePositions() = 0;
 
 protected: 
 
@@ -41,8 +43,7 @@ protected:
 	//contains the Positions (Coordinate, row, column) this piece is eligible to move to. This field frequently changes
 	std::vector<Position> movablePositions;
 
-	//calculates the eligible Squares this piece can move to, its getter is getMovableSquares()
-	virtual void computeMovablePositions() = 0;
+
 
 	Position computePosition(int row, int column);
 };

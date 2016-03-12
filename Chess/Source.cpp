@@ -5,6 +5,7 @@
 #include "Chessboard.h"
 
 
+
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(400, 400), "SFML works!");
@@ -33,7 +34,7 @@ int main()
 		{
 			for (int column = 0; column < 8; column++)
 			{
-				window.draw(chessboard.board.squares[column][row]);
+				window.draw(Board::squares[column][row]);
 			}
 		}
 
@@ -43,10 +44,10 @@ int main()
 			for (int column = 0; column < 8; column++)
 			{
 				//draw the piece only if it exists
-				if (chessboard.board.squares[column][row].getPiece() != nullptr)
+				if (Board::squares[column][row].getPiece() != nullptr)
 				{
-					chessboard.board.squares[column][row].getPiece()->setFillColor(sf::Color::Red);;
-					auto j = chessboard.board.squares[column][row].getPiece();
+					Board::squares[column][row].getPiece()->setFillColor(sf::Color::Red);;
+					auto j = Board::squares[column][row].getPiece();
 					window.draw(*j);
 				}
 			}

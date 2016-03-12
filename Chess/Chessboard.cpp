@@ -3,7 +3,7 @@
 
 
 //sets up the board by adding 64 Squares, giving them coordinates and default colours
-Chessboard::Chessboard() /*: bishop(new Bishop(Coordinate::D5)), rook(new Rook(Coordinate::G2)), queen(new Queen(Coordinate::B7))*/
+Chessboard::Chessboard() 
 {
 	//use for loop instead of iterator because the loop count corresponds to a coordinate	
 	for (int row = 0; row < 8; row++)
@@ -12,33 +12,35 @@ Chessboard::Chessboard() /*: bishop(new Bishop(Coordinate::D5)), rook(new Rook(C
 		{
 			//consider making a map for Coordinate and default colour, requires refactoring, difficult to read, magic numbers, etc.
 
-			board.squares[column][row].setPositionwithCoordinate(static_cast<Coordinate>(8 * row + column));
-			board.squares[column][row].setDefaultColour(static_cast<Coordinate>(8 * row + column));
-			board.squares[column][row].setPosition(sf::Vector2f(column * 50, 350 - row * 50));
+			Board::squares[column][row].setPositionwithCoordinate(static_cast<Coordinate>(8 * row + column));
+
+			Board::squares[column][row].setDefaultColour(static_cast<Coordinate>(8 * row + column));
+			Board::squares[column][row].setPosition(sf::Vector2f(column * 50, 350 - row * 50));
 		}
 	}
 
-
+	whitePlayer = new WhitePlayer();
+	blackPlayer = new BlackPlayer();
 
 	//sets the White player's pieces, eventually this setting process will become easier.
 
-	board.squares[0][0].setPiece(whitePlayer.getRook1());
-	board.squares[1][0].setPiece(whitePlayer.getKnight1());
-	board.squares[2][0].setPiece(whitePlayer.getBishopBlack());
-	board.squares[3][0].setPiece(whitePlayer.getQueen());
-	board.squares[4][0].setPiece(whitePlayer.getKing());
-	board.squares[5][0].setPiece(whitePlayer.getBishopWhite());
-	board.squares[6][0].setPiece(whitePlayer.getKnight2());
-	board.squares[7][0].setPiece(whitePlayer.getRook2());
+	Board::squares[0][0].setPiece(whitePlayer->getRook1());
+	Board::squares[1][0].setPiece(whitePlayer->getKnight1());
+	Board::squares[2][0].setPiece(whitePlayer->getBishopBlack());
+	Board::squares[3][0].setPiece(whitePlayer->getQueen());
+	Board::squares[4][0].setPiece(whitePlayer->getKing());
+	Board::squares[5][0].setPiece(whitePlayer->getBishopWhite());
+	Board::squares[6][0].setPiece(whitePlayer->getKnight2());
+	Board::squares[7][0].setPiece(whitePlayer->getRook2());
 
-	board.squares[0][1].setPiece(whitePlayer.getPawn1());
-	board.squares[1][1].setPiece(whitePlayer.getPawn2());
-	board.squares[2][1].setPiece(whitePlayer.getPawn3());
-	board.squares[3][1].setPiece(whitePlayer.getPawn4());
-	board.squares[4][1].setPiece(whitePlayer.getPawn5());
-	board.squares[5][1].setPiece(whitePlayer.getPawn6());
-	board.squares[6][1].setPiece(whitePlayer.getPawn7());
-	board.squares[7][1].setPiece(whitePlayer.getPawn8());;
+	Board::squares[0][1].setPiece(whitePlayer->getPawn1());
+	Board::squares[1][1].setPiece(whitePlayer->getPawn2());
+	Board::squares[2][1].setPiece(whitePlayer->getPawn3());
+	Board::squares[3][1].setPiece(whitePlayer->getPawn4());
+	Board::squares[4][1].setPiece(whitePlayer->getPawn5());
+	Board::squares[5][1].setPiece(whitePlayer->getPawn6());
+	Board::squares[6][1].setPiece(whitePlayer->getPawn7());
+	Board::squares[7][1].setPiece(whitePlayer->getPawn8());;
 
 
 
@@ -47,7 +49,8 @@ Chessboard::Chessboard() /*: bishop(new Bishop(Coordinate::D5)), rook(new Rook(C
 
 Chessboard::~Chessboard()
 {
-
+	delete whitePlayer;
+	delete blackPlayer;
 }
 
 void Chessboard::delegateClick(int x, int y)
@@ -72,16 +75,25 @@ void Chessboard::delegateClick(int x, int y)
 	{
 		for (int row = 0; row < 8; row++)
 		{
-			board.squares[column][row].unHighlight();
+			Board::squares[column][row].unHighlight();
 		}
 	}
 
-	//highlight the selected square
-	board.squares[column][row].highlightSelected();
 
-	//REWRITE THIS PART TO CONTAIN CORRECT LOGIC
+	//REWRITE THIS PART TO BE MAINTAINABLE
 
-	highlightMovableSquares(board.squares[column][row].getPiece());
+	
+	
+	//call computeMovablePosition of the piece if it exists again, 
+	if (Board::squares[column][row].getPiece())
+	{
+		Board::squares[column][row].getPiece()->computeMovablePositions();
+	}
+
+	//highlight the selected square, important that this part comes second
+	Board::squares[column][row].highlightSelected();
+
+	highlightMovableSquares(Board::squares[column][row].getPiece());
 
 	/*
 	When the user clicks a Square,
@@ -96,13 +108,15 @@ void Chessboard::delegateClick(int x, int y)
 	//case a)
 	if (stateManager.getSelectedSquare() == nullptr)
 	{
-		auto clickedSquare = &board.squares[column][row];
+		auto clickedSquare = &Board::squares[column][row];
 		stateManager.setSelectedSquare(clickedSquare);
+
+		
 	}
 	//case b)
 	else
 	{
-		auto clickedSquare = &board.squares[column][row];
+		auto clickedSquare = &Board::squares[column][row];
 
 		//case b1)
 		if (stateManager.getSelectedSquare()->getPiece() == nullptr)
@@ -114,13 +128,9 @@ void Chessboard::delegateClick(int x, int y)
 		{
 			//movable positions of the already clicked Square
 			auto movablePositions = stateManager.getSelectedSquare()->getPiece()->getMovablePositions();
-
-
-
+			
 			auto j = stateManager.getSelectedSquare()->getPiece()->getMovablePositions()[0].getCoordinate();
-
-
-
+			
 			bool clickedSquareIsMovableSquare = false;
 
 			for (auto position : movablePositions)
@@ -146,12 +156,10 @@ void Chessboard::delegateClick(int x, int y)
 
 				//set Piece's new location
 				stateManager.getSelectedSquare()->getPiece()->setPosition(clickedSquare->getPositionwithPosition());
-
-
+				
 				// set new square with this piece and remove piece from previous square 
 				clickedSquare->setPiece(stateManager.getSelectedSquare()->getPiece());
 				stateManager.getSelectedSquare()->setPiece(nullptr);
-
 
 				//remove selected Square
 				stateManager.removeSelectedSquare();
@@ -180,7 +188,7 @@ void Chessboard::highlightMovableSquares(Piece* piece)
 			int row = position.getRow();
 			int column = position.getColumn();
 
-			board.squares[column][row].highlightIsLegalMove();
+			Board::squares[column][row].highlightIsLegalMove();
 		}
 	}
 
