@@ -6,6 +6,8 @@
 #include <assert.h>
 #include "WhitePlayer.h"
 #include "BlackPlayer.h"
+#include "Board.h"
+
 
 #include <vector>
 
@@ -27,12 +29,11 @@ public:
 
 	//contains pieces and info related to the black player
 	BlackPlayer blackPlayer;
-	/*Piece* bishop = nullptr;
-	Piece* rook = nullptr;
-	Piece* queen = nullptr;*/
 
-	//SHOULD BE PRIVATE array of the squares on a chessboard
-	Square squares[8][8];
+	////SHOULD BE PRIVATE array of the squares on a chessboard
+	//static Square board.squares[8][8];
+
+	Board board;
 
 	//uses the mouse coordinates for click to decide which individual Square to call to handle the click, or even no Squares at all!
 	//This is currently very coupled

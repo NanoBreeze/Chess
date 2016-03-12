@@ -12,9 +12,9 @@ Chessboard::Chessboard() /*: bishop(new Bishop(Coordinate::D5)), rook(new Rook(C
 		{
 			//consider making a map for Coordinate and default colour, requires refactoring, difficult to read, magic numbers, etc.
 
-			squares[column][row].setPositionwithCoordinate(static_cast<Coordinate>(8 * row + column));
-			squares[column][row].setDefaultColour(static_cast<Coordinate>(8 * row + column));
-			squares[column][row].setPosition(sf::Vector2f(column * 50, 350 - row * 50));
+			board.squares[column][row].setPositionwithCoordinate(static_cast<Coordinate>(8 * row + column));
+			board.squares[column][row].setDefaultColour(static_cast<Coordinate>(8 * row + column));
+			board.squares[column][row].setPosition(sf::Vector2f(column * 50, 350 - row * 50));
 		}
 	}
 
@@ -22,23 +22,23 @@ Chessboard::Chessboard() /*: bishop(new Bishop(Coordinate::D5)), rook(new Rook(C
 
 	//sets the White player's pieces, eventually this setting process will become easier.
 
-	squares[0][0].setPiece(whitePlayer.getRook1());
-	squares[1][0].setPiece(whitePlayer.getKnight1());
-	squares[2][0].setPiece(whitePlayer.getBishopBlack());
-	squares[3][0].setPiece(whitePlayer.getQueen());
-	squares[4][0].setPiece(whitePlayer.getKing());
-	squares[5][0].setPiece(whitePlayer.getBishopWhite());
-	squares[6][0].setPiece(whitePlayer.getKnight2());
-	squares[7][0].setPiece(whitePlayer.getRook2());
+	board.squares[0][0].setPiece(whitePlayer.getRook1());
+	board.squares[1][0].setPiece(whitePlayer.getKnight1());
+	board.squares[2][0].setPiece(whitePlayer.getBishopBlack());
+	board.squares[3][0].setPiece(whitePlayer.getQueen());
+	board.squares[4][0].setPiece(whitePlayer.getKing());
+	board.squares[5][0].setPiece(whitePlayer.getBishopWhite());
+	board.squares[6][0].setPiece(whitePlayer.getKnight2());
+	board.squares[7][0].setPiece(whitePlayer.getRook2());
 
-	squares[0][1].setPiece(whitePlayer.getPawn1());
-	squares[1][1].setPiece(whitePlayer.getPawn2());
-	squares[2][1].setPiece(whitePlayer.getPawn3());
-	squares[3][1].setPiece(whitePlayer.getPawn4());
-	squares[4][1].setPiece(whitePlayer.getPawn5());
-	squares[5][1].setPiece(whitePlayer.getPawn6());
-	squares[6][1].setPiece(whitePlayer.getPawn7());
-	squares[7][1].setPiece(whitePlayer.getPawn8());;
+	board.squares[0][1].setPiece(whitePlayer.getPawn1());
+	board.squares[1][1].setPiece(whitePlayer.getPawn2());
+	board.squares[2][1].setPiece(whitePlayer.getPawn3());
+	board.squares[3][1].setPiece(whitePlayer.getPawn4());
+	board.squares[4][1].setPiece(whitePlayer.getPawn5());
+	board.squares[5][1].setPiece(whitePlayer.getPawn6());
+	board.squares[6][1].setPiece(whitePlayer.getPawn7());
+	board.squares[7][1].setPiece(whitePlayer.getPawn8());;
 
 
 
@@ -72,16 +72,16 @@ void Chessboard::delegateClick(int x, int y)
 	{
 		for (int row = 0; row < 8; row++)
 		{
-			squares[column][row].unHighlight();
+			board.squares[column][row].unHighlight();
 		}
 	}
 
 	//highlight the selected square
-	squares[column][row].highlightSelected();
+	board.squares[column][row].highlightSelected();
 
 	//REWRITE THIS PART TO CONTAIN CORRECT LOGIC
 
-	highlightMovableSquares(squares[column][row].getPiece());
+	highlightMovableSquares(board.squares[column][row].getPiece());
 
 	/*
 	When the user clicks a Square,
@@ -96,13 +96,13 @@ void Chessboard::delegateClick(int x, int y)
 	//case a)
 	if (stateManager.getSelectedSquare() == nullptr)
 	{
-		auto clickedSquare = &squares[column][row];
+		auto clickedSquare = &board.squares[column][row];
 		stateManager.setSelectedSquare(clickedSquare);
 	}
 	//case b)
 	else
 	{
-		auto clickedSquare = &squares[column][row];
+		auto clickedSquare = &board.squares[column][row];
 
 		//case b1)
 		if (stateManager.getSelectedSquare()->getPiece() == nullptr)
@@ -180,7 +180,7 @@ void Chessboard::highlightMovableSquares(Piece* piece)
 			int row = position.getRow();
 			int column = position.getColumn();
 
-			squares[column][row].highlightIsLegalMove();
+			board.squares[column][row].highlightIsLegalMove();
 		}
 	}
 

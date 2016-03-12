@@ -3,6 +3,8 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include "Position.h"
+#include "Helper.h"
+
 
 class Piece : public sf::RectangleShape
 {
@@ -24,7 +26,7 @@ public:
 	//returns the vector of Coordinates this piece is eligeble to move to
 	std::vector<Position> getMovablePositions() const;
 
-	//empties all elements in movablePositions. Used when we change a Piece's position
+	//clears all elements in movablePositions. Used when we change a Piece's position
 	void clearMovablePositions();
 
 

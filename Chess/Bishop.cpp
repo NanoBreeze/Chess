@@ -16,7 +16,7 @@ void Bishop::computeMovablePositions()
 	int column1 = position.getColumn();
 
 	//compute top right squares, stop if row is over 7 or column is over 7
-	while (row1 <= 7 && column1 <= 7)
+	while (row1 <= 7 && column1 <= 7 )
 	{
 		movablePositions.push_back(computePosition(row1, column1));
 
@@ -29,7 +29,7 @@ void Bishop::computeMovablePositions()
 	int row2 = position.getRow();
 	int column2 = position.getColumn();
 
-	while (row2 >= 0 && column2 >= 0)
+	while (row2 >= 0 && column2 >= 0 )
 	{
 		movablePositions.push_back(computePosition(row2, column2));
 
