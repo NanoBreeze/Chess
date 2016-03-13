@@ -1,4 +1,4 @@
-﻿  Bishop.cpp
+﻿  Pawn.cpp
   Bishop.obj : /DEBUG:FASTLINK is not supported when managed code is present; restarting link with /DEBUG:FULL
   Chess.vcxproj -> C:\Users\Lenny\Documents\Visual Studio 2015\Projects\Chess\x64\Debug\Chess.exe
   Chess.vcxproj -> C:\Users\Lenny\Documents\Visual Studio 2015\Projects\Chess\x64\Debug\Chess.pdb (Partial PDB)

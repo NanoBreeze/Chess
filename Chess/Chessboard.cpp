@@ -40,8 +40,27 @@ Chessboard::Chessboard()
 	Board::squares[4][1].setPiece(whitePlayer->getPawn5());
 	Board::squares[5][1].setPiece(whitePlayer->getPawn6());
 	Board::squares[6][1].setPiece(whitePlayer->getPawn7());
-	Board::squares[7][1].setPiece(whitePlayer->getPawn8());;
+	Board::squares[7][1].setPiece(whitePlayer->getPawn8());
+	
+	//sets the Black player's pieces, eventually this setting process will be easier
 
+	Board::squares[7][7].setPiece(blackPlayer->getRook1());
+	Board::squares[6][7].setPiece(blackPlayer->getKnight1());
+	Board::squares[5][7].setPiece(blackPlayer->getBishopBlack());
+	Board::squares[4][7].setPiece(blackPlayer->getQueen());
+	Board::squares[3][7].setPiece(blackPlayer->getKing());
+	Board::squares[2][7].setPiece(blackPlayer->getBishopWhite());
+	Board::squares[1][7].setPiece(blackPlayer->getKnight2());
+	Board::squares[0][7].setPiece(blackPlayer->getRook2());
+
+	Board::squares[7][6].setPiece(blackPlayer->getPawn1());
+	Board::squares[6][6].setPiece(blackPlayer->getPawn2());
+	Board::squares[5][6].setPiece(blackPlayer->getPawn3());
+	Board::squares[4][6].setPiece(blackPlayer->getPawn4());
+	Board::squares[3][6].setPiece(blackPlayer->getPawn5());
+	Board::squares[2][6].setPiece(blackPlayer->getPawn6());
+	Board::squares[1][6].setPiece(blackPlayer->getPawn7());
+	Board::squares[0][6].setPiece(blackPlayer->getPawn8());
 
 
 
@@ -128,8 +147,6 @@ void Chessboard::delegateClick(int x, int y)
 		{
 			//movable positions of the already clicked Square
 			auto movablePositions = stateManager.getSelectedSquare()->getPiece()->getMovablePositions();
-			
-			auto j = stateManager.getSelectedSquare()->getPiece()->getMovablePositions()[0].getCoordinate();
 			
 			bool clickedSquareIsMovableSquare = false;
 

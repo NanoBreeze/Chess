@@ -21,7 +21,8 @@ public:
 	 void setPosition(const Coordinate coordinate);
 
 	 //same as above but accepts a Position object instead. Used when a Square sets the Position of a Piece associated to it.
-	 void setPosition(const Position position);
+	 //add virtual only for pawn to change status of if the pawn has already moved
+	 virtual void setPosition(const Position position);
 
 	//returns the vector of Coordinates this piece is eligeble to move to
 	std::vector<Position> getMovablePositions() const;
@@ -32,7 +33,15 @@ public:
 	//calculates the eligible Squares this piece can move to, its getter is getMovableSquares()
 	virtual void computeMovablePositions() = 0;
 
+	//gets isWhite to return if Piece belongs to white or black player
+	bool getIsWhite() const;
+
+	void setIsWhite(const bool);
+
 protected: 
+
+	//determines if the Piece is belongs to white or black player
+	bool isWhite;
 
 	//contains this piece's Coordinate, row and column
 	Position position;

@@ -51,6 +51,16 @@ void Piece::clearMovablePositions()
 	movablePositions.clear();
 }
 
+bool Piece::getIsWhite() const
+{
+	return isWhite;
+}
+
+void Piece::setIsWhite(const bool isWhite)
+{
+	this->isWhite = isWhite;
+}
+
 
 Position Piece::computePosition(int row, int column)
 {
