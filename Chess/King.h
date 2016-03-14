@@ -9,6 +9,10 @@ public:
 	King(Coordinate coordinate);
 
 protected: 
-	void computeMovablePositions() override;
+	void computeMoves() override;
+
+private:
+	//helps out computeMoves
+	void addMove(const Coordinate&);
 };
 

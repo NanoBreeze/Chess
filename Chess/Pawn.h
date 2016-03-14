@@ -7,14 +7,16 @@ class Pawn : public Piece
 {
 public:
 	Pawn(Coordinate coordinate);
-	void setPosition(const Position position) override;
+	void setCoordinate(const Coordinate position) override;
 
 
 protected :
-	void computeMovablePositions() override;
+	void computeMoves() override;
 
 private:
 	//this determines if the pawn can move to pieces or only one
 	bool hasYetToMove;
+
+	void addCaptureMove(const Coordinate&);
 };
 

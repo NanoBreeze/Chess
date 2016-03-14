@@ -4,145 +4,109 @@
 //set coordinate and size
 Bishop::Bishop(Coordinate coordinate) 
 {
-	setPosition(coordinate);
+	this->coordinate = coordinate;
+
+	int row = (int)coordinate / 8;
+	int column = (int)coordinate % 8;
+
+	sf::RectangleShape::setPosition(sf::Vector2f(column * 50, 350 - row * 50));
+
 	setSize(sf::Vector2f(20, 20));
 }
 
 //problem, in the moveableSquares, there are duplications of the current square the bishop is in
-void Bishop::computeMovablePositions()
+void Bishop::computeMoves()
 {
 	//first clear past movablePositions
-	clearMovablePositions();
+	clearMoves();
 
-	//find row and column of coordinates
-	int row1 = position.getRow();
-	int column1 = position.getColumn();
-
-	auto n = Board::squares[column1 + 1][row1 + 1].getPiece();
+	auto c = coordinate;
 
 	//compute top right squares, stop if row is over 7 or column is over 7
-	while (row1 + 1 <= 7 && column1 + 1<= 7  )
+	while(c != Coordinate::Invalid)
 	{
-		// 1. if there is a Piece of the square, we shall check if it is same colour or different colour
-		//		a) if is same colour, do not include this position in movablePositions, and exit
-		//		b) if it is different colour, include and exit
-		
-		//1
-		if (Board::squares[column1 + 1][row1 + 1].getPiece() != nullptr)
+		//we will not add the Bishop's current position to moves
+		if (c == coordinate) { c = CoordinateHelper::getCoordinateUpRight(c); continue; }
+
+		if (addPartOne(c)) { break; }
+		//2
+		else
 		{
-			//a)
-			if (Board::squares[column1 + 1][row1 + 1].getPiece()->getIsWhite() == this->isWhite)
-			{
-				break;
-			}
-			//b)
-			else
-			{
-				movablePositions.push_back(computePosition(row1 + 1, column1 + 1));
-				break;
-			}
+			moves.push_back(c);
+			c = CoordinateHelper::getCoordinateUpRight(c);
 		}
-
-
-		movablePositions.push_back(computePosition(row1+1, column1+1));
-
-		//go to next row
-		row1++;
-		column1++;
 	}
+
 	
-	//compute bottom left squares, stop if row is under 0 or column is under 0
-	int row2 = position.getRow();
-	int column2 = position.getColumn();
 
-	while (row2 -1 >= 0 && column2 -1 >= 0)
+	auto c2 = coordinate;
+
+	//compute bottom left squares, stop if row is under 0 or column is under 0
+	while (c2 != Coordinate::Invalid)
 	{
-		//1
-		if (Board::squares[column2 -1][row2 - 1].getPiece() != nullptr)
+		//we will not add the Bishop's current position to moves
+		if (c2 == coordinate) { c2 = CoordinateHelper::getCoordinateDownLeft(c2); continue; }
+
+		if (addPartOne(c2)) { break; }
+		else
 		{
-			//a)
-			if (Board::squares[column2 - 1][row2 - 1].getPiece()->getIsWhite() == this->isWhite)
-			{
-				break;
-			}
-			//b)
-			else
-			{
-				movablePositions.push_back(computePosition(row2 - 1, column2 - 1));
-				break;
-			}
+			moves.push_back(c2);
+			c2 = CoordinateHelper::getCoordinateDownLeft(c2);
 		}
 
-
-		movablePositions.push_back(computePosition(row2 - 1, column2 - 1));
-
-		//go to next row
-		row2--;
-		column2--;
 	}
+
 
 	//compute top left squares, stop if row is over 7 or column is under 0
-	int row3 = position.getRow();
-	int column3 = position.getColumn();
+	auto c3 = coordinate;
 
-	while (row3  +1 <= 7 && column3 - 1>= 0)
+	while (c3 != Coordinate::Invalid)
 	{
+		//we will not add the Bishop's current position to moves
+		if (c3 == coordinate) { c3 = CoordinateHelper::getCoordinateUpLeft(c3); continue; }
 
-		//1
-		if (Board::squares[column3 - 1][row3 + 1].getPiece() != nullptr)
+		if (addPartOne(c3)) { break; }
+		else
 		{
-			//a)
-			if (Board::squares[column3 - 1][row3 + 1].getPiece()->getIsWhite() == this->isWhite)
-			{
-				break;
-			}
-			//b)
-			else
-			{
-				movablePositions.push_back(computePosition(row3 + 1, column3 - 1));
-				break;
-			}
+			moves.push_back(c3);
+			c3 = CoordinateHelper::getCoordinateUpLeft(c3);
 		}
-
-
-
-
-		movablePositions.push_back(computePosition(row3 + 1, column3 - 1));
-
-		//go to next row
-		row3++;
-		column3--;
 	}
+	
 
-	//compute bottom right squares, stop if row is under 0 or column is over 7
-	int row4 = position.getRow();
-	int column4 = position.getColumn();
+	//compute bottom right squares, stop if row is over 7 or column is under 0
+	auto c4 = coordinate;
 
-	while (row4 - 1 >= 0 && column4 + 1 <= 7)
+	while (c4 != Coordinate::Invalid)
 	{
+		//we will not add the Bishop's current position to moves
+		if (c4 == coordinate) { c4 = CoordinateHelper::getCoordinateDownRight(c4); continue; }
 
-		//1
-		if (Board::squares[column4 + 1][row4 - 1].getPiece() != nullptr)
+		if (addPartOne(c4)) { break; }
+		else
 		{
-			//a)
-			if (Board::squares[column4 + 1][row4 - 1].getPiece()->getIsWhite() == this->isWhite)
-			{
-				break;
-			}
-			//b)
-			else
-			{
-				movablePositions.push_back(computePosition(row4 - 1, column4 + 1));
-				break;
-			}
+			moves.push_back(c4);
+			c4 = CoordinateHelper::getCoordinateDownRight(c4);
 		}
-
-
-		movablePositions.push_back(computePosition(row4 - 1, column4 + 1));
-
-		//go to next row
-		row4--;
-		column4++;
 	}
+}
 
+bool Bishop::addPartOne(const Coordinate& c)
+{
+	//1
+	if (Board::getSquare(c).getPiece() != nullptr)
+	{
+		//a)
+		if (Board::getSquare(c).getPiece()->getIsWhite() == this->isWhite)
+		{
+			return true;
+		}
+		//b)
+		else
+		{
+			moves.push_back(c);
+			return true;
+		}
+	}
+	return false;
 }

@@ -6,15 +6,15 @@ Square::Square()
 	setSize(sf::Vector2f(50, 50));
 }
 
-Position Square::getPositionwithPosition() const
+
+Coordinate Square::getCoordinate() const
 {
-	return position;
+	return coordinate;
 }
 
-
-void Square::setPositionwithCoordinate(const Coordinate coordinate)
+void Square::setCoordinate(const Coordinate coordinate)
 {
-	position.setPosition(coordinate);
+	this->coordinate = coordinate;
 }
 
 sf::Color Square::getDefaultColour() const

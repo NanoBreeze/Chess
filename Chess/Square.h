@@ -15,10 +15,14 @@ class Square : public sf::RectangleShape
 public:
 	Square();
 
-	//A square's colour can change when it is clicked on to denote it has been selected 
+	//================ These are replaced by getCorodinat and setCoordinate A square's colour can change when it is clicked on to denote it has been selected 
 	//returns the square's coordinate, eg, A1, E5
-	Position getPositionwithPosition() const;
-	void setPositionwithCoordinate(const Coordinate); //funky name because setPosition is already a method name in sf::RectangaleShape
+	//Position getPositionwithPosition() const;
+	//void setPositionwithCoordinate(const Coordinate); //funky name because setPosition is already a method name in sf::RectangaleShape
+
+	Coordinate getCoordinate() const;
+
+	void setCoordinate(const Coordinate);
 
 	//A square is by default either black or white
 	sf::Color getDefaultColour() const;
@@ -57,8 +61,11 @@ private:
 	//the curent colour of the square. Usually, black or white but can be highlighted
 	sf::Color displayColour;
 
-	//the square's Position (contains Coordiante, row, and column)
-	Position position;
+	//================== This is replaced by coordinate the square's Position (contains Coordiante, row, and column)
+	//Position position;
+
+	//the coordinate of this Square
+	Coordinate coordinate;
 
 };
 

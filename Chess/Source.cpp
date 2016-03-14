@@ -3,15 +3,19 @@
 
 #include "Square.h"
 #include "Chessboard.h"
+#include "Coordinate.h"
 
 
 
 int main()
 {
+	
+
 	sf::RenderWindow window(sf::VideoMode(400, 400), "SFML works!");
 
+	std::cout << "About to make chessboard";
 	Chessboard chessboard;
-
+	std::cout << "Finished making chessboard";
 
 	while (window.isOpen())
 	{

@@ -6,131 +6,140 @@
 
 Pawn::Pawn(Coordinate coordinate) : hasYetToMove(true)
 {
-	Piece::setPosition(coordinate);
+	this->coordinate = coordinate;
+
+	int row = (int)coordinate / 8;
+	int column = (int)coordinate % 8;
+
+	sf::RectangleShape::setPosition(sf::Vector2f(column * 50, 350 - row * 50));
+
 	setSize(sf::Vector2f(20, 20));
 }
 
-void Pawn::setPosition(const Position position)
+void Pawn::setCoordinate(const Coordinate position)
 {
-	Piece::setPosition(position);
+	Piece::setCoordinate(position);
 	hasYetToMove = false;
 }
 
-void Pawn::computeMovablePositions()
-{
 
+
+void Pawn::computeMoves()
+{
 	//first clear past movablePositions
-	clearMovablePositions();
+	clearMoves();
 
 	//REQUIRES CHANGING TO ACCOUNT FOR and promotions. 
 
-	int row = position.getRow();
-	int column = position.getColumn();
-
 	if (isWhite)
 	{
-		if (row + 1 <= 7)
+		//capturing 1 up, 1 right piece
+		Coordinate upRight = CoordinateHelper::getCoordinateUpRight(coordinate);
+
+		if (upRight != CoordinateHelper::getMostUpRightCoordinate(coordinate) || upRight != Coordinate::Invalid)
 		{
-			//capturing 1 up, 1 left piece
-			if (Board::squares[column - 1][row + 1].getPiece() != nullptr)
-			{
-				if (Board::squares[column - 1][row + 1].getPiece()->getIsWhite() != this->isWhite)
-				{
-					movablePositions.push_back(computePosition(row + 1, column - 1));
+			addCaptureMove(upRight);
+		}
 
-				}
+		//capturing 1 up, 1 left piece
+		auto upLeft = CoordinateHelper::getCoordinateUpLeft(coordinate);
+
+		if (upLeft != CoordinateHelper::getMostUpLeftCoordinate(coordinate) || upLeft != Coordinate::Invalid)
+		{
+			addCaptureMove(upLeft);
+		}
+
+		auto oneUp = CoordinateHelper::getCoordinateUp(coordinate);
+		auto twoUp = CoordinateHelper::getCoordinateUp(oneUp);
+
+		//moving
+		if (hasYetToMove)
+		{
+			if (Board::getSquare(oneUp).getPiece() != nullptr)
+			{
+				//don't add any positions to computePosition
 			}
-
-			//capturing 1 up, 1 right piece
-			if (Board::squares[column + 1][row + 1].getPiece() != nullptr)
+			else if (Board::getSquare(oneUp).getPiece() == nullptr && Board::getSquare(twoUp).getPiece() != nullptr)
 			{
-				if (Board::squares[column + 1][row + 1].getPiece()->getIsWhite() != this->isWhite)
-				{
-					movablePositions.push_back(computePosition(row + 1, column + 1));
-
-				}
-
+				moves.push_back(oneUp);
 			}
-
-			//moving
-			if (hasYetToMove)
+			else if (Board::getSquare(oneUp).getPiece() == nullptr && Board::getSquare(twoUp).getPiece() == nullptr)
 			{
-				if (Board::squares[column][row + 1].getPiece() != nullptr)
-				{
-					//don't add any positions to computePosition
-				}
-				else if (Board::squares[column][row + 1].getPiece() == nullptr && Board::squares[column][row + 2].getPiece() != nullptr)
-				{
-					movablePositions.push_back(computePosition(row + 1, column));
-				}
-				else if (Board::squares[column][row + 1].getPiece() == nullptr && Board::squares[column][row + 2].getPiece() == nullptr)
-				{
-					movablePositions.push_back(computePosition(row + 1, column));
-					movablePositions.push_back(computePosition(row + 2, column));
-				}
+				moves.push_back(oneUp);
+				moves.push_back(twoUp);
 			}
-			else
+		}
+		else
+		{
+			if (Board::getSquare(oneUp).getPiece() == nullptr)
 			{
-				if (Board::squares[column][row + 1].getPiece() == nullptr)
-				{
-					movablePositions.push_back(computePosition(row + 1, column));
-				}
+				moves.push_back(oneUp);
 			}
 		}
 	}
+
 	else
 	{
-		if (row - 1 >= 0)
+		//capturing 1 down, 1 right piece
+		auto downRight = CoordinateHelper::getCoordinateDownRight(coordinate);
+
+		if (downRight != CoordinateHelper::getMostDownRightCoordinate(coordinate) || downRight != Coordinate::Invalid)
 		{
-			//capturing 1 up, 1 left piece
-			if (Board::squares[column - 1][row - 1].getPiece() != nullptr)
-			{
-				if (Board::squares[column - 1][row - 1].getPiece()->getIsWhite() != this->isWhite)
-				{
-					movablePositions.push_back(computePosition(row - 1, column - 1));
+			addCaptureMove(downRight);
+		}
 
-				}
+		//capturing 1 down, 1 left piece
+		auto downLeft = CoordinateHelper::getCoordinateDownLeft(coordinate);
+
+		if (downLeft != CoordinateHelper::getMostDownLeftCoordinate(coordinate) || downLeft != Coordinate::Invalid)
+		{
+			addCaptureMove(downLeft);
+		}
+
+
+
+
+		auto oneDown = CoordinateHelper::getCoordinateDown(coordinate);
+		auto twoDown = CoordinateHelper::getCoordinateDown(oneDown);
+
+		//moving
+		if (hasYetToMove)
+		{
+			if (Board::getSquare(oneDown).getPiece() != nullptr)
+			{
+				//don't add any positions to computePosition
 			}
-
-			//capturing 1 up, 1 right piece
-			if (Board::squares[column + 1][row - 1].getPiece() != nullptr)
+			else if (Board::getSquare(oneDown).getPiece() == nullptr && Board::getSquare(twoDown).getPiece() != nullptr)
 			{
-				if (Board::squares[column + 1][row - 1].getPiece()->getIsWhite() != this->isWhite)
-				{
-					movablePositions.push_back(computePosition(row - 1, column + 1));
-
-				}
-
+				moves.push_back(oneDown);
 			}
-
-			//moving
-			if (hasYetToMove)
+			else if (Board::getSquare(oneDown).getPiece() == nullptr && Board::getSquare(twoDown).getPiece() == nullptr)
 			{
-				if (Board::squares[column][row - 1].getPiece() != nullptr)
-				{
-					//don't add any positions to computePosition
-				}
-				else if (Board::squares[column][row - 1].getPiece() == nullptr && Board::squares[column][row - 2].getPiece() != nullptr)
-				{
-					movablePositions.push_back(computePosition(row - 1, column));
-				}
-				else if (Board::squares[column][row - 1].getPiece() == nullptr && Board::squares[column][row - 2].getPiece() == nullptr)
-				{
-					movablePositions.push_back(computePosition(row - 1, column));
-					movablePositions.push_back(computePosition(row - 2, column));
-				}
+				moves.push_back(oneDown);
+				moves.push_back(twoDown);
 			}
-			else
+		}
+		else
+		{
+			if (Board::getSquare(oneDown).getPiece() == nullptr)
 			{
-				if (Board::squares[column][row - 1].getPiece() == nullptr)
-				{
-					movablePositions.push_back(computePosition(row - 1, column));
-				}
+				moves.push_back(oneDown);
 			}
 		}
 	}
-	
-	
+}
+
+
+void Pawn::addCaptureMove(const Coordinate& coordinate)
+{
+	if (Board::getSquare(coordinate).getPiece() != nullptr)
+	{
+		if (Board::getSquare(coordinate).getPiece()->getIsWhite() != this->isWhite)
+		{
+			moves.push_back(coordinate);
+
+		}
+	}
 }
 
 

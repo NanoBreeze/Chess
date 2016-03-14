@@ -12,14 +12,17 @@ Chessboard::Chessboard()
 		{
 			//consider making a map for Coordinate and default colour, requires refactoring, difficult to read, magic numbers, etc.
 
-			Board::squares[column][row].setPositionwithCoordinate(static_cast<Coordinate>(8 * row + column));
+			Board::squares[column][row].setCoordinate(static_cast<Coordinate>(8 * row + column));
 
 			Board::squares[column][row].setDefaultColour(static_cast<Coordinate>(8 * row + column));
 			Board::squares[column][row].setPosition(sf::Vector2f(column * 50, 350 - row * 50));
 		}
 	}
 
+	std::cout << "About to make white player";
 	whitePlayer = new WhitePlayer();
+
+	std::cout << "About to make black player";
 	blackPlayer = new BlackPlayer();
 
 	//sets the White player's pieces, eventually this setting process will become easier.
@@ -101,12 +104,12 @@ void Chessboard::delegateClick(int x, int y)
 
 	//REWRITE THIS PART TO BE MAINTAINABLE
 
-	
+	auto n = Board::squares[column][row].getPiece();
 	
 	//call computeMovablePosition of the piece if it exists again, 
 	if (Board::squares[column][row].getPiece())
 	{
-		Board::squares[column][row].getPiece()->computeMovablePositions();
+		Board::squares[column][row].getPiece()->computeMoves();
 	}
 
 	//highlight the selected square, important that this part comes second
@@ -146,17 +149,16 @@ void Chessboard::delegateClick(int x, int y)
 		else
 		{
 			//movable positions of the already clicked Square
-			auto movablePositions = stateManager.getSelectedSquare()->getPiece()->getMovablePositions();
+			auto moves = stateManager.getSelectedSquare()->getPiece()->getMoves();
 			
 			bool clickedSquareIsMovableSquare = false;
 
-			for (auto position : movablePositions)
+			for (auto coordinate : moves)
 			{
-				auto positionCoordinate = position.getCoordinate();
-				auto clickedSquareCoordinate = clickedSquare->getPositionwithPosition().getCoordinate();
+				auto clickedSquareCoordinate = clickedSquare->getCoordinate();
 
 				//case b2.1)
-				if (position.getCoordinate() == clickedSquare->getPositionwithPosition().getCoordinate())
+				if (coordinate == clickedSquare->getCoordinate())
 				{
 					clickedSquareIsMovableSquare = true;
 				}
@@ -169,10 +171,10 @@ void Chessboard::delegateClick(int x, int y)
 
 				//remove Piece's movablePositions. movablePositiosn is set every time setPosition is called. 
 				//Thus, it's important to clear the movablePositions before setting the Piece's new position
-				stateManager.getSelectedSquare()->getPiece()->clearMovablePositions();
+				stateManager.getSelectedSquare()->getPiece()->clearMoves();
 
 				//set Piece's new location
-				stateManager.getSelectedSquare()->getPiece()->setPosition(clickedSquare->getPositionwithPosition());
+				stateManager.getSelectedSquare()->getPiece()->setCoordinate(clickedSquare->getCoordinate());
 				
 				// set new square with this piece and remove piece from previous square 
 				clickedSquare->setPiece(stateManager.getSelectedSquare()->getPiece());
@@ -195,17 +197,11 @@ void Chessboard::highlightMovableSquares(Piece* piece)
 	//we check for nullptr because this function is called on any clicked Square, even if it doesn't contain a Piece (piece != nullptr) 
 	if (piece != nullptr)
 	{
-		std::vector<Position> movablePositions = piece->getMovablePositions();
+		auto moves = piece->getMoves();
 
-		for (Position position : movablePositions)
+		for (auto coordinate : moves)
 		{
-			assert(position.getColumn() >= 0); //this this is false, bad bad
-
-											   //get row and column entry
-			int row = position.getRow();
-			int column = position.getColumn();
-
-			Board::squares[column][row].highlightIsLegalMove();
+			Board::getSquare(coordinate).highlightIsLegalMove();
 		}
 	}
 

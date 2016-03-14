@@ -4,237 +4,191 @@
 
 Queen::Queen(Coordinate coordinate) 
 {
-	setPosition(coordinate);
+	this->coordinate = coordinate;
+
+	int row = (int)coordinate / 8;
+	int column = (int)coordinate % 8;
+
+	sf::RectangleShape::setPosition(sf::Vector2f(column * 50, 350 - row * 50));
+
 	setSize(sf::Vector2f(20, 20));
 }
 
 
-void Queen::computeMovablePositions()
+void Queen::computeMoves()
 {
 	//first clear past movablePositions
-	clearMovablePositions();
+	clearMoves();
 
 	//This is a conglomeration of Rook's and Bishop's moves
 
 /* ================== ROOK ====================*/
-	//find row and column of coordinates
-	int row1 = position.getRow();
-	int column1 = position.getColumn();
 
-	//can consider left and right into horizontal
+
 	//compute left Squares
+	auto c = coordinate;
 
-	while (column1 - 1 >= 0)
+	while (c != Coordinate::Invalid)
 	{
+		//we will not add the Bishop's current position to moves
+		if (c == coordinate) { c = CoordinateHelper::getCoordinateLeft(c); continue; }
 
-		if (Board::squares[column1 - 1][row1].getPiece() != nullptr)
+		if (addPartOne(c)) { break; }
+		//2
+		else
 		{
-			//a)
-			if (Board::squares[column1 - 1][row1].getPiece()->getIsWhite() == this->isWhite)
-			{
-				break;
-			}
-			//b)
-			else
-			{
-				movablePositions.push_back(computePosition(row1, column1 - 1));
-				break;
-			}
+			moves.push_back(c);
+			c = CoordinateHelper::getCoordinateLeft(c);
 		}
-
-		movablePositions.push_back(computePosition(row1, column1 - 1));
-		column1--;
 	}
 
 	//compute right Squares
-	int row2 = position.getRow();
-	int column2 = position.getColumn();
+	auto c2 = coordinate;
 
-	while (column2 + 1 <= 7)
+	while (c2 != Coordinate::Invalid)
 	{
-		if (Board::squares[column2 + 1][row2].getPiece() != nullptr)
-		{
-			//a)
-			if (Board::squares[column2 + 1][row2].getPiece()->getIsWhite() == this->isWhite)
-			{
-				break;
-			}
-			//b)
-			else
-			{
-				movablePositions.push_back(computePosition(row2, column2 + 1));
-				break;
-			}
-		}
+		//we will not add the Bishop's current position to moves
+		if (c2 == coordinate) { c2 = CoordinateHelper::getCoordinateRight(c2); continue; }
 
-		movablePositions.push_back(computePosition(row2, column2 + 1));
-		column2++;
+		if (addPartOne(c2)) { break; }
+		//2
+		else
+		{
+			moves.push_back(c2);
+			c2 = CoordinateHelper::getCoordinateRight(c2);
+		}
 	}
+
+
 
 	//compute top Squares
-	int row3 = position.getRow();
-	int column3 = position.getColumn();
+	auto c3 = coordinate;
 
-	while (row3 + 1 <= 7)
+
+	while (c3 != Coordinate::Invalid)
 	{
-		if (Board::squares[column3][row3 + 1].getPiece() != nullptr)
-		{
-			//a)
-			if (Board::squares[column3][row3 + 1].getPiece()->getIsWhite() == this->isWhite)
-			{
-				break;
-			}
-			//b)
-			else
-			{
-				movablePositions.push_back(computePosition(row3 + 1, column3));
-				break;
-			}
-		}
+		//we will not add the Bishop's current position to moves
+		if (c3 == coordinate) { c3 = CoordinateHelper::getCoordinateUp(c3); continue; }
 
-		movablePositions.push_back(computePosition(row3 + 1, column3));
-		row3++;
+		if (addPartOne(c3)) { break; }
+		//2
+		else
+		{
+			moves.push_back(c3);
+			c3 = CoordinateHelper::getCoordinateUp(c3);
+		}
 	}
 
-	//compute top Squares
-	int row4 = position.getRow();
-	int column4 = position.getColumn();
 
-	while (row4 - 1 >= 0)
+	//compute bottom Squares
+	auto c4 = coordinate;
+
+
+	while (c4 != Coordinate::Invalid)
 	{
-		if (Board::squares[column4][row4 - 1].getPiece() != nullptr)
-		{
-			//a)
-			if (Board::squares[column4][row4 - 1].getPiece()->getIsWhite() == this->isWhite)
-			{
-				break;
-			}
-			//b)
-			else
-			{
-				movablePositions.push_back(computePosition(row4 - 1, column4));
-				break;
-			}
-		}
+		//we will not add the Bishop's current position to moves
+		if (c4 == coordinate) { c4 = CoordinateHelper::getCoordinateDown(c4); continue; }
 
-		movablePositions.push_back(computePosition(row4 - 1, column4));
-		row4--;
+		if (addPartOne(c4)) { break; }
+		//2
+		else
+		{
+			moves.push_back(c4);
+			c4 = CoordinateHelper::getCoordinateDown(c4);
+		}
 	}
+
 
 	/* ====================== BISHOP ===================== */
 
-	//find row and column of coordinates
-	int row5 = position.getRow();
-	int column5 = position.getColumn();
+
 
 	//compute top right squares, stop if row is over 7 or column is over 7
-	while (row5 + 1 <= 7 && column5 + 1 <= 7)
+	auto c5 = coordinate;
+
+	while (c5 != Coordinate::Invalid)
 	{
-		if (Board::squares[column5 + 1][row5 + 1].getPiece() != nullptr)
+		//we will not add the Bishop's current position to moves
+		if (c5 == coordinate) { c5 = CoordinateHelper::getCoordinateUpRight(c5); continue; }
+
+		if (addPartOne(c5)) { break; }
+		//2
+		else
 		{
-			//a)
-			if (Board::squares[column5 + 1][row5 + 1].getPiece()->getIsWhite() == this->isWhite)
-			{
-				break;
-			}
-			//b)
-			else
-			{
-				movablePositions.push_back(computePosition(row5 + 1, column5 + 1));
-				break;
-			}
+			moves.push_back(c5);
+			c5 = CoordinateHelper::getCoordinateUpRight(c5);
 		}
-
-		movablePositions.push_back(computePosition(row5 + 1, column5 + 1));
-
-		//go to next row
-		row5++;
-		column5++;
 	}
 
-	//compute bottom left squares, stop if row is under 0 or column is under 0
-	int row6 = position.getRow();
-	int column6 = position.getColumn();
 
-	while (row6 - 1 >= 0 && column6 - 1 >= 0)
-	{
-		if (Board::squares[column6 - 1][row6 - 1].getPiece() != nullptr)
-		{
-			//a)
-			if (Board::squares[column6 - 1][row6 - 1].getPiece()->getIsWhite() == this->isWhite)
-			{
-				break;
-			}
-			//b)
-			else
-			{
-				movablePositions.push_back(computePosition(row6 - 1, column6 - 1));
-				break;
-			}
-		}
-
-
-		movablePositions.push_back(computePosition(row6 - 1, column6 - 1));
-
-		//go to next row
-		row6--;
-		column6--;
-	}
 
 	//compute top left squares, stop if row is over 7 or column is under 0
-	int row7 = position.getRow();
-	int column7 = position.getColumn();
+	auto c6 = coordinate;
 
-	while (row7 + 1 <= 7 && column7 - 1 >= 0)
+	while (c6 != Coordinate::Invalid)
 	{
-		if (Board::squares[column7 - 1][row7 + 1].getPiece() != nullptr)
+		//we will not add the Bishop's current position to moves
+		if (c6 == coordinate) { c6 = CoordinateHelper::getCoordinateUpLeft(c6); continue; }
+
+		if (addPartOne(c6)) { break; }
+		else
 		{
-			//a)
-			if (Board::squares[column7 - 1][row7 + 1].getPiece()->getIsWhite() == this->isWhite)
-			{
-				break;
-			}
-			//b)
-			else
-			{
-				movablePositions.push_back(computePosition(row7 + 1, column7 - 1));
-				break;
-			}
+			moves.push_back(c6);
+			c6 = CoordinateHelper::getCoordinateUpLeft(c6);
 		}
-
-		movablePositions.push_back(computePosition(row7 + 1, column7 - 1));
-
-		//go to next row
-		row7++;
-		column7--;
 	}
 
 	//compute bottom right squares, stop if row is under 0 or column is over 7
-	int row8 = position.getRow();
-	int column8 = position.getColumn();
+	auto c7 = coordinate;
 
-	while (row8 - 1 >= 0 && column8 + 1 <= 7)
+	while (c7 != Coordinate::Invalid)
 	{
-		if (Board::squares[column8 + 1][row8 - 1].getPiece() != nullptr)
+		//we will not add the Bishop's current position to moves
+		if (c7 == coordinate) { c7 = CoordinateHelper::getCoordinateDownRight(c7); continue; }
+
+		if (addPartOne(c7)) { break; }
+		else
 		{
-			//a)
-			if (Board::squares[column8 + 1][row8 - 1].getPiece()->getIsWhite() == this->isWhite)
-			{
-				break;
-			}
-			//b)
-			else
-			{
-				movablePositions.push_back(computePosition(row8 - 1, column8 + 1));
-				break;
-			}
+			moves.push_back(c7);
+			c7 = CoordinateHelper::getCoordinateDownRight(c7);
 		}
-
-		movablePositions.push_back(computePosition(row8 - 1, column8 + 1));
-
-		//go to next row
-		row8--;
-		column8++;
 	}
 
+	//compute bottom left squares
+	auto c8 = coordinate;
+
+	while (c8 != Coordinate::Invalid)
+	{
+		//we will not add the Bishop's current position to moves
+		if (c8 == coordinate) { c8 = CoordinateHelper::getCoordinateDownLeft(c8); continue; }
+
+		if (addPartOne(c8)) { break; }
+		else
+		{
+			moves.push_back(c8);
+			c8 = CoordinateHelper::getCoordinateDownLeft(c8);
+		}
+
+	}
+
+}
+
+bool Queen::addPartOne(const Coordinate& c)
+{
+	//1
+	if (Board::getSquare(c).getPiece() != nullptr)
+	{
+		//a)
+		if (Board::getSquare(c).getPiece()->getIsWhite() == this->isWhite)
+		{
+			return true;
+		}
+		//b)
+		else
+		{
+			moves.push_back(c);
+			return true;
+		}
+	}
+	return false;
 }

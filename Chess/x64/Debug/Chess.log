@@ -1,4 +1,28 @@
-﻿  Pawn.cpp
+﻿  Bishop.cpp
+Bishop.cpp(12): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  BlackPlayer.cpp
+  Board.cpp
+  Chessboard.cpp
+Chessboard.cpp(18): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  CoordinateHelper.cpp
+  King.cpp
+King.cpp(14): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Knight.cpp
+Knight.cpp(12): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Pawn.cpp
+Pawn.cpp(14): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Piece.cpp
+Piece.cpp(27): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Player.cpp
+  Queen.cpp
+Queen.cpp(12): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Rook.cpp
+Rook.cpp(12): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Source.cpp
+  Square.cpp
+  StateManager.cpp
+  WhitePlayer.cpp
+  Generating Code...
   Bishop.obj : /DEBUG:FASTLINK is not supported when managed code is present; restarting link with /DEBUG:FULL
   Chess.vcxproj -> C:\Users\Lenny\Documents\Visual Studio 2015\Projects\Chess\x64\Debug\Chess.exe
   Chess.vcxproj -> C:\Users\Lenny\Documents\Visual Studio 2015\Projects\Chess\x64\Debug\Chess.pdb (Partial PDB)

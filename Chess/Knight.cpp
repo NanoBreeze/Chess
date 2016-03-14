@@ -4,221 +4,96 @@
 
 Knight::Knight(Coordinate coordinate)
 {
-	setPosition(coordinate);
+	this->coordinate = coordinate;
+
+	int row = (int)coordinate / 8;
+	int column = (int)coordinate % 8;
+
+	sf::RectangleShape::setPosition(sf::Vector2f(column * 50, 350 - row * 50));
+
 	setSize(sf::Vector2f(20, 20));
 }
 
-void Knight::computeMovablePositions()
+void Knight::computeMoves()
 {
 	//can optimize
 
 	//first clear past movablePositions
-	clearMovablePositions();
+	clearMoves();
 
-	int row = position.getRow();
-	int column = position.getColumn();
+
 
 	//2 up 1 left
-	if (row + 2 <= 7 && column - 1 >= 0)
+	if (CoordinateHelper::TwoUpOneLeft(coordinate) != Coordinate::Invalid)
 	{
-		//1
-		if (Board::squares[column - 1][row + 2].getPiece() != nullptr)
-		{
-			//a)
-			if (Board::squares[column - 1][row + 2].getPiece()->getIsWhite() == this->isWhite)
-			{
-				//that square is not placed into movablePositions
-			}
-			//b)
-			else
-			{
-				movablePositions.push_back(computePosition(row + 2, column - 1));
-
-			}
-		}
-		else
-		{
-			movablePositions.push_back(computePosition(row + 2, column - 1));
-		}
-
+		addMove(CoordinateHelper::TwoUpOneLeft(coordinate));
 	}
 	
 	//2 up 1 right
-	if (row + 2 <= 7 && column + 1 <= 7)
+	if (CoordinateHelper::TwoUpOneRight(coordinate) != Coordinate::Invalid)
 	{
-		//1
-		if (Board::squares[column + 1][row + 2].getPiece() != nullptr)
-		{
-			//a)
-			if (Board::squares[column + 1][row + 2].getPiece()->getIsWhite() == this->isWhite)
-			{
-				//that square is not placed into movablePositions
-			}
-			//b)
-			else
-			{
-				movablePositions.push_back(computePosition(row + 2, column + 1));
-
-			}
-		}
-		else
-		{
-			movablePositions.push_back(computePosition(row + 2, column + 1));
-		}
-
+		addMove(CoordinateHelper::TwoUpOneRight(coordinate));
 	}
 
+
 	//1 up 2 left
-	if (row + 1 <= 7 && column - 2 >= 0)
+	if (CoordinateHelper::OneUpTwoLeft(coordinate) != Coordinate::Invalid)
 	{
-		//1
-		if (Board::squares[column - 2][row + 1].getPiece() != nullptr)
-		{
-			//a)
-			if (Board::squares[column - 2][row + 1].getPiece()->getIsWhite() == this->isWhite)
-			{
-				//that square is not placed into movablePositions
-			}
-			//b)
-			else
-			{
-				movablePositions.push_back(computePosition(row + 1, column - 2));
-
-			}
-		}
-		else
-		{
-			movablePositions.push_back(computePosition(row + 1, column - 2));
-		}
-
+		addMove(CoordinateHelper::OneUpTwoLeft(coordinate));
 	}
 
 	//1 up 2 right
-	if (row + 1 <= 7 && column + 2 <= 7)
+	if (CoordinateHelper::OneUpTwoRight(coordinate) != Coordinate::Invalid)
 	{
-		//1
-		if (Board::squares[column + 2][row + 1].getPiece() != nullptr)
-		{
-			//a)
-			if (Board::squares[column + 2][row + 1].getPiece()->getIsWhite() == this->isWhite)
-			{
-				//that square is not placed into movablePositions
-			}
-			//b)
-			else
-			{
-				movablePositions.push_back(computePosition(row + 1, column + 2));
-
-			}
-		}
-		else
-		{
-			movablePositions.push_back(computePosition(row + 1, column + 2));
-		}
+		addMove(CoordinateHelper::OneUpTwoRight(coordinate));
 	}
 
 	//1 down 2 left
-	if (row - 1 >= 0 && column - 2 >= 0)
+	if (CoordinateHelper::OneDownTwoLeft(coordinate) != Coordinate::Invalid)
 	{
-		//1
-		if (Board::squares[column - 2][row - 1].getPiece() != nullptr)
-		{
-			//a)
-			if (Board::squares[column - 2][row - 1].getPiece()->getIsWhite() == this->isWhite)
-			{
-				//that square is not placed into movablePositions
-			}
-			//b)
-			else
-			{
-				movablePositions.push_back(computePosition(row -1, column - 2));
-
-			}
-		}
-		else
-		{
-			movablePositions.push_back(computePosition(row - 1, column - 2));
-		}
+		addMove(CoordinateHelper::OneDownTwoLeft(coordinate));
 	}
 
 	//1 down 2 right
-	if (row - 1 >= 0 && column + 2 <= 7)
+	if (CoordinateHelper::OneDownTwoRight(coordinate) != Coordinate::Invalid)
 	{
-		//1
-		if (Board::squares[column + 2][row - 1].getPiece() != nullptr)
-		{
-			//a)
-			if (Board::squares[column + 2][row - 1].getPiece()->getIsWhite() == this->isWhite)
-			{
-				//that square is not placed into movablePositions
-			}
-			//b)
-			else
-			{
-				movablePositions.push_back(computePosition(row - 1, column + 2));
-
-			}
-		}
-		else
-		{
-			movablePositions.push_back(computePosition(row - 1, column + 2));
-		}
+		addMove(CoordinateHelper::OneDownTwoRight(coordinate));
 	}
 
 	//2 down 1 left
-	if (row - 2 >= 0 && column - 1 >= 0)
+	if (CoordinateHelper::TwoDownOneLeft(coordinate) != Coordinate::Invalid)
 	{
-		//1
-		if (Board::squares[column - 1][row - 2].getPiece() != nullptr)
-		{
-			//a)
-			if (Board::squares[column - 1][row - 2].getPiece()->getIsWhite() == this->isWhite)
-			{
-				//that square is not placed into movablePositions
-			}
-			//b)
-			else
-			{
-				movablePositions.push_back(computePosition(row - 2, column - 1));
-
-			}
-		}
-		else
-		{
-			movablePositions.push_back(computePosition(row - 2, column - 1));
-		}
+		addMove(CoordinateHelper::TwoDownOneLeft(coordinate));
 	}
 
 	//2 down 1 right
-	if (row - 2 >= 0 && column + 1 <= 7)
+	if (CoordinateHelper::TwoDownOneRight(coordinate) != Coordinate::Invalid)
 	{
-		//1
-		if (Board::squares[column + 1][row - 2].getPiece() != nullptr)
-		{
-			//a)
-			if (Board::squares[column + 1][row - 2].getPiece()->getIsWhite() == this->isWhite)
-			{
-				//that square is not placed into movablePositions
-			}
-			//b)
-			else
-			{
-				movablePositions.push_back(computePosition(row - 2, column + 1));
+		addMove(CoordinateHelper::TwoDownOneRight(coordinate));
+	}
+}
 
-			}
+void Knight::addMove(const Coordinate& coor)
+{
+	//1
+	if (Board::getSquare(coor).getPiece() != nullptr)
+	{
+		//a)
+		if (Board::getSquare(coor).getPiece()->getIsWhite() == this->isWhite)
+		{
+			//that square is not placed into movablePositions
 		}
+		//b)
 		else
 		{
-			movablePositions.push_back(computePosition(row - 2, column + 1));
+			moves.push_back(coor);
+
 		}
 	}
-
-
-
-
-
-
-
-
-
+	else
+	{
+		moves.push_back(coor);
+	}
 }
+
+

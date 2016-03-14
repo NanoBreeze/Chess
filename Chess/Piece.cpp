@@ -12,43 +12,32 @@ Piece::Piece(Coordinate coordinate)
 
 }
 
-Position Piece::getPositionWithPosition() const
+Coordinate Piece::getCoordinate() const
 {
-	return position;
+	return coordinate;
 }
 
-void Piece::setPosition(const Coordinate coordinate)
+void Piece::setCoordinate(const Coordinate coordinate)
 {
-	position.setPosition(coordinate);
+	this->coordinate = coordinate;
 
-	int column = position.getColumn();
-	int row = position.getRow();
+	int row = (int)coordinate / 8;
+	int column = (int)coordinate % 8;
 
-	//sets the position, use helper method instead and take out magic numbers
 	sf::RectangleShape::setPosition(sf::Vector2f(column * 50, 350 - row * 50));
-	computeMovablePositions();
+	computeMoves();
 }
 
-void Piece::setPosition(const Position position)
+
+std::vector<Coordinate> Piece::getMoves() const
 {
-	this->position = position;
-
-	int column = position.getColumn();
-	int row = position.getRow();
-
-	//sets the position, use helper method instead and take out magic numbers
-	sf::RectangleShape::setPosition(sf::Vector2f(column * 50, 350 - row * 50));
-	computeMovablePositions();
+	return moves;
 }
 
-std::vector<Position> Piece::getMovablePositions() const
-{
-	return movablePositions;
-}
 
-void Piece::clearMovablePositions()
+void Piece::clearMoves()
 {
-	movablePositions.clear();
+	moves.clear();
 }
 
 bool Piece::getIsWhite() const
@@ -59,14 +48,5 @@ bool Piece::getIsWhite() const
 void Piece::setIsWhite(const bool isWhite)
 {
 	this->isWhite = isWhite;
-}
-
-
-Position Piece::computePosition(int row, int column)
-{
-	Position p;
-	p.setPosition(row, column);
-
-	return p;
 }
 

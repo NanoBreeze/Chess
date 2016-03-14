@@ -8,6 +8,12 @@ public:
 	Knight(Coordinate);
 
 protected:
-	void computeMovablePositions() override;
+	void computeMoves() override;
+
+private:
+	void addMove(const Coordinate&);
+
+
+
 };
 

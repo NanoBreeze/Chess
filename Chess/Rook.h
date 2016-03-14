@@ -11,6 +11,10 @@ protected:
 
 	//called every time the bishop moves to a new square or is newly made because that's when its movable squares change.
 	//movable squares include all verticals and horizontals
-	void computeMovablePositions() override;
+	void computeMoves() override;
+
+private:
+	//helps with computeMoves
+	bool addPartOne(const Coordinate&);
 };
 
