@@ -4,7 +4,7 @@
 
 
 
-Coordinate CoordinateHelper::getCoordinateUp(Coordinate coordinate)
+Coordinate CoordinateHelper::getCoordinateUp(const Coordinate& coordinate)
 {
 	int row = (int)coordinate / 8;
 	int column = (int)coordinate % 8;
@@ -20,7 +20,7 @@ Coordinate CoordinateHelper::getCoordinateUp(Coordinate coordinate)
 	return static_cast<Coordinate> (row * 8 + column);
 }
 
-Coordinate CoordinateHelper::getCoordinateDown(Coordinate coordinate)
+Coordinate CoordinateHelper::getCoordinateDown(const Coordinate& coordinate)
 {
 	int row = (int)coordinate / 8;
 	int column = (int)coordinate % 8;
@@ -36,7 +36,7 @@ Coordinate CoordinateHelper::getCoordinateDown(Coordinate coordinate)
 	return static_cast<Coordinate> (row * 8 + column);
 }
 
-Coordinate CoordinateHelper::getCoordinateLeft(Coordinate coordinate)
+Coordinate CoordinateHelper::getCoordinateLeft(const Coordinate& coordinate)
 {
 	int row = (int)coordinate / 8;
 	int column = (int)coordinate % 8;
@@ -52,7 +52,7 @@ Coordinate CoordinateHelper::getCoordinateLeft(Coordinate coordinate)
 	return static_cast<Coordinate> (row * 8 + column);
 }
 
-Coordinate CoordinateHelper::getCoordinateRight(Coordinate coordinate)
+Coordinate CoordinateHelper::getCoordinateRight(const Coordinate& coordinate)
 {
 	int row = (int)coordinate / 8;
 	int column = (int)coordinate % 8;
@@ -68,7 +68,7 @@ Coordinate CoordinateHelper::getCoordinateRight(Coordinate coordinate)
 	return static_cast<Coordinate> (row * 8 + column);
 }
 
-Coordinate CoordinateHelper::getCoordinateUpRight(Coordinate coordinate)
+Coordinate CoordinateHelper::getCoordinateUpRight(const Coordinate& coordinate)
 {
 	int row = (int)coordinate / 8;
 	int column = (int)coordinate % 8;
@@ -88,7 +88,7 @@ Coordinate CoordinateHelper::getCoordinateUpRight(Coordinate coordinate)
 	return static_cast<Coordinate> (row * 8 + column);
 }
 
-Coordinate CoordinateHelper::getCoordinateUpLeft(Coordinate coordinate)
+Coordinate CoordinateHelper::getCoordinateUpLeft(const Coordinate& coordinate)
 {
 	int row = (int)coordinate / 8;
 	int column = (int)coordinate % 8;
@@ -104,7 +104,7 @@ Coordinate CoordinateHelper::getCoordinateUpLeft(Coordinate coordinate)
 	return static_cast<Coordinate> (row * 8 + column);
 }
 
-Coordinate CoordinateHelper::getCoordinateDownRight(Coordinate coordinate)
+Coordinate CoordinateHelper::getCoordinateDownRight(const Coordinate& coordinate)
 {
 	int row = (int)coordinate / 8;
 	int column = (int)coordinate % 8;
@@ -120,7 +120,7 @@ Coordinate CoordinateHelper::getCoordinateDownRight(Coordinate coordinate)
 	return static_cast<Coordinate> (row * 8 + column);
 }
 
-Coordinate CoordinateHelper::getCoordinateDownLeft(Coordinate coordinate)
+Coordinate CoordinateHelper::getCoordinateDownLeft(const Coordinate& coordinate)
 {
 	int row = (int)coordinate / 8;
 	int column = (int)coordinate % 8;
@@ -136,7 +136,7 @@ Coordinate CoordinateHelper::getCoordinateDownLeft(Coordinate coordinate)
 	return static_cast<Coordinate> (row * 8 + column);
 }
 
-Coordinate CoordinateHelper::getMostUpCoordinate(Coordinate coordinate)
+Coordinate CoordinateHelper::getMostUpCoordinate(const Coordinate& coordinate)
 {
 	int column = (int)coordinate % 8;
 
@@ -146,7 +146,7 @@ Coordinate CoordinateHelper::getMostUpCoordinate(Coordinate coordinate)
 	return static_cast<Coordinate> (7 * 8 + column);
 }
 
-Coordinate CoordinateHelper::getMostDownCoordinate(Coordinate coordinate)
+Coordinate CoordinateHelper::getMostDownCoordinate(const Coordinate& coordinate)
 {
 	int column = (int)coordinate % 8;
 
@@ -158,7 +158,7 @@ Coordinate CoordinateHelper::getMostDownCoordinate(Coordinate coordinate)
 
 }
 
-Coordinate CoordinateHelper::getMostLeftCoordinate(Coordinate coordinate)
+Coordinate CoordinateHelper::getMostLeftCoordinate(const Coordinate& coordinate)
 {
 	int row = (int)coordinate / 8;
 
@@ -170,7 +170,7 @@ Coordinate CoordinateHelper::getMostLeftCoordinate(Coordinate coordinate)
 
 }
 
-Coordinate CoordinateHelper::getMostRightCoordinate(Coordinate coordinate)
+Coordinate CoordinateHelper::getMostRightCoordinate(const Coordinate& coordinate)
 {
 	int row = (int)coordinate / 8;
 
@@ -180,7 +180,7 @@ Coordinate CoordinateHelper::getMostRightCoordinate(Coordinate coordinate)
 	return static_cast<Coordinate> (row * 8 + 7);	//we include 7 for consistency to show the column;
 }
 
-Coordinate CoordinateHelper::getMostUpRightCoordinate(Coordinate coordinate)
+Coordinate CoordinateHelper::getMostUpRightCoordinate(const Coordinate& coordinate)
 {
 	int row = (int)coordinate / 8;
 	int column = (int)coordinate % 8;
@@ -205,7 +205,7 @@ Coordinate CoordinateHelper::getMostUpRightCoordinate(Coordinate coordinate)
 	return static_cast<Coordinate> (row * 8 + column);
 }
 
-Coordinate CoordinateHelper::getMostUpLeftCoordinate(Coordinate coordinate)
+Coordinate CoordinateHelper::getMostUpLeftCoordinate(const Coordinate& coordinate)
 {
 	int row = (int)coordinate / 8;
 	int column = (int)coordinate % 8;
@@ -229,7 +229,7 @@ Coordinate CoordinateHelper::getMostUpLeftCoordinate(Coordinate coordinate)
 	return static_cast<Coordinate> (row * 8 + column);
 }
 
-Coordinate CoordinateHelper::getMostDownRightCoordinate(Coordinate coordinate)
+Coordinate CoordinateHelper::getMostDownRightCoordinate(const Coordinate& coordinate)
 {
 	int row = (int)coordinate / 8;
 	int column = (int)coordinate % 8;
@@ -253,7 +253,7 @@ Coordinate CoordinateHelper::getMostDownRightCoordinate(Coordinate coordinate)
 	return static_cast<Coordinate> (row * 8 + column);
 }
 
-Coordinate CoordinateHelper::getMostDownLeftCoordinate(Coordinate coordinate)
+Coordinate CoordinateHelper::getMostDownLeftCoordinate(const Coordinate& coordinate)
 {
 	int row = (int)coordinate / 8;
 	int column = (int)coordinate % 8;
@@ -276,7 +276,7 @@ Coordinate CoordinateHelper::getMostDownLeftCoordinate(Coordinate coordinate)
 	return static_cast<Coordinate> (row * 8 + column);
 }
 
-Coordinate CoordinateHelper::TwoUpOneRight(Coordinate coordinate)
+Coordinate CoordinateHelper::TwoUpOneRight(const Coordinate& coordinate)
 {
 	int row = (int)coordinate / 8;
 	int column = (int)coordinate % 8;
@@ -292,7 +292,7 @@ Coordinate CoordinateHelper::TwoUpOneRight(Coordinate coordinate)
 	return static_cast<Coordinate> (row * 8 + column);
 }
 
-Coordinate CoordinateHelper::TwoUpOneLeft(Coordinate coordinate)
+Coordinate CoordinateHelper::TwoUpOneLeft(const Coordinate& coordinate)
 {
 	int row = (int)coordinate / 8;
 	int column = (int)coordinate % 8;
@@ -308,7 +308,7 @@ Coordinate CoordinateHelper::TwoUpOneLeft(Coordinate coordinate)
 	return static_cast<Coordinate> (row * 8 + column);;
 }
 
-Coordinate CoordinateHelper::OneUpTwoRight(Coordinate coordinate)
+Coordinate CoordinateHelper::OneUpTwoRight(const Coordinate& coordinate)
 {
 	int row = (int)coordinate / 8;
 	int column = (int)coordinate % 8;
@@ -324,7 +324,7 @@ Coordinate CoordinateHelper::OneUpTwoRight(Coordinate coordinate)
 	return static_cast<Coordinate> (row * 8 + column);
 }
 
-Coordinate CoordinateHelper::OneUpTwoLeft(Coordinate coordinate)
+Coordinate CoordinateHelper::OneUpTwoLeft(const Coordinate& coordinate)
 {
 	int row = (int)coordinate / 8;
 	int column = (int)coordinate % 8;
@@ -340,7 +340,7 @@ Coordinate CoordinateHelper::OneUpTwoLeft(Coordinate coordinate)
 	return static_cast<Coordinate> (row * 8 + column);
 }
 
-Coordinate CoordinateHelper::TwoDownOneRight(Coordinate coordinate)
+Coordinate CoordinateHelper::TwoDownOneRight(const Coordinate& coordinate)
 {
 	int row = (int)coordinate / 8;
 	int column = (int)coordinate % 8;
@@ -356,7 +356,7 @@ Coordinate CoordinateHelper::TwoDownOneRight(Coordinate coordinate)
 	return static_cast<Coordinate> (row * 8 + column);;
 }
 
-Coordinate CoordinateHelper::TwoDownOneLeft(Coordinate coordinate)
+Coordinate CoordinateHelper::TwoDownOneLeft(const Coordinate& coordinate)
 {
 	int row = (int)coordinate / 8;
 	int column = (int)coordinate % 8;
@@ -372,7 +372,7 @@ Coordinate CoordinateHelper::TwoDownOneLeft(Coordinate coordinate)
 	return static_cast<Coordinate> (row * 8 + column);
 }
 
-Coordinate CoordinateHelper::OneDownTwoRight(Coordinate coordinate)
+Coordinate CoordinateHelper::OneDownTwoRight(const Coordinate& coordinate)
 {
 	int row = (int)coordinate / 8;
 	int column = (int)coordinate % 8;
@@ -388,7 +388,7 @@ Coordinate CoordinateHelper::OneDownTwoRight(Coordinate coordinate)
 	return static_cast<Coordinate> (row * 8 + column);
 }
 
-Coordinate CoordinateHelper::OneDownTwoLeft(Coordinate coordinate)
+Coordinate CoordinateHelper::OneDownTwoLeft(const Coordinate& coordinate)
 {
 	int row = (int)coordinate / 8;
 	int column = (int)coordinate % 8;
@@ -404,7 +404,7 @@ Coordinate CoordinateHelper::OneDownTwoLeft(Coordinate coordinate)
 	return static_cast<Coordinate> (row * 8 + column);
 }
 
-bool CoordinateHelper::checkIfInvalidCoordinate(int row, int column)
+bool CoordinateHelper::checkIfInvalidCoordinate(const int& row, const int& column)
 {
 	if (!(row >= 0 && row <= 7) || !(column >= 0 && column <= 7))
 	{
@@ -416,7 +416,7 @@ bool CoordinateHelper::checkIfInvalidCoordinate(int row, int column)
 	}
 }
 
-bool CoordinateHelper::checkIfInvalidCoordinate(int rc)
+bool CoordinateHelper::checkIfInvalidCoordinate(const int& rc)
 {
 	if (!(rc >= 0 && rc <= 7))
 	{

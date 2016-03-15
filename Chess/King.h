@@ -2,6 +2,7 @@
 
 #include "Piece.h"
 //#include "Board.h"
+#include "Board.h"
 
 class King : public Piece
 {
@@ -10,6 +11,9 @@ public:
 
 protected: 
 	void computeMoves() override;
+
+	//experimental
+	Board board;
 
 private:
 	//helps out computeMoves

@@ -4,9 +4,7 @@
 #include <iostream>
 #include "Coordinate.h"
 #include "Piece.h"
-#include "Bishop.h"
-#include "Rook.h"
-#include "Queen.h"
+
 
 
 //Also known as a grid, eg, A1, E5, 
@@ -14,19 +12,15 @@ class Square : public sf::RectangleShape
 {
 public:
 	Square();
-
-	//================ These are replaced by getCorodinat and setCoordinate A square's colour can change when it is clicked on to denote it has been selected 
-	//returns the square's coordinate, eg, A1, E5
-	//Position getPositionwithPosition() const;
-	//void setPositionwithCoordinate(const Coordinate); //funky name because setPosition is already a method name in sf::RectangaleShape
-
+	~Square();
+	
 	Coordinate getCoordinate() const;
 
-	void setCoordinate(const Coordinate);
+	void setCoordinate(const Coordinate&);
 
 	//A square is by default either black or white
 	sf::Color getDefaultColour() const;
-	void setDefaultColour(const Coordinate);
+	void setDefaultColour(const Coordinate&);
 
 	//returns the piece residing on this Square
 	Piece* getPiece() const;
@@ -36,9 +30,6 @@ public:
 
 	//removes the current piece residing on this square
 	void removePiece();
-
-	//temporary method, to check if it's possible to handle a click event
-	void handleClick() { std::cout << "This piece has been clicked. \n"; }
 
 	//highlights the square. Used to indicate that it has been selected, another code must first check if such a selection is legal. The highlight has two 
 	// different colours, one to show it is an empty square, the other to show that there is a piece in the square
@@ -60,9 +51,6 @@ private:
 
 	//the curent colour of the square. Usually, black or white but can be highlighted
 	sf::Color displayColour;
-
-	//================== This is replaced by coordinate the square's Position (contains Coordiante, row, and column)
-	//Position position;
 
 	//the coordinate of this Square
 	Coordinate coordinate;

@@ -14,14 +14,14 @@
 #include <SFML\Graphics.hpp>
 
 //contains 64 Squares to represent a chessboard
-class Chessboard
+class Game
 {
 public:
 	//sets up the board
-	Chessboard();
+	Game();
 
 	//removes all pointers
-	~Chessboard();
+	~Game();
 	
 	//contains pieces and info related to the white player
 	Player* whitePlayer = nullptr;
@@ -29,14 +29,11 @@ public:
 	//contains pieces and info related to the black player
 	Player* blackPlayer = nullptr;
 
-	////SHOULD BE PRIVATE array of the squares on a chessboard
-	//Square Board::squares[8][8];
-
-
+	Board board = Board::Instance();
 
 	//uses the mouse coordinates for click to decide which individual Square to call to handle the click, or even no Squares at all!
 	//This is currently very coupled
-	void delegateClick(int x, int y);
+	void delegateClick(const int& x, const int& y);
 	
 	//highlights the squares the passed in piece can move to. Intended to be used by delegateClick. 
 	//If the clicked Square has a piece, then highlight all the squares it can move to
@@ -46,5 +43,7 @@ public:
 	StateManager stateManager;
 
 private:
+	//Returns the coordinate associated with the pixel that the cursor clicked. 
+	Coordinate getCoordinateFromCursor(const int&, const int&) const;
 };
 

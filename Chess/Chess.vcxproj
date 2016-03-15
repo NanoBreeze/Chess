@@ -134,14 +134,13 @@
     <ClCompile Include="Bishop.cpp" />
     <ClCompile Include="BlackPlayer.cpp" />
     <ClCompile Include="Board.cpp" />
-    <ClCompile Include="Chessboard.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="CoordinateHelper.cpp" />
     <ClCompile Include="King.cpp" />
     <ClCompile Include="Knight.cpp" />
     <ClCompile Include="Pawn.cpp" />
     <ClCompile Include="Piece.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Position.cpp" />
     <ClCompile Include="Queen.cpp" />
     <ClCompile Include="Rook.cpp" />
     <ClCompile Include="Source.cpp" />
@@ -153,7 +152,7 @@
     <ClInclude Include="Bishop.h" />
     <ClInclude Include="BlackPlayer.h" />
     <ClInclude Include="Board.h" />
-    <ClInclude Include="Chessboard.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="Coordinate.h" />
     <ClInclude Include="CoordinateHelper.h" />
     <ClInclude Include="King.h" />
@@ -161,7 +160,6 @@
     <ClInclude Include="Pawn.h" />
     <ClInclude Include="Piece.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="Position.h" />
     <ClInclude Include="Queen.h" />
     <ClInclude Include="Rook.h" />
     <ClInclude Include="Square.h" />

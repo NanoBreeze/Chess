@@ -6,13 +6,18 @@ Square::Square()
 	setSize(sf::Vector2f(50, 50));
 }
 
+Square::~Square()
+{
+	delete piece;
+}
+
 
 Coordinate Square::getCoordinate() const
 {
 	return coordinate;
 }
 
-void Square::setCoordinate(const Coordinate coordinate)
+void Square::setCoordinate(const Coordinate& coordinate)
 {
 	this->coordinate = coordinate;
 }
@@ -22,7 +27,7 @@ sf::Color Square::getDefaultColour() const
 	return defaultColour;
 }
 
-void Square::setDefaultColour(const Coordinate coordinate)
+void Square::setDefaultColour(const Coordinate& coordinate)
 {
 	switch (coordinate)
 	{

@@ -2,20 +2,18 @@
 #include <iostream>
 
 #include "Square.h"
-#include "Chessboard.h"
+#include "Game.h"
 #include "Coordinate.h"
+#include "Board.h"
 
 
 
 int main()
 {
-	
-
 	sf::RenderWindow window(sf::VideoMode(400, 400), "SFML works!");
 
-	std::cout << "About to make chessboard";
-	Chessboard chessboard;
-	std::cout << "Finished making chessboard";
+	Game game;
+
 
 	while (window.isOpen())
 	{
@@ -24,39 +22,31 @@ int main()
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
-			
+
 			if (event.type == sf::Event::MouseButtonPressed)
 			{
-				chessboard.delegateClick(event.mouseButton.x, event.mouseButton.y);
+				game.delegateClick(event.mouseButton.x, event.mouseButton.y);
 			}
 		}
 
 		window.clear(sf::Color::Yellow);
 
 		//draw chessboard
-		for (int row = 0; row < 8; row++)
+		for (Coordinate coordinate = Coordinate::First; coordinate != Coordinate::Last; ++coordinate)
 		{
-			for (int column = 0; column < 8; column++)
-			{
-				window.draw(Board::squares[column][row]);
-			}
+			window.draw(game.board[coordinate]);
 		}
 
 		//draw all pieces
-		for (int row = 0; row < 8; row++)
+		for (Coordinate coordinate = Coordinate::First; coordinate != Coordinate::Last; ++coordinate)
 		{
-			for (int column = 0; column < 8; column++)
+			if (game.board[coordinate].getPiece() != nullptr)
 			{
-				//draw the piece only if it exists
-				if (Board::squares[column][row].getPiece() != nullptr)
-				{
-					Board::squares[column][row].getPiece()->setFillColor(sf::Color::Red);;
-					auto j = Board::squares[column][row].getPiece();
-					window.draw(*j);
-				}
+				game.board[coordinate].getPiece()->setFillColor(sf::Color::Red);
+				auto j = game.board[coordinate].getPiece();
+				window.draw(*j);
 			}
 		}
-
 
 		window.display();
 	}

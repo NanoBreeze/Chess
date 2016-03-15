@@ -87,10 +87,10 @@ void King::computeMoves()
 
 void King::addMove(const Coordinate& c)
 {
-	if (Board::getSquare(c).getPiece() != nullptr)
+	if (board[c].getPiece() != nullptr)
 	{
 		//a)
-		if (Board::getSquare(c).getPiece()->getIsWhite() == this->isWhite)
+		if (board[c].getPiece()->getIsWhite() == this->isWhite)
 		{
 			//that square is not placed into movablePositions
 		}

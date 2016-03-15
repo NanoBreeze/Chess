@@ -176,10 +176,10 @@ void Queen::computeMoves()
 bool Queen::addPartOne(const Coordinate& c)
 {
 	//1
-	if (Board::getSquare(c).getPiece() != nullptr)
+	if (board[c].getPiece() != nullptr)
 	{
 		//a)
-		if (Board::getSquare(c).getPiece()->getIsWhite() == this->isWhite)
+		if (board[c].getPiece()->getIsWhite() == this->isWhite)
 		{
 			return true;
 		}

@@ -76,10 +76,10 @@ void Knight::computeMoves()
 void Knight::addMove(const Coordinate& coor)
 {
 	//1
-	if (Board::getSquare(coor).getPiece() != nullptr)
+	if (board[coor].getPiece() != nullptr)
 	{
 		//a)
-		if (Board::getSquare(coor).getPiece()->getIsWhite() == this->isWhite)
+		if (board[coor].getPiece()->getIsWhite() == this->isWhite)
 		{
 			//that square is not placed into movablePositions
 		}

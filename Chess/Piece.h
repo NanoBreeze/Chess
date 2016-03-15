@@ -17,26 +17,11 @@ public:
 	//sets the piece's Position given its Coordinate
 	Piece(Coordinate);
 
-	//========================== THIS WILL BE REPLACED WITH getCoordinate() const;
-	//Position getPositionWithPosition() const;
-
 	//returns the coordinate this piece has
 	Coordinate getCoordinate() const;
 
-	//=========================== THIS IS REPLACED BY setCoordinate sets the piece to the specified coordinate, along with its row-column position, along with the squares it can move to
-	 //void setPosition(const Coordinate coordinate);
-
-	 //same as above but accepts a Position object instead. Used when a Square sets the Position of a Piece associated to it.
-	 //add virtual only for pawn to change status of if the pawn has already moved
-	 //virtual void setPosition(const Position position);
-
-	 //sets coordinate to the given Coordinate. Denotes that this piece on the coordinate
+	//sets coordinate to the given Coordinate. Denotes that this piece on the coordinate
 	 virtual void setCoordinate(const Coordinate);
-
-
-
-	//============================ THIS IS REPLACED BY getMoves() returns the vector of Coordinates this piece is eligeble to move to
-	//std::vector<Position> getMovablePositions() const;
 
 	 //returns moves, 
 	 std::vector<Coordinate> getMoves() const;
@@ -57,30 +42,15 @@ public:
 
 protected: 
 
+
+
 	//determines if the Piece is belongs to white or black player
 	bool isWhite;
-
-	//=================== THIS IS REPLACED WITH coordinate contains this piece's Coordinate, row and column
-	/*Position position;*/
 
 	//replaces Position
 	Coordinate coordinate;
 
-
-
-	//=================== THIS IS REPLACED BY moves contains the coordinates this piece is eligible to move to. This field frequently changes
-	//std::vector<Coordinate> movableSquares;
-
-
-	//================== THIS IS REPLACED BY moves contains the Positions (Coordinate, row, column) this piece is eligible to move to. This field frequently changes
-	//std::vector<Position> movablePositions;
-
 	//stores the Coordinates of the places this piece can move to
 	std::vector<Coordinate> moves;
-
-	
-	//Position computePosition(int row, int column);
-
-	
 };
 

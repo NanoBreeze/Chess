@@ -7,7 +7,6 @@ class StateManager
 {
 public:
 
-
 	//sets selectedPiece. Intended to be set to the piece currently residing on the Square
 	void setSelectedSquare(Square*);
 

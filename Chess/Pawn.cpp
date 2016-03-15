@@ -8,6 +8,9 @@ Pawn::Pawn(Coordinate coordinate) : hasYetToMove(true)
 {
 	this->coordinate = coordinate;
 
+	auto m1 = board[Coordinate::B1];
+	auto m2 = board[Coordinate::B2];
+	auto m3 = board[Coordinate::B3];
 	int row = (int)coordinate / 8;
 	int column = (int)coordinate % 8;
 
@@ -55,15 +58,15 @@ void Pawn::computeMoves()
 		//moving
 		if (hasYetToMove)
 		{
-			if (Board::getSquare(oneUp).getPiece() != nullptr)
+			if (board[oneUp].getPiece() != nullptr)
 			{
 				//don't add any positions to computePosition
 			}
-			else if (Board::getSquare(oneUp).getPiece() == nullptr && Board::getSquare(twoUp).getPiece() != nullptr)
+			else if (board[oneUp].getPiece() == nullptr && board[twoUp].getPiece() != nullptr)
 			{
 				moves.push_back(oneUp);
 			}
-			else if (Board::getSquare(oneUp).getPiece() == nullptr && Board::getSquare(twoUp).getPiece() == nullptr)
+			else if (board[oneUp].getPiece() == nullptr && board[twoUp].getPiece() == nullptr)
 			{
 				moves.push_back(oneUp);
 				moves.push_back(twoUp);
@@ -71,7 +74,7 @@ void Pawn::computeMoves()
 		}
 		else
 		{
-			if (Board::getSquare(oneUp).getPiece() == nullptr)
+			if (board[oneUp].getPiece() == nullptr)
 			{
 				moves.push_back(oneUp);
 			}
@@ -91,7 +94,7 @@ void Pawn::computeMoves()
 		//capturing 1 down, 1 left piece
 		auto downLeft = CoordinateHelper::getCoordinateDownLeft(coordinate);
 
-		if (downLeft != CoordinateHelper::getMostDownLeftCoordinate(coordinate) || downLeft != Coordinate::Invalid)
+		if (downLeft != CoordinateHelper::getMostDownLeftCoordinate(coordinate) ||	downLeft != Coordinate::Invalid)
 		{
 			addCaptureMove(downLeft);
 		}
@@ -105,15 +108,15 @@ void Pawn::computeMoves()
 		//moving
 		if (hasYetToMove)
 		{
-			if (Board::getSquare(oneDown).getPiece() != nullptr)
+			if (board[oneDown].getPiece() != nullptr)
 			{
 				//don't add any positions to computePosition
 			}
-			else if (Board::getSquare(oneDown).getPiece() == nullptr && Board::getSquare(twoDown).getPiece() != nullptr)
+			else if (board[oneDown].getPiece() == nullptr && board[twoDown].getPiece() != nullptr)
 			{
 				moves.push_back(oneDown);
 			}
-			else if (Board::getSquare(oneDown).getPiece() == nullptr && Board::getSquare(twoDown).getPiece() == nullptr)
+			else if (board[oneDown].getPiece() == nullptr && board[twoDown].getPiece() == nullptr)
 			{
 				moves.push_back(oneDown);
 				moves.push_back(twoDown);
@@ -121,7 +124,7 @@ void Pawn::computeMoves()
 		}
 		else
 		{
-			if (Board::getSquare(oneDown).getPiece() == nullptr)
+			if (board[oneDown].getPiece() == nullptr)
 			{
 				moves.push_back(oneDown);
 			}
@@ -132,9 +135,9 @@ void Pawn::computeMoves()
 
 void Pawn::addCaptureMove(const Coordinate& coordinate)
 {
-	if (Board::getSquare(coordinate).getPiece() != nullptr)
+	if (board[coordinate].getPiece() != nullptr)
 	{
-		if (Board::getSquare(coordinate).getPiece()->getIsWhite() != this->isWhite)
+		if (board[coordinate].getPiece()->getIsWhite() != this->isWhite)
 		{
 			moves.push_back(coordinate);
 
