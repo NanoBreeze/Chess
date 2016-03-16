@@ -1,5 +1,11 @@
 #include "StateManager.h"
 
+StateManager& StateManager::getInstance()
+{
+	static StateManager statemanager;
+	return statemanager;
+}
+
 void StateManager::setSelectedSquare(Square* square)
 {
 	selectedSquare = square;

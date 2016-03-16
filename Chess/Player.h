@@ -2,6 +2,7 @@
 
 //contains inforamtion related to each player, such as pieces and if it's his/her turn
 
+
 #include "Pawn.h"
 #include "Rook.h"
 #include "Knight.h"
@@ -33,8 +34,13 @@ public:
 	Piece* getQueen() const;
 	Piece* getKing() const;
 
+	//returns whether it is the player's turn to make a move
 	bool getIsTurn() const;
+	
+	//returns the Pieces the player has
+	std::vector<Piece*> getPieces() const;
 
+	//delete all the pieces
 	~Player();
 
 
@@ -58,6 +64,8 @@ protected:
 	Piece* king= nullptr;
 
 	bool isTurn;
+
+	std::vector<Piece*> pieces;
 
 
 };

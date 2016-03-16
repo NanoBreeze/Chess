@@ -10,10 +10,10 @@ public:
 	King(Coordinate coordinate);
 
 protected: 
-	void computeMoves() override;
+	std::vector<Coordinate> computeMoves() override;
 
 	//experimental
-	Board board;
+	Board board = Board::getInstance();
 
 private:
 	//helps out computeMoves

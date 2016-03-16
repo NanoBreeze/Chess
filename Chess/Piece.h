@@ -21,19 +21,16 @@ public:
 	Coordinate getCoordinate() const;
 
 	//sets coordinate to the given Coordinate. Denotes that this piece on the coordinate
-	 virtual void setCoordinate(const Coordinate);
+	virtual void setCoordinate(const Coordinate);
 
 	 //returns moves, 
 	 std::vector<Coordinate> getMoves() const;
 
-	//============================ THIS IS REPLACED BY clearMoves() clears all elements in movablePositions. Used when we change a Piece's position
-	//void clearMovablePositions();
-
 	//clears all COordinates in moves
 	void clearMoves();
 
-	//calculates the eligible Squares this piece can move to, its getter is getMovableSquares()
-	virtual void computeMoves() = 0;
+	//calculates the eligible Coordinates this piece can move to and return those Coordinates
+	virtual std::vector<Coordinate> computeMoves() = 0;
 
 	//gets isWhite to return if Piece belongs to white or black player
 	bool getIsWhite() const;

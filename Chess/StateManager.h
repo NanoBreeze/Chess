@@ -7,7 +7,10 @@ class StateManager
 {
 public:
 
-	//sets selectedPiece. Intended to be set to the piece currently residing on the Square
+	//singleton for the StateManager
+	static StateManager& getInstance();
+
+	//sets the Square the user has selected.
 	void setSelectedSquare(Square*);
 
 	//return selectedPiece, which may be a pointer to a piece or a nullptr
@@ -15,13 +18,11 @@ public:
 
 	void removeSelectedSquare();
 
-	StateManager();
 
 private:
+	StateManager();
 
-	//the that has been selected by the user. If the Square contains a piece, we set the piece here. 
-	//Then the next click is where the Piece moves to. If the square doesn't contain a piece, then the next click is,
-	//well the next click. Piece doesn't move and repeate
+	//the Square that has been selected by the user. 
 	Square* selectedSquare = nullptr;
 };
 

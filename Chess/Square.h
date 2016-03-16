@@ -7,20 +7,22 @@
 
 
 
-//Also known as a grid, eg, A1, E5, 
 class Square : public sf::RectangleShape
 {
 public:
+	//sets the physical size of the Square (it is a sf::RectangleShape after all)
 	Square();
+
+	//removes piece
 	~Square();
 	
+	//returns coordinate
 	Coordinate getCoordinate() const;
 
-	void setCoordinate(const Coordinate&);
+	//assigns the Square a coordinate and sets its defaultColor (black or white) to correspond with that Coordinate
+	void setCoordinateAndDefaultColour(const Coordinate&);
 
-	//A square is by default either black or white
-	sf::Color getDefaultColour() const;
-	void setDefaultColour(const Coordinate&);
+	//============ AFFECTING THE SQUARE'S PIECE ================
 
 	//returns the piece residing on this Square
 	Piece* getPiece() const;
@@ -31,29 +33,27 @@ public:
 	//removes the current piece residing on this square
 	void removePiece();
 
-	//highlights the square. Used to indicate that it has been selected, another code must first check if such a selection is legal. The highlight has two 
-	// different colours, one to show it is an empty square, the other to show that there is a piece in the square
-	void highlightSelected();
+	//=========== CHANGING THE VISUAL COLOUR OF THE SQUARE TO INDICATE STATE ===============
 
-	//highlights the square to show it is a legal move for another piece
-	void highlightIsLegalMove();
+	//changes the Square's colour to Yellow to show that it is selected
+	void showSelectedColour();
 
-	//unlight the square and set the display colour back to the default colour, eg, yellow to black. Used to mean this square is no longer selected
-	void unHighlight();
+	//changes the Square's colour to Cyan to show that this Square is a valid Square for the selected Piece to move to
+	void showLegalMoveColour();
+
+	//changes the Square's colour to its default colour (black, white), thus, Square is not selected or a legal move
+	void showDefaultColour();
+
 
 private: 
 
 	//contains the piece that is currently residing on this square, eg, knight, bishop, 
 	Piece* piece = nullptr;
 
-	//the board colour of the square, black or white
+	//the original colour of the square, black or white, assigned by its Coordinate
 	sf::Color defaultColour;
-
-	//the curent colour of the square. Usually, black or white but can be highlighted
-	sf::Color displayColour;
 
 	//the coordinate of this Square
 	Coordinate coordinate;
-
 };
 

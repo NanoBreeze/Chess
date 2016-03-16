@@ -12,10 +12,10 @@ public:
 
 
 protected :
-	void computeMoves() override;
+	std::vector<Coordinate> computeMoves() override;
 
 	//experimental
-	Board board = Board::Instance();
+	Board board = Board::getInstance();
 
 private:
 	//this determines if the pawn can move to pieces or only one

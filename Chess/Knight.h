@@ -9,10 +9,10 @@ public:
 	Knight(Coordinate);
 
 protected:
-	void computeMoves() override;
+	std::vector<Coordinate> computeMoves() override;
 
 	//experimental
-	Board board;
+	Board board = Board::getInstance();
 
 private:
 	void addMove(const Coordinate&);

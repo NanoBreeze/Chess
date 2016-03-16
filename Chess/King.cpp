@@ -16,7 +16,7 @@ King::King(Coordinate coordinate)
 	setSize(sf::Vector2f(20, 20));
 }
 
-void King::computeMoves()
+std::vector<Coordinate> King::computeMoves()
 {
 	//first clear past movablePositions
 	clearMoves();
@@ -83,6 +83,8 @@ void King::computeMoves()
 	{
 		addMove(OneDownRight);
 	}
+
+	return moves;
 }
 
 void King::addMove(const Coordinate& c)

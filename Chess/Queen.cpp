@@ -15,7 +15,7 @@ Queen::Queen(Coordinate coordinate)
 }
 
 
-void Queen::computeMoves()
+std::vector<Coordinate> Queen::computeMoves()
 {
 	//first clear past movablePositions
 	clearMoves();
@@ -170,6 +170,8 @@ void Queen::computeMoves()
 		}
 
 	}
+
+	return moves;
 
 }
 

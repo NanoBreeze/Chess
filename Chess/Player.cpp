@@ -91,6 +91,11 @@ bool Player::getIsTurn() const
 	return isTurn;
 }
 
+std::vector<Piece*> Player::getPieces() const
+{
+	return pieces;
+}
+
 Player::~Player()
 {
 	delete pawn1;

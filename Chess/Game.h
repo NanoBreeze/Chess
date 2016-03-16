@@ -9,6 +9,7 @@
 
 #include "Board.h"
 #include <vector>
+#include <algorithm>
 
 //will remove
 #include <SFML\Graphics.hpp>
@@ -17,7 +18,7 @@
 class Game
 {
 public:
-	//sets up the board
+	//sets up the board, and players
 	Game();
 
 	//removes all pointers
@@ -29,21 +30,19 @@ public:
 	//contains pieces and info related to the black player
 	Player* blackPlayer = nullptr;
 
-	Board board = Board::Instance();
-
-	//uses the mouse coordinates for click to decide which individual Square to call to handle the click, or even no Squares at all!
-	//This is currently very coupled
-	void delegateClick(const int& x, const int& y);
-	
-	//highlights the squares the passed in piece can move to. Intended to be used by delegateClick. 
-	//If the clicked Square has a piece, then highlight all the squares it can move to
-	void highlightMovableSquares(Piece*);
+	//contains the Squares. This is where the visual action goes on and the 2D array of Squares reside
+	Board board = Board::getInstance();
 
 	//contains info relevant to the state of the game.
-	StateManager stateManager;
+	StateManager stateManager = StateManager::getInstance();
+
+	//manages selecting a Square or Piece, (thus moving, etc), works with stateManager getCoordinateFromCursor()
+	void delegateClick(const int& x, const int& y);
 
 private:
+
 	//Returns the coordinate associated with the pixel that the cursor clicked. 
 	Coordinate getCoordinateFromCursor(const int&, const int&) const;
+
 };
 

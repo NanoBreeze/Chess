@@ -16,7 +16,7 @@ Rook::Rook(Coordinate coordinate) : Piece(coordinate)
 }
 
 
-void Rook::computeMoves()
+std::vector<Coordinate> Rook::computeMoves()
 {
 	//first clear past movablePositions
 	clearMoves();
@@ -98,6 +98,8 @@ void Rook::computeMoves()
 			c4 = CoordinateHelper::getCoordinateDown(c4);
 		}
 	}
+
+	return moves;
 }
 
 

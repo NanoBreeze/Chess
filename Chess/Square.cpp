@@ -17,18 +17,12 @@ Coordinate Square::getCoordinate() const
 	return coordinate;
 }
 
-void Square::setCoordinate(const Coordinate& coordinate)
+void Square::setCoordinateAndDefaultColour(const Coordinate& coordinate)
 {
+	//set coordinate
 	this->coordinate = coordinate;
-}
 
-sf::Color Square::getDefaultColour() const
-{
-	return defaultColour;
-}
-
-void Square::setDefaultColour(const Coordinate& coordinate)
-{
+	//set default colour (white or black) based on coordinate
 	switch (coordinate)
 	{
 	case Coordinate::A1:
@@ -72,8 +66,7 @@ void Square::setDefaultColour(const Coordinate& coordinate)
 	case Coordinate::H8:
 
 		defaultColour = sf::Color::Black;
-		displayColour = defaultColour;
-		setFillColor(displayColour);
+		setFillColor(defaultColour);
 		break;
 
 	case Coordinate::A2:
@@ -117,12 +110,12 @@ void Square::setDefaultColour(const Coordinate& coordinate)
 	case Coordinate::H7:
 
 		defaultColour = sf::Color::White;
-		displayColour = defaultColour;
-		setFillColor(displayColour);
+		setFillColor(defaultColour);
 		break;
 	default:
 		throw std::exception("In Square.cpp, setDefaultColour, default case, this should not have occurred.");
 	}
+
 }
 
 Piece* Square::getPiece() const
@@ -132,7 +125,7 @@ Piece* Square::getPiece() const
 
 void Square::setPiece(Piece* piece)
 {
-	 this->piece = piece;
+	this->piece = piece;
 }
 
 void Square::removePiece()
@@ -140,22 +133,19 @@ void Square::removePiece()
 	piece = nullptr;
 }
 
-void Square::highlightSelected()
+void Square::showSelectedColour()
 {
-		displayColour = sf::Color::Yellow;
-		setFillColor(displayColour);
+	setFillColor(sf::Color::Yellow);
 }
 
-void Square::highlightIsLegalMove()
+void Square::showLegalMoveColour()
 {
-	displayColour = sf::Color::Cyan;
-	setFillColor(displayColour);
+	setFillColor(sf::Color::Cyan);
 }
 
-void Square::unHighlight()
+void Square::showDefaultColour()
 {
-	displayColour = defaultColour;
-	setFillColor(displayColour);
+	setFillColor(defaultColour);
 }
 
 

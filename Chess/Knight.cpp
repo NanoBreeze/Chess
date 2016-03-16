@@ -14,7 +14,7 @@ Knight::Knight(Coordinate coordinate)
 	setSize(sf::Vector2f(20, 20));
 }
 
-void Knight::computeMoves()
+std::vector<Coordinate> Knight::computeMoves()
 {
 	//can optimize
 
@@ -71,6 +71,8 @@ void Knight::computeMoves()
 	{
 		addMove(CoordinateHelper::TwoDownOneRight(coordinate));
 	}
+
+	return moves;
 }
 
 void Knight::addMove(const Coordinate& coor)

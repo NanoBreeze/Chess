@@ -12,10 +12,11 @@ protected:
 
 	//called every time the bishop moves to a new square or is newly made because that's when its movable squares change.
 	//movable squares include all verticals and horizontals
-	void computeMoves() override;
+	std::vector<Coordinate> computeMoves() override;
 
 	//experimental
-	Board board;
+	Board board = Board::getInstance();
+
 
 private:
 	//helps with computeMoves

@@ -8,9 +8,7 @@ Pawn::Pawn(Coordinate coordinate) : hasYetToMove(true)
 {
 	this->coordinate = coordinate;
 
-	auto m1 = board[Coordinate::B1];
-	auto m2 = board[Coordinate::B2];
-	auto m3 = board[Coordinate::B3];
+
 	int row = (int)coordinate / 8;
 	int column = (int)coordinate % 8;
 
@@ -27,7 +25,7 @@ void Pawn::setCoordinate(const Coordinate position)
 
 
 
-void Pawn::computeMoves()
+std::vector<Coordinate> Pawn::computeMoves()
 {
 	//first clear past movablePositions
 	clearMoves();
@@ -99,9 +97,6 @@ void Pawn::computeMoves()
 			addCaptureMove(downLeft);
 		}
 
-
-
-
 		auto oneDown = CoordinateHelper::getCoordinateDown(coordinate);
 		auto twoDown = CoordinateHelper::getCoordinateDown(oneDown);
 
@@ -130,6 +125,8 @@ void Pawn::computeMoves()
 			}
 		}
 	}
+
+	return moves;
 }
 
 

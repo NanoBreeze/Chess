@@ -15,7 +15,7 @@ Bishop::Bishop(Coordinate coordinate)
 }
 
 //problem, in the moveableSquares, there are duplications of the current square the bishop is in
-void Bishop::computeMoves()
+std::vector<Coordinate> Bishop::computeMoves()
 {
 	//first clear past movablePositions
 	clearMoves();
@@ -37,7 +37,6 @@ void Bishop::computeMoves()
 		}
 	}
 
-	
 
 	auto c2 = coordinate;
 
@@ -89,6 +88,8 @@ void Bishop::computeMoves()
 			c4 = CoordinateHelper::getCoordinateDownRight(c4);
 		}
 	}
+
+	return moves;
 }
 
 bool Bishop::addPartOne(const Coordinate& c)
