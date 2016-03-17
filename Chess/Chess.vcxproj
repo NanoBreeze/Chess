@@ -134,15 +134,19 @@
     <ClCompile Include="Bishop.cpp" />
     <ClCompile Include="BlackPlayer.cpp" />
     <ClCompile Include="Board.cpp" />
+    <ClCompile Include="CustomButton.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="CoordinateHelper.cpp" />
     <ClCompile Include="King.cpp" />
     <ClCompile Include="Knight.cpp" />
+    <ClCompile Include="NextButton.cpp" />
     <ClCompile Include="Pawn.cpp" />
     <ClCompile Include="Piece.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PreviousButton.cpp" />
     <ClCompile Include="Queen.cpp" />
     <ClCompile Include="Rook.cpp" />
+    <ClCompile Include="SaveButton.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Square.cpp" />
     <ClCompile Include="StateManager.cpp" />
@@ -152,19 +156,26 @@
     <ClInclude Include="Bishop.h" />
     <ClInclude Include="BlackPlayer.h" />
     <ClInclude Include="Board.h" />
+    <ClInclude Include="CustomButton.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Coordinate.h" />
     <ClInclude Include="CoordinateHelper.h" />
     <ClInclude Include="King.h" />
     <ClInclude Include="Knight.h" />
+    <ClInclude Include="NextButton.h" />
     <ClInclude Include="Pawn.h" />
     <ClInclude Include="Piece.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PreviousButton.h" />
     <ClInclude Include="Queen.h" />
     <ClInclude Include="Rook.h" />
+    <ClInclude Include="SaveButton.h" />
     <ClInclude Include="Square.h" />
     <ClInclude Include="StateManager.h" />
     <ClInclude Include="WhitePlayer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="..\..\..\..\..\Desktop\Calibri.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

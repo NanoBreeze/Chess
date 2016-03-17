@@ -9,10 +9,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Header Files\Pieces">
       <UniqueIdentifier>{8a69143c-6e62-492f-b144-dbc794fc3cd1}</UniqueIdentifier>
     </Filter>
@@ -24,6 +20,16 @@
     </Filter>
     <Filter Include="Header Files\Players">
       <UniqueIdentifier>{eded4e6f-3d0a-4569-b7d5-67db1bd1984e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\CustomButtons">
+      <UniqueIdentifier>{b901238b-e26d-4835-9c36-57db3570c77d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\CustomButtons">
+      <UniqueIdentifier>{bbc1a0d0-c8f8-4a61-ab91-5f804e0bc180}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -75,6 +81,18 @@
     <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CustomButton.cpp">
+      <Filter>Source Files\CustomButtons</Filter>
+    </ClCompile>
+    <ClCompile Include="PreviousButton.cpp">
+      <Filter>Source Files\CustomButtons</Filter>
+    </ClCompile>
+    <ClCompile Include="NextButton.cpp">
+      <Filter>Source Files\CustomButtons</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveButton.cpp">
+      <Filter>Source Files\CustomButtons</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Square.h">
@@ -125,5 +143,22 @@
     <ClInclude Include="Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CustomButton.h">
+      <Filter>Header Files\CustomButtons</Filter>
+    </ClInclude>
+    <ClInclude Include="PreviousButton.h">
+      <Filter>Header Files\CustomButtons</Filter>
+    </ClInclude>
+    <ClInclude Include="NextButton.h">
+      <Filter>Header Files\CustomButtons</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveButton.h">
+      <Filter>Header Files\CustomButtons</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="..\..\..\..\..\Desktop\Calibri.ttf">
+      <Filter>Resources</Filter>
+    </Font>
   </ItemGroup>
 </Project>
