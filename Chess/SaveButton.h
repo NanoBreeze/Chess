@@ -5,7 +5,8 @@
 class SaveButton :	public CustomButton
 {
 public:
-	SaveButton();
+	SaveButton(int x, int y);
 	~SaveButton();
+
 };
 

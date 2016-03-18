@@ -1,9 +1,20 @@
-﻿  CustomButton.cpp
-  NextButton.cpp
-  PreviousButton.cpp
-  SaveButton.cpp
-  Source.cpp
-  Generating Code...
+﻿  Source.cpp
   Bishop.obj : /DEBUG:FASTLINK is not supported when managed code is present; restarting link with /DEBUG:FULL
+.NETFramework,Version=v4.5.2.AssemblyAttributes.obj : warning LNK4099: PDB 'vc140.pdb' was not found with '.NETFramework,Version=v4.5.2.AssemblyAttributes.obj' or at 'C:\Users\Lenny\Documents\Visual Studio 2015\Projects\Chess\x64\Debug\vc140.pdb'; linking object as if no debug info
+WhitePlayer.obj : warning LNK4099: PDB 'vc140.pdb' was not found with 'WhitePlayer.obj' or at 'C:\Users\Lenny\Documents\Visual Studio 2015\Projects\Chess\x64\Debug\vc140.pdb'; linking object as if no debug info
+StateManager.obj : warning LNK4099: PDB 'vc140.pdb' was not found with 'StateManager.obj' or at 'C:\Users\Lenny\Documents\Visual Studio 2015\Projects\Chess\x64\Debug\vc140.pdb'; linking object as if no debug info
+Square.obj : warning LNK4099: PDB 'vc140.pdb' was not found with 'Square.obj' or at 'C:\Users\Lenny\Documents\Visual Studio 2015\Projects\Chess\x64\Debug\vc140.pdb'; linking object as if no debug info
+Rook.obj : warning LNK4099: PDB 'vc140.pdb' was not found with 'Rook.obj' or at 'C:\Users\Lenny\Documents\Visual Studio 2015\Projects\Chess\x64\Debug\vc140.pdb'; linking object as if no debug info
+Queen.obj : warning LNK4099: PDB 'vc140.pdb' was not found with 'Queen.obj' or at 'C:\Users\Lenny\Documents\Visual Studio 2015\Projects\Chess\x64\Debug\vc140.pdb'; linking object as if no debug info
+Player.obj : warning LNK4099: PDB 'vc140.pdb' was not found with 'Player.obj' or at 'C:\Users\Lenny\Documents\Visual Studio 2015\Projects\Chess\x64\Debug\vc140.pdb'; linking object as if no debug info
+Piece.obj : warning LNK4099: PDB 'vc140.pdb' was not found with 'Piece.obj' or at 'C:\Users\Lenny\Documents\Visual Studio 2015\Projects\Chess\x64\Debug\vc140.pdb'; linking object as if no debug info
+Pawn.obj : warning LNK4099: PDB 'vc140.pdb' was not found with 'Pawn.obj' or at 'C:\Users\Lenny\Documents\Visual Studio 2015\Projects\Chess\x64\Debug\vc140.pdb'; linking object as if no debug info
+Knight.obj : warning LNK4099: PDB 'vc140.pdb' was not found with 'Knight.obj' or at 'C:\Users\Lenny\Documents\Visual Studio 2015\Projects\Chess\x64\Debug\vc140.pdb'; linking object as if no debug info
+King.obj : warning LNK4099: PDB 'vc140.pdb' was not found with 'King.obj' or at 'C:\Users\Lenny\Documents\Visual Studio 2015\Projects\Chess\x64\Debug\vc140.pdb'; linking object as if no debug info
+CoordinateHelper.obj : warning LNK4099: PDB 'vc140.pdb' was not found with 'CoordinateHelper.obj' or at 'C:\Users\Lenny\Documents\Visual Studio 2015\Projects\Chess\x64\Debug\vc140.pdb'; linking object as if no debug info
+Game.obj : warning LNK4099: PDB 'vc140.pdb' was not found with 'Game.obj' or at 'C:\Users\Lenny\Documents\Visual Studio 2015\Projects\Chess\x64\Debug\vc140.pdb'; linking object as if no debug info
+Board.obj : warning LNK4099: PDB 'vc140.pdb' was not found with 'Board.obj' or at 'C:\Users\Lenny\Documents\Visual Studio 2015\Projects\Chess\x64\Debug\vc140.pdb'; linking object as if no debug info
+BlackPlayer.obj : warning LNK4099: PDB 'vc140.pdb' was not found with 'BlackPlayer.obj' or at 'C:\Users\Lenny\Documents\Visual Studio 2015\Projects\Chess\x64\Debug\vc140.pdb'; linking object as if no debug info
+Bishop.obj : warning LNK4099: PDB 'vc140.pdb' was not found with 'Bishop.obj' or at 'C:\Users\Lenny\Documents\Visual Studio 2015\Projects\Chess\x64\Debug\vc140.pdb'; linking object as if no debug info
   Chess.vcxproj -> C:\Users\Lenny\Documents\Visual Studio 2015\Projects\Chess\x64\Debug\Chess.exe
   Chess.vcxproj -> C:\Users\Lenny\Documents\Visual Studio 2015\Projects\Chess\x64\Debug\Chess.pdb (Partial PDB)

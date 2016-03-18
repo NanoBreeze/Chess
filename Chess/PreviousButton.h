@@ -5,7 +5,8 @@
 class PreviousButton : public CustomButton
 {
 public:
-	PreviousButton();
+	PreviousButton(int x, int y);
 	~PreviousButton();
+
 };
 

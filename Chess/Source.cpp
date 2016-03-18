@@ -6,6 +6,10 @@
 #include "Coordinate.h"
 #include "Board.h"
 #include "CustomButton.h"
+#include "PreviousButton.h"
+#include "NextButton.h"
+#include "SaveButton.h"
+
 
 
 int main()
@@ -15,6 +19,10 @@ int main()
 	
 
 	Game game;
+
+	CustomButton* nextButton = new NextButton(100, 100);
+	CustomButton* previousButton = new PreviousButton(200, 200);
+	CustomButton* saveButton = new SaveButton(300, 300);
 
 
 	while (window.isOpen())
@@ -58,9 +66,21 @@ int main()
 		//sf::Text text("Hello everyone!", font);
 		//text.setCharacterSize(30);
 		//window.draw(text);
+		
+/*
+		text.setString("Hello world!");
+		text.setFont(font);
+		text.setOrigin(20, 20);
+		text.setColor()
+			text.setCharacterSize(30);*/
 
-		CustomButton customButton;
-		window.draw(customButton);
+	
+
+
+		window.draw(*nextButton);
+		window.draw(*previousButton);
+		window.draw(*saveButton);
+
 
 		window.display();
 	}
