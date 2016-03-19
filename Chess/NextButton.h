@@ -9,6 +9,8 @@ public:
 	~NextButton();
 
 
+private:
+	void handleClick() override;
 
 
 

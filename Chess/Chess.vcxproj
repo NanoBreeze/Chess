@@ -150,6 +150,7 @@
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Square.cpp" />
     <ClCompile Include="StateManager.cpp" />
+    <ClCompile Include="Turn.cpp" />
     <ClCompile Include="WhitePlayer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +173,7 @@
     <ClInclude Include="SaveButton.h" />
     <ClInclude Include="Square.h" />
     <ClInclude Include="StateManager.h" />
+    <ClInclude Include="Turn.h" />
     <ClInclude Include="WhitePlayer.h" />
   </ItemGroup>
   <ItemGroup>

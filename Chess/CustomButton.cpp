@@ -71,7 +71,6 @@ void CustomButton::setTextColor(sf::Color colour)
 
 void CustomButton::setToCalibriFont()
 {
-	
 	font.loadFromFile("Calibri.ttf");
 
 	assert(font.loadFromFile("Calibri.ttf") == true);

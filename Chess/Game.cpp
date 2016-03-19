@@ -83,7 +83,14 @@ void Game::delegateClick(const int& x, const int& y)
 			//case b2.1)
 			if(std::find(moves.cbegin(), moves.cend(), selectedSquare->getCoordinate()) != moves.cend())
 			{
-				//move the Piece
+				//move the Piece and add this Turn to the turns stack in StateManager
+
+				Turn turn;
+				turn.setPieceMoved(stateManagerPiece);
+				turn.setFromCoordinate(stateManagerPiece->getCoordinate());
+				turn.setToCoordinate(selectedSquare->getCoordinate());
+				stateManager.getTurns().push(turn);
+
 
 				//set Piece's new location
 				stateManagerPiece->setCoordinate(selectedSquare->getCoordinate());

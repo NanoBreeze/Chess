@@ -19,6 +19,10 @@ public:
 
 
 protected:
+	
+	//pure virtual method called for buttons to do something when they are clicked
+	virtual void handleClick() = 0;
+
 	//draw buttonRectangle and text
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 

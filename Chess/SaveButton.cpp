@@ -15,3 +15,7 @@ SaveButton::SaveButton(int x, int y)
 SaveButton::~SaveButton()
 {
 }
+
+void SaveButton::handleClick()
+{
+}

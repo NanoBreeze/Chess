@@ -93,6 +93,9 @@
     <ClCompile Include="SaveButton.cpp">
       <Filter>Source Files\CustomButtons</Filter>
     </ClCompile>
+    <ClCompile Include="Turn.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Square.h">
@@ -154,6 +157,9 @@
     </ClInclude>
     <ClInclude Include="SaveButton.h">
       <Filter>Header Files\CustomButtons</Filter>
+    </ClInclude>
+    <ClInclude Include="Turn.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -8,5 +8,9 @@ public:
 	SaveButton(int x, int y);
 	~SaveButton();
 
+
+private:
+	void handleClick() override;
+
 };
 

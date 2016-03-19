@@ -8,5 +8,9 @@ public:
 	PreviousButton(int x, int y);
 	~PreviousButton();
 
+private:
+	void handleClick() override;
+
+
 };
 

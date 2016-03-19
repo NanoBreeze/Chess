@@ -15,3 +15,7 @@ NextButton::NextButton(int x, int y)
 NextButton::~NextButton()
 {
 }
+
+void NextButton::handleClick()
+{
+}
