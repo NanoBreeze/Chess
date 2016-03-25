@@ -96,6 +96,9 @@
     <ClCompile Include="Turn.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MovesDisplay.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Square.h">
@@ -159,6 +162,9 @@
       <Filter>Header Files\CustomButtons</Filter>
     </ClInclude>
     <ClInclude Include="Turn.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MovesDisplay.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

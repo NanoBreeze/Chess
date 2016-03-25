@@ -89,8 +89,23 @@ void Game::delegateClick(const int& x, const int& y)
 				turn.setPieceMoved(stateManagerPiece);
 				turn.setFromCoordinate(stateManagerPiece->getCoordinate());
 				turn.setToCoordinate(selectedSquare->getCoordinate());
+
+				//there is a piece to be captured
+				if (selectedSquare->getPiece() != nullptr)
+				{
+					turn.setCapturedPiece(selectedSquare->getPiece());
+				}
+
 				stateManager.getTurns().push(turn);
 
+				auto a = stateManager.getTurns();
+				auto b = a.size();
+				if (a.size() > 1)
+				{
+					auto b = a.top();
+					auto c = b.getFromCoordinate();
+				}
+					
 
 				//set Piece's new location
 				stateManagerPiece->setCoordinate(selectedSquare->getCoordinate());

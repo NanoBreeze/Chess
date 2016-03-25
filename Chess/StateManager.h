@@ -2,6 +2,7 @@
 
 #include "Square.h"
 #include "Turn.h"
+#include "MovesDisplay.h"
 #include <stack>
 
 //contains information relevant to the state of the game, such as which Piece (residing on the selected Square) has been selected (if any)
@@ -20,7 +21,9 @@ public:
 
 	void removeSelectedSquare();
 
-	std::stack<Turn> getTurns() const;
+	MovesDisplay& getMovesDisplay();
+
+	std::stack<Turn>& getTurns() ;
 
 
 private:
@@ -31,6 +34,9 @@ private:
 
 	//contains the Turns from the players. Used to backtrack to a previous move
 	std::stack<Turn> turns;
+
+	//a sf::Drawable that contains the drawing dettails for drawing
+	MovesDisplay movesDisplay;
 
 };
 

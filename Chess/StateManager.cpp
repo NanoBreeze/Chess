@@ -16,7 +16,13 @@ void StateManager::removeSelectedSquare()
 	selectedSquare = nullptr;
 }
 
-std::stack<Turn> StateManager::getTurns() const
+MovesDisplay& StateManager::getMovesDisplay()
+{
+	movesDisplay.setTurns(turns);
+	return movesDisplay;
+}
+
+std::stack<Turn>& StateManager::getTurns() 
 {
 	return turns;
 }

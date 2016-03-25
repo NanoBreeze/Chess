@@ -11,6 +11,8 @@
 #include <vector>
 #include <algorithm>
 
+#include "MovesDisplay.h"
+
 //will remove
 #include <SFML\Graphics.hpp>
 
