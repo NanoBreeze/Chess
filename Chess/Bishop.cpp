@@ -2,17 +2,36 @@
 #include "Board.h"
 
 //set coordinate and size
-Bishop::Bishop(Coordinate coordinate) 
+Bishop::Bishop(Coordinate coordinate)  
 {
+	symbol = "B";
+
+
 	this->coordinate = coordinate;
 
 	int row = (int)coordinate / 8;
 	int column = (int)coordinate % 8;
 
-	sf::RectangleShape::setPosition(sf::Vector2f(column * 50, 350 - row * 50));
+	setPosition(sf::Vector2f(column * 50, 350 - row * 50));
 
-	setSize(sf::Vector2f(20, 20));
 }
+
+void Bishop::setIsWhite(const bool isWhite)
+{
+	this->isWhite = isWhite;
+
+	if (isWhite)
+	{
+		texture.loadFromFile("WhiteBishop.png");
+	}
+	else
+	{
+		texture.loadFromFile("BlackBishop.png");
+	}
+	setTexture(texture);
+
+}
+
 
 //problem, in the moveableSquares, there are duplications of the current square the bishop is in
 std::vector<Coordinate> Bishop::computeMoves()

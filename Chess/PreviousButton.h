@@ -8,8 +8,9 @@ public:
 	PreviousButton(int x, int y);
 	~PreviousButton();
 
+	void handleClick(sf::Event) override;
+
 private:
-	void handleClick() override;
 
 
 };

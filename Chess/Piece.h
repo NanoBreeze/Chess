@@ -4,11 +4,12 @@
 #include <vector>
 #include "Coordinate.h"
 #include "CoordinateHelper.h"
+#include <string.h>
 //#include "Position.h"
 //#include "Board.h"
 
 
-class Piece : public sf::RectangleShape
+class Piece : public sf::Sprite
 {
 public:
 
@@ -35,11 +36,17 @@ public:
 	//gets isWhite to return if Piece belongs to white or black player
 	bool getIsWhite() const;
 
-	void setIsWhite(const bool);
+	virtual void setIsWhite(const bool);
+
+	//returns symbol, which denotes this piece, eg, K for king, N for knight. Used by MovesDisplay
+	std::string getSymbol() const;
 
 protected: 
 
+	sf::Texture texture;
 
+	//eg, K, N R, B, used to display which move we're on
+	std::string symbol;
 
 	//determines if the Piece is belongs to white or black player
 	bool isWhite;

@@ -10,6 +10,8 @@ public:
 	Pawn(Coordinate coordinate);
 	void setCoordinate(const Coordinate position) override;
 
+	void setIsWhite(const bool isWhite) override;
+
 
 protected :
 	std::vector<Coordinate> computeMoves() override;

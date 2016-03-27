@@ -24,7 +24,7 @@ void Piece::setCoordinate(const Coordinate coordinate)
 	int row = (int)coordinate / 8;
 	int column = (int)coordinate % 8;
 
-	sf::RectangleShape::setPosition(sf::Vector2f(column * 50, 350 - row * 50));
+	setPosition(sf::Vector2f(column * 50, 350 - row * 50));
 	computeMoves();
 }
 
@@ -48,5 +48,10 @@ bool Piece::getIsWhite() const
 void Piece::setIsWhite(const bool isWhite)
 {
 	this->isWhite = isWhite;
+}
+
+std::string Piece::getSymbol() const
+{
+	return symbol;
 }
 

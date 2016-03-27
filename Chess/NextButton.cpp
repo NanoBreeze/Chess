@@ -16,6 +16,6 @@ NextButton::~NextButton()
 {
 }
 
-void NextButton::handleClick()
+void NextButton::handleClick(sf::Event event)
 {
 }

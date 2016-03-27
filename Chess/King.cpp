@@ -6,14 +6,34 @@
 
 King::King(Coordinate coordinate)
 {
+	symbol = "K";
+
+	texture.loadFromFile("WhiteKing.png");
+	setTexture(texture);
+
 	this->coordinate = coordinate;
 
 	int row = (int)coordinate / 8;
 	int column = (int)coordinate % 8;
 
-	sf::RectangleShape::setPosition(sf::Vector2f(column * 50, 350 - row * 50));
+	setPosition(sf::Vector2f(column * 50, 350 - row * 50));
 
-	setSize(sf::Vector2f(20, 20));
+}
+
+void King::setIsWhite(const bool isWhite)
+{
+	this->isWhite = isWhite;
+
+	if (isWhite)
+	{
+		texture.loadFromFile("WhiteKing.png");
+	}
+	else
+	{
+		texture.loadFromFile("BlackKing.png");
+	}
+
+	setTexture(texture);
 }
 
 std::vector<Coordinate> King::computeMoves()

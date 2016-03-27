@@ -13,6 +13,7 @@
 
 #include "MovesDisplay.h"
 
+
 //will remove
 #include <SFML\Graphics.hpp>
 
@@ -26,6 +27,7 @@ public:
 	//removes all pointers
 	~Game();
 	
+
 	//contains pieces and info related to the white player
 	Player* whitePlayer = nullptr;
 

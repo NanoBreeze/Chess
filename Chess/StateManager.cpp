@@ -22,6 +22,16 @@ MovesDisplay& StateManager::getMovesDisplay()
 	return movesDisplay;
 }
 
+CustomButton * StateManager::getSaveButton()
+{
+	return saveButton;
+}
+
+CustomButton* StateManager::getLoadButton()
+{
+	return loadButton;
+}
+
 std::stack<Turn>& StateManager::getTurns() 
 {
 	return turns;

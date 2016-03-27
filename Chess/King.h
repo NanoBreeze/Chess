@@ -9,7 +9,9 @@ class King : public Piece
 public:
 	King(Coordinate coordinate);
 
-protected: 
+	void setIsWhite(const bool) override;
+
+protected:
 	std::vector<Coordinate> computeMoves() override;
 
 	//experimental

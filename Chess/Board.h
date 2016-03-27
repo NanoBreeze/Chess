@@ -21,6 +21,9 @@ public:
 	//Each Piece contains a coordinate, and we set the Piece reference on the Square whose row/column matches the Piece's Coordinate
 	void addPiecesToSquares(std::vector<Piece*>) ;
 
+	//clears the board by removing all existing pieces, used only by load button to reset the board
+	void clearBoard();
+
 private:
 
 	//Representation of the board in real life

@@ -6,21 +6,39 @@
 
 Pawn::Pawn(Coordinate coordinate) : hasYetToMove(true)
 {
+	symbol = "";
 	this->coordinate = coordinate;
+	texture.loadFromFile("WhitePawn.png");
+	setTexture(texture);
 
 
 	int row = (int)coordinate / 8;
 	int column = (int)coordinate % 8;
 
-	sf::RectangleShape::setPosition(sf::Vector2f(column * 50, 350 - row * 50));
-
-	setSize(sf::Vector2f(20, 20));
+	//sf::RectangleShape::setPosition(sf::Vector2f(column * 50, 350 - row * 50));
+	setPosition(sf::Vector2f(column * 50, 350 - row * 50));
+	//setSize(sf::Vector2f(20, 20));
 }
 
 void Pawn::setCoordinate(const Coordinate position)
 {
 	Piece::setCoordinate(position);
 	hasYetToMove = false;
+}
+
+void Pawn::setIsWhite(const bool isWhite)
+{
+	this->isWhite = isWhite;
+
+	if (isWhite)
+	{
+		texture.loadFromFile("WhitePawn.png");
+	}
+	else
+	{
+		texture.loadFromFile("BlackPawn.png");
+	}
+	setTexture(texture);
 }
 
 

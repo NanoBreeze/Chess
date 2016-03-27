@@ -4,14 +4,33 @@
 
 Knight::Knight(Coordinate coordinate)
 {
+	symbol = "N";
 	this->coordinate = coordinate;
+	texture.loadFromFile("WhiteKnight.png");
+	setTexture(texture);
+
 
 	int row = (int)coordinate / 8;
 	int column = (int)coordinate % 8;
 
-	sf::RectangleShape::setPosition(sf::Vector2f(column * 50, 350 - row * 50));
+	setPosition(sf::Vector2f(column * 50, 350 - row * 50));
 
-	setSize(sf::Vector2f(20, 20));
+}
+
+void Knight::setIsWhite(const bool isWhite)
+{
+	this->isWhite = isWhite;
+
+	if (isWhite)
+	{
+		texture.loadFromFile("WhiteKnight.png");
+	}
+	else
+	{
+		texture.loadFromFile("BlackKnight.png");
+	}
+	setTexture(texture);
+
 }
 
 std::vector<Coordinate> Knight::computeMoves()

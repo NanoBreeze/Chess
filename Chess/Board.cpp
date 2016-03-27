@@ -58,6 +58,17 @@ void Board::addPiecesToSquares(std::vector<Piece*> pieces)
 	}
 }
 
+void Board::clearBoard()
+{
+	for (Coordinate coordinate = Coordinate::First; coordinate != Coordinate::Last; ++coordinate)
+	{
+		int row = (int)coordinate / 8;
+		int column = (int)coordinate % 8;
+
+		squares[column][row].removePiece();
+	}
+}
+
 Square Board::squares[8][8];
 
 

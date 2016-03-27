@@ -4,14 +4,32 @@
 
 Queen::Queen(Coordinate coordinate) 
 {
+	symbol = "Q";
 	this->coordinate = coordinate;
+	texture.loadFromFile("WhiteQueen.png");
+	setTexture(texture);
+
 
 	int row = (int)coordinate / 8;
 	int column = (int)coordinate % 8;
 
-	sf::RectangleShape::setPosition(sf::Vector2f(column * 50, 350 - row * 50));
+	setPosition(sf::Vector2f(column * 50, 350 - row * 50));
 
-	setSize(sf::Vector2f(20, 20));
+}
+
+void Queen::setIsWhite(const bool isWhite)
+{
+	this->isWhite = isWhite;
+
+	if (isWhite)
+	{
+		texture.loadFromFile("WhiteQueen.png");
+	}
+	else
+	{
+		texture.loadFromFile("BlackQueen.png");
+	}
+	setTexture(texture);
 }
 
 

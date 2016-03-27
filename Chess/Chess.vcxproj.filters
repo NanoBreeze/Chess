@@ -99,6 +99,9 @@
     <ClCompile Include="MovesDisplay.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LoadButton.cpp">
+      <Filter>Source Files\CustomButtons</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Square.h">
@@ -166,6 +169,9 @@
     </ClInclude>
     <ClInclude Include="MovesDisplay.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadButton.h">
+      <Filter>Header Files\CustomButtons</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

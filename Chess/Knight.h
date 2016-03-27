@@ -8,6 +8,8 @@
 public:
 	Knight(Coordinate);
 
+	void setIsWhite(const bool) override;
+
 protected:
 	std::vector<Coordinate> computeMoves() override;
 

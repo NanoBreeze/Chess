@@ -4,6 +4,9 @@
 #include "Turn.h"
 #include "MovesDisplay.h"
 #include <stack>
+#include "CustomButton.h"
+#include "SaveButton.h"
+#include "LoadButton.h"
 
 //contains information relevant to the state of the game, such as which Piece (residing on the selected Square) has been selected (if any)
 class StateManager
@@ -23,6 +26,10 @@ public:
 
 	MovesDisplay& getMovesDisplay();
 
+	CustomButton* getSaveButton();
+
+	CustomButton* getLoadButton();
+
 	std::stack<Turn>& getTurns() ;
 
 
@@ -37,6 +44,12 @@ private:
 
 	//a sf::Drawable that contains the drawing dettails for drawing
 	MovesDisplay movesDisplay;
+
+	//pressing this button saves the current game
+	CustomButton* saveButton = new SaveButton(500, 300);
+
+	//pressing this button loads the saved game by parsing its files
+	CustomButton* loadButton = new LoadButton(500, 350);
 
 };
 
