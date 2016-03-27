@@ -22,7 +22,7 @@ Game::~Game()
 	delete blackPlayer;
 }
 
-void Game::delegateClick(const int& x, const int& y)
+void Game::delegateClick(const int& x, const int& y, sf::TcpSocket& socket, const bool solo)
 {
 	auto selectedCoordinate = getCoordinateFromCursor(x, y);
 
@@ -81,7 +81,7 @@ void Game::delegateClick(const int& x, const int& y)
 			auto moves = stateManagerPiece->getMoves();
 
 			//case b2.1)
-			if(std::find(moves.cbegin(), moves.cend(), selectedSquare->getCoordinate()) != moves.cend())
+			if (std::find(moves.cbegin(), moves.cend(), selectedSquare->getCoordinate()) != moves.cend())
 			{
 				//move the Piece and add this Turn to the turns stack in StateManager
 
@@ -95,17 +95,51 @@ void Game::delegateClick(const int& x, const int& y)
 				{
 					turn.setCapturedPiece(selectedSquare->getPiece());
 				}
-
 				stateManager.getTurns().push(turn);
 
-				auto a = stateManager.getTurns();
-				auto b = a.size();
-				if (a.size() > 1)
+				if (solo == false)
 				{
-					auto b = a.top();
-					auto c = b.getFromCoordinate();
+					//send the coordinates of this move to the other player
+					const int msgSize = 5;
+					char message[msgSize];
+
+					std::string from = std::to_string(static_cast<int>(stateManagerPiece->getCoordinate()));
+					std::string to = std::to_string(static_cast<int>(selectedSquare->getCoordinate()));
+
+					int charIndex = 0;
+
+					//fill in the from coordinates into the char array
+					for (int i = 0; i < from.length(); i++)
+					{
+						message[charIndex] = from[i];
+						charIndex++;
+					}
+
+					message[charIndex] = ',';
+					charIndex++;
+
+					//fill in the to coordinates into the char array
+					for (int i = 0; i < to.length(); i++)
+					{
+						message[charIndex] = to[i];
+						charIndex++;
+					}
+
+					//fill in the remaining space with blanks
+					for (charIndex; charIndex < msgSize; charIndex++)
+					{
+						message[charIndex] = '_';
+					}
+
+					if (socket.send(message, msgSize) != sf::Socket::Done)
+					{
+						std::cout << "The message couldn't be sent";
+					}
+					else
+					{
+						std::cout << "Message containing move sent";
+					}
 				}
-					
 
 				//set Piece's new location
 				stateManagerPiece->setCoordinate(selectedSquare->getCoordinate());
@@ -129,6 +163,69 @@ void Game::delegateClick(const int& x, const int& y)
 }
 
 
+void Game::delegateReceivedMove(const char data[], const int size)
+{
+	//get the two coordinates, which are delimited with ,
+	std::string from = "";
+	std::string to = "";
+
+	int charIndex = 0;
+
+	//get from coordinate
+	for (charIndex; charIndex < size; charIndex++)
+	{
+		if (data[charIndex] != ',')
+		{
+			from += data[charIndex];
+		}
+		else { break; }
+	}
+
+	charIndex++; //skip the ,
+
+	//get to coordinate, stop at blanks, if they appear
+	for (charIndex; charIndex < size; charIndex++)
+	{
+		if (data[charIndex] != '_')
+		{
+			to += data[charIndex];
+		}
+		else { break; }
+	}
+
+	//get the coordinate values
+	int fromInt = std::stoi(from);
+	int toInt = std::stoi(to);
+
+	Coordinate fromCoordinate = static_cast<Coordinate>(fromInt);
+	Coordinate toCoordinate = static_cast<Coordinate>(toInt);
+
+	Piece* pieceAtFrom = board[fromCoordinate].getPiece();
+
+	//update the Turn list, this piece of code is almost identical to the one in case 2.1 in delegateClick
+	Turn turn;
+	turn.setPieceMoved(pieceAtFrom);
+	turn.setFromCoordinate(fromCoordinate);
+	turn.setToCoordinate(toCoordinate);
+
+	//there is a piece to be captured
+	if (board[toCoordinate].getPiece() != nullptr)
+	{
+		turn.setCapturedPiece(board[toCoordinate].getPiece());
+	}
+	stateManager.getTurns().push(turn);
+
+
+	//remove piece at the to's coordinate, set the piece at the from coordinate to be at the to's coordinate, remove piece at from's coordinate
+	pieceAtFrom->setCoordinate(toCoordinate);
+
+	board[toCoordinate].removePiece();
+	board[toCoordinate].setPiece(pieceAtFrom);
+	board[fromCoordinate].removePiece();
+}
+
+
+
 Coordinate Game::getCoordinateFromCursor(const int& x, const int& y) const
 {
 	//find column of square the click is on, refactor later, currently uses magic numbers, 50, because 50 is the size of each square!
@@ -143,7 +240,7 @@ Coordinate Game::getCoordinateFromCursor(const int& x, const int& y) const
 	//ensure the row is from 0 to 7
 	assert((row >= 0) && (row < 8));
 
-	std::cout << "The column is " << std::to_string(column) << " and the row is " << std::to_string(row);
+	std::cout << "The column is " << std::to_string(column) << " and the row is " << std::to_string(row) << std::endl;
 
 	//we find positions based on coordinate, so we switch the column and row to Coordinate
 	return static_cast<Coordinate> (row * 8 + column);

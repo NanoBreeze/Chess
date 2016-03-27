@@ -49,7 +49,7 @@ void MovesDisplay::setTurns(std::stack<Turn>& turns)
 
 		assert(font.loadFromFile("Calibri.ttf") == true);
 		t.setFont(font);
-		t.setCharacterSize(30);
+		t.setCharacterSize(15);
 
 		std::string pieceSymbol = this->turns.top().getPieceMoved()->getSymbol();
 		std::string isCaptured = (this->turns.top().getCapturedPiece() == nullptr) ? "" : "x";
@@ -71,7 +71,7 @@ void MovesDisplay::setTurns(std::stack<Turn>& turns)
 
 		//determine y coordinate
 		int multiFactor = (this->turns.size() - 1) / 2;
-		yCoordinate = 10 + multiFactor * 50;
+		yCoordinate = 10 + multiFactor * 30;
 
 		t.setPosition(xCoordinate, yCoordinate);
 		t.setColor(sf::Color::Blue);
